@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>About Environments — Documentation — Puppet Labs</title>
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+    <link rel='icon' href='/favicon.ico' />
+
+     
+  <meta name="description" content="Environments are isolated groups of puppet agent nodes. A puppet master server can serve each environment with completely different main manifests ...">
+
+<!-- Google analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1537572-5']);
+  _gaq.push(['_setDomainName', 'puppetlabs.com']);
+  _gaq.push(['_addIgnoredRef', 'puppetlabs.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
+</script>
+<!-- End Google analytics -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.11.1.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/navigation-accordion.js'></script>
+
+    <script type="text/javascript" src="https://puppetlabs.com/sites/all/themes/puppetlabs/js/leadcapture.js"></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <!-- /all in one seo pack -->
+
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com/puppet/latest/reference/environments.html" />
+
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+<script type="text/javascript" src="/files/javascripts/anchor.min.js"></script>
+<link rel="stylesheet" href="/files/stylesheets/anchor.css">
+<script>
+$(document).ready(function(){ 
+    addAnchors("#content h1"); 
+    addAnchors("#content h2"); 
+    addAnchors("#content h3"); 
+    addAnchors("#content h4"); 
+    });
+</script>
+<!-- Code for hover anchor links ends -->
+
+</head>
+
+
+
+
+  <body id="puppetlabsdocs" class="docs">
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PF6FV6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PF6FV6');</script>
+  <!-- End Google Tag Manager -->
+  <style type="text/css">h1, h2{ visibility : hidden }</style>
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="https://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/puppet/puppet-enterprise">
+              <span>Products</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+			<li>
+                <ul>
+                   <a href="https://puppetlabs.com/puppet/what-is-puppet/">What is Puppet?</a>
+                </ul>
+              </li>
+			       <li>
+                <ul>
+                   <a href="https://puppetlabs.com/puppet/puppet-enterprise/">Puppet Enterprise</a>
+                </ul>
+              </li>
+            <li>
+                <ul>
+                   <a href="https://puppetlabs.com/puppet/whats-new/">What's New in 2.5</a>
+                </ul>
+              </li>
+            <li>
+                <ul>
+                   <a href="https://puppetlabs.com/puppet/puppet-open-source/">Puppet Open Source</a>
+                </ul>
+              </li>
+            <li>
+                <ul>
+                   <a href="https://puppetlabs.com/puppet/enterprise-vs-open-source/">Enterprise vs. Open Source</a>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <a href="https://forge.puppetlabs.com">Puppet Forge</a>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <a href="https://puppetlabs.com/puppet/requirements/">Components &amp; Requirements</a>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <a href="https://puppetlabs.com/puppet/faq/">FAQ</a>
+                </ul>
+              </li>
+			  <li>
+                <ul>
+                  <a href="https://puppetlabs.com/puppet/how-to-buy/">How to Buy</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="solutions-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/solutions/">
+              <span>Solutions</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-12296"><a href="https://puppetlabs.com/solutions/configuration-management/">Configuration Management</a></li>
+<li class="page_item page-item-986"><a href="https://puppetlabs.com/solutions/virtualization-management/">Virtualization Management</a></li>
+<li class="page_item page-item-993"><a href="https://puppetlabs.com/solutions/cloud-management/">Cloud Management</a></li>
+<li class="page_item page-item-996"><a href="https://puppetlabs.com/solutions/it-compliance/">IT Compliance</a></li>
+<li class="page_item page-item-9520"><a href="https://puppetlabs.com/solutions/devops/">DevOps</a></li>
+<li class="page_item page-item-991"><a href="https://puppetlabs.com/solutions/manage-os-x-resources/">OS X Desktops</a></li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="https://puppetlabs.com/services/overview/">Overview</a></li>
+<li class="page_item page-item-1052"><a href="https://puppetlabs.com/services/customer-support/">Customer Support</a></li>
+<li class="page_item page-item-11022"><a href="https://puppetlabs.com/services/support-plans/">Support Plans</a></li>
+<li class="page_item page-item-845"><a href="https://puppetlabs.com/services/training-workshops/">On-Site Education</a></li>
+<li class="page_item page-item-4899"><a href="https://puppetlabs.com/services/consulting/">Professional Services</a></li>
+<li class="page_item page-item-849"><a href="https://puppetlabs.com/category/events/upcoming/">Events &amp; Workshops</a></li>
+<li class="page_item page-item-851"><a href="https://puppetlabs.com/services/partners/">Partners</a></li>
+            </ul>
+          </li>
+                    <li id="resources-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/resources/">
+              <span>Resources</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="https://puppetlabs.com/resources/overview-2/">Overview</a></li>
+<li class="page_item page-item-1040"><a href="https://docs.puppetlabs.com">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download">Downloads</a></li>
+<li class="page_item page-item-1961"><a href="https://forge.puppetlabs.com">Puppet Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/download-whitepapers.html">White Papers</a></li>
+<li class="page_item page-item-7279"><a href="https://puppetlabs.com/resources/webinars/">Upcoming Webinars</a></li>
+<li class="page_item page-item-10183"><a href="https://puppetlabs.com/resources/newsletter/">Newsletter</a></li>
+<li class="page_item page-item-12263"><a href="https://puppetlabs.com/resources/tech-notes/">Tech Notes</a></li>
+<li class="page_item page-item-10265"><a href="http://info.puppetlabs.com/pe2-webinar.html">Webinars</a></li>
+            </ul>
+          </li>
+
+          <li id="customers-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/customers/companies/">
+              <span>Customers</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+			<li>
+                <ul>
+                  <a href="https://puppetlabs.com/customers/companies/">Companies</a>
+                </ul>
+              </li>
+			  <li>
+                <ul>
+                  <a href="https://puppetlabs.com/customers/case-studies/">Case Studies</a>
+                </ul>
+              </li>
+			  <li>
+                <ul>
+                  <a href="https://puppetlabs.com/customers/product-testimonials/">Product Testimonials</a>
+                </ul>
+              </li>
+			    <li>
+                <ul>
+                  <a href="https://puppetlabs.com/customers/what-customers-are-saying/">Service Testimonials</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/community/">
+              <span>Community</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+ <ul>
+			<li>
+                <ul>
+                  <a href="https://puppetlabs.com/community/overview/">Overview</a>
+                </ul>
+              </li>
+			<li>
+                <ul>
+                  <a href="https://puppetlabs.com/blog">Blog</a>
+                </ul>
+              </li>
+			  <li>
+                <ul>
+                  <a href="https://puppetlabs.com/community/puppet-camp/">Puppet Camp</a>
+                </ul>
+              </li>
+			  <li>
+                <ul>
+                  <a href="https://puppetlabs.com/community/user-groups-and-devops-groups/">Puppet User Groups & DevOps Groups</a>
+                </ul>
+              </li>
+	          <li>
+                <ul>
+                  <a href="https://puppetlabs.com/community/presentations/">Presentations</a>
+                </ul>
+              </li>
+			    <li>
+                <ul>
+                  <a href="https://puppetlabs.com/community/videos/">Videos</a>
+                </ul>
+              </li>
+            </ul>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2316"><a href="https://puppetlabs.com/company/overview/">Overview</a></li>
+<li class="page_item page-item-2179"><a href="https://puppetlabs.com/company/news/">News</a>
+<ul class='children'>
+	<li class="page_item page-item-2338"><a href="https://puppetlabs.com/company/news/press-releases/">Press Releases</a></li>
+	<li class="page_item page-item-2383"><a href="https://puppetlabs.com/company/news/media-kit/">Media Kit</a></li>
+</ul>
+</li>
+<li class="page_item page-item-1571"><a href="https://puppetlabs.com/company/careers/">Careers</a></li>
+<li class="page_item page-item-10372"><a href="https://puppetlabs.com/company/management/">Management</a></li>
+<li class="page_item page-item-10311"><a href="https://puppetlabs.com/company/board-and-advisors/">Board and Advisors</a></li>
+<li class="page_item page-item-10367"><a href="https://puppetlabs.com/company/investors/">Investors</a></li>
+<li class="page_item page-item-2313"><a href="https://puppetlabs.com/company/contact-us/">Contact Us</a></li>
+<li class="page_item page-item-10579"><a href="https://puppetlabs.com/company/awards/">Awards</a></li>
+            </ul>
+          </li>
+    		</ul>
+          <div id="misc-navigation">
+			  <ul>
+				<li><a href="https://puppetlabs.com/security/">Security</a></li>
+				<li><a href="https://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="https://puppetlabs.com/resources/customer-support/">Support</a></li>
+			        <li><a href="https://tickets.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="https://puppetlabs.com/company/contact/contact-us">Contact Us</a></li>
+				<li><a href="http://info.puppetlabs.com/download-pe2.html" class="gateway">Download</a></li>
+			  </ul>
+			<form action="https://www.google.com/cse" id="cse-search-box">
+			  <div>
+				<input type="hidden" name="cx" value="017668764424496204839:ubligvgbenm" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" class="gsc-input" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="https://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+          </div>
+      </nav>
+    	</div>
+    </header>
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">About Environments</span></h1>
+        </div>
+        <br />
+      </section>
+
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1>About Environments</h1>
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#directory-environments-vs-config-file-environments">Directory Environments vs. Config File Environments</a></li>
+  <li class="toc-lv2"><a href="#assigning-nodes-to-environments">Assigning Nodes to Environments</a></li>
+  <li class="toc-lv2"><a href="#referencing-the-environment-in-manifests">Referencing the Environment in Manifests</a></li>
+  <li class="toc-lv2"><a href="#about-directory-environments">About Directory Environments</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#puppet-must-be-configured-to-use-them">Puppet Must Be Configured to Use Them</a></li>
+   <li class="toc-lv3"><a href="#unconfigured-environments-arent-allowed">Unconfigured Environments Aren’t Allowed</a></li>
+   <li class="toc-lv3"><a href="#they-disable-config-file-environments">They Disable Config File Environments</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#about-config-file-environments">About Config File Environments</a></li>
+  <li class="toc-lv2"><a href="#other-information-about-environments">Other Information About Environments</a></li>
+</ol></nav>
+              
+<p>Environments are isolated groups of puppet agent nodes. A puppet master server can serve each environment with completely different <a href="./dirs_manifest.html">main manifests</a> and <a href="./dirs_modulepath.html">modulepaths</a>.</p>
+
+<p>This frees you to use different versions of the same modules for different populations of nodes, which is useful for testing changes to your Puppet code before implementing them on production machines. (You could also do this by running a separate puppet master for testing, but using environments is often easier.)</p>
+
+<h2 id="directory-environments-vs-config-file-environments">Directory Environments vs. Config File Environments</h2>
+
+<p>There are two ways to set up environments on a puppet master: <a href="./environments_configuring.html"><strong>directory environments,</strong></a> and <a href="./environments_classic.html"><strong>config file environments.</strong></a> Note that these <strong>are mutually exclusive</strong> — enabling one will completely disable the other.</p>
+
+<p>Directory environments are easier to use and will eventually replace config file environments completely.</p>
+
+<h2 id="assigning-nodes-to-environments">Assigning Nodes to Environments</h2>
+
+<p>You can assign agent nodes to environments using either the agent’s config file or an external node classifier (ENC).</p>
+
+<p>For details, see <a href="./environments_assigning.html">the page on assigning nodes to environments.</a></p>
+
+<h2 id="referencing-the-environment-in-manifests">Referencing the Environment in Manifests</h2>
+
+<p>In Puppet manifests, you can get the name of the current environment by using the <code>$environment</code> variable, which is <a href="./lang_facts_and_builtin_vars.html#variables-set-by-the-puppet-master">set by the puppet master.</a></p>
+
+<h2 id="about-directory-environments">About Directory Environments</h2>
+
+<p>Directory environments let you add a new environment by simply adding a new directory of config data. Here’s what you’ll need to know to start using them:</p>
+
+<h3 id="puppet-must-be-configured-to-use-them">Puppet Must Be Configured to Use Them</h3>
+
+<p>Since directory environments are a major change to how Puppet loads code and serves configurations, they aren’t enabled by default yet. (They will become the only way to manage environments in Puppet 4.0.)</p>
+
+<p>To start using directory environments, do the following:</p>
+
+<ul>
+  <li><a href="./environments_configuring.html">Configure the Puppet master to use directory environments</a></li>
+  <li><a href="./environments_creating.html">Create your environments</a></li>
+  <li><a href="./environments_assigning.html">Assign nodes to their environments</a></li>
+</ul>
+
+<h3 id="unconfigured-environments-arent-allowed">Unconfigured Environments Aren’t Allowed</h3>
+
+<p>If a node is assigned to an environment which doesn’t exist — that is, there is no directory of that name in any of the <code>environmentpath</code> directories — the puppet master will fail compilation of its catalog.</p>
+
+<h3 id="they-disable-config-file-environments">They Disable Config File Environments</h3>
+
+<p>If directory environments are enabled, they will completely disable config file environments. This means:</p>
+
+<ul>
+  <li>Puppet will always ignore the <code>manifest</code>, <code>modulepath</code>, and <code>config_version</code> settings in puppet.conf.</li>
+  <li>Puppet will always ignore any <a href="./environments_classic.html#environment-config-sections">environment config sections</a> in puppet.conf.</li>
+</ul>
+
+<p>Instead, the effective <a href="./dirs_manifest.html">site manifest</a> and <a href="./dirs_modulepath.html">modulepath</a> will always come from the active environment.</p>
+
+<h2 id="about-config-file-environments">About Config File Environments</h2>
+
+<p>To use config file environments, see <a href="./environments_classic.html">the reference page on config file environments.</a></p>
+
+<h2 id="other-information-about-environments">Other Information About Environments</h2>
+
+<p>This section of the Puppet reference manual has several other pages about environments:</p>
+
+<ul>
+  <li><a href="./environments_suggestions.html">Suggestions for Use</a> — common patterns and best practices for using environments.</li>
+  <li><a href="./environments_limitations.html">Limitations of Environments</a> — environments mostly work, but they can be a bit wobbly in several situations.</li>
+  <li><a href="./environments_https.html">Environments and Puppet’s HTTPS Interface</a> — this page explains how environment information is embedded in Puppet’s HTTPS requests, and how you can query environment data in order to build Puppet extensions.</li>
+</ul>
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+            <nav class="main">
+                  <div id="subCol">
+                      <ul id="doc-navigation">
+                        <li class="with-submenu">
+                          <a href="#">
+                            <span>Docs Quick Nav</span>
+                            <span class="drop-down-trigger"></span>
+                          </a>
+                                           <dl>
+                  <dt>Home</dt>
+                    <dd><a href="/">Puppet Docs Front Page</a></dd>
+                  <dt>#1 Most Popular</dt>
+                    <dd><a href="/references/stable/type.html">The Resource Type Reference</a></dd>
+                  <dt>Puppet Enterprise</dt>
+                    <dd><a href="/pe/latest/">Puppet Enterprise User's Guide (latest)</a></dd>
+                    <dd><a href="/pe/latest/quick_start.html">Quick Start Guide</a></dd>
+                  <dt>Puppet in General (PE &amp; Open Source)</dt>
+                      <dd><a href="/puppet/latest/reference">Puppet Reference Manual (latest)</a></dd>
+                      <dd><a href="/learning/">Learning Puppet</a></dd>
+                      <dd><a href="/references/glossary.html">Glossary of Puppet Terms</a></dd>
+                  <dt>Open Source Puppet</dt>
+                    <dd><a href="/guides/install_puppet/pre_install.html">Installing</a></dd>
+                    <dd><a href="/guides/install_puppet/upgrading.html">Upgrading</a></dd>
+                  <dt>Facter</dt>
+                      <dd><a href="/facter/latest/core_facts.html">Core Facts Reference</a></dd>
+                      <dd><a href="/facter/latest/fact_overview.html">Writing Custom Facts</a></dd>
+                  <dt>PuppetDB</dt>
+                      <dd><a href="/puppetdb/latest">PuppetDB Manual</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">All MCollective Docs</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">Writing Plugins</a></dd>
+                </dl>
+
+                        </li>
+                      </ul>
+
+                      <h3 id="puppet-3-7-reference-manual">Puppet 3.7 Reference Manual</h3>
+
+<ul>
+  <li><a href="./index.html">Introduction</a></li>
+  <li><a href="./release_notes.html">Puppet 3.7 Release Notes</a></li>
+  <li><strong>Deprecated Features</strong>
+    <ul>
+      <li><a href="./deprecated_summary.html">About Deprecations in This Version</a></li>
+      <li><a href="./deprecated_language.html">Language Features</a></li>
+      <li><a href="./deprecated_resource.html">Resource Type Features</a></li>
+      <li><a href="./deprecated_api.html">Extension Points and APIs</a></li>
+      <li><a href="./deprecated_command.html">Command Line Features</a></li>
+      <li><a href="./deprecated_settings.html">Settings</a></li>
+      <li><a href="./deprecated_windows_api.html">Breaking Changes to Private Windows APIs</a></li>
+      <li><a href="./deprecated_misc.html">Other Features</a></li>
+    </ul>
+  </li>
+
+  <li><a href="./system_requirements.html">System Requirements</a></li>
+  <li><a href="./architecture.html">Overview of Puppet's Architecture</a></li>
+
+  <li><strong>Puppet's Services and Tools</strong>
+    <ul>
+      <li><a href="./services_commands.html">Puppet's Commands</a></li>
+      <li><a href="./services_commands_windows.html">Running Puppet Commands on Windows</a></li>
+      <li><a href="./services_master_webrick.html">The WEBrick Puppet Master</a></li>
+      <li><a href="./services_master_rack.html">The Rack Puppet Master</a></li>
+      <li><a href="./services_agent_unix.html">Puppet Agent on *nix</a></li>
+      <li><a href="./services_agent_windows.html">Puppet Agent on Windows</a></li>
+      <li><a href="./services_apply.html">Puppet Apply</a></li>
+    </ul>
+  </li>
+
+  <li><strong>The Puppet Language</strong>
+    <ul>
+      <li><a href="./lang_visual_index.html">Visual Index</a></li>
+      <li><a href="./lang_summary.html">Basics</a></li>
+      <li><a href="./lang_reserved.html">Reserved Words and Allowed Names</a></li>
+      <li><a href="./lang_resources.html">Resources</a></li>
+      <li><a href="./lang_windows_file_paths.html">Handling File Paths on Windows</a></li>
+      <li><a href="./lang_relationships.html">Relationships and Ordering</a></li>
+      <li><a href="./lang_defaults.html">Resource Defaults</a></li>
+      <li><a href="./lang_variables.html">Variables</a></li>
+      <li><a href="./lang_facts_and_builtin_vars.html">Facts and Built-in Variables</a></li>
+      <li><a href="./lang_scope.html">Scope</a></li>
+      <li><a href="./lang_conditional.html">Conditional Statements</a></li>
+      <li><a href="./lang_expressions.html">Expressions</a></li>
+      <li><a href="./lang_functions.html">Functions</a></li>
+      <li><a href="./lang_classes.html">Classes</a></li>
+      <li><a href="./lang_defined_types.html">Defined Types</a></li>
+      <li><a href="./lang_containment.html">Containment</a></li>
+      <li><a href="./lang_namespaces.html">Namespaces and Autoloading</a></li>
+      <li><a href="./lang_collectors.html">Resource Collectors</a></li>
+      <li><a href="./lang_node_definitions.html">Node Definitions</a></li>
+      <li><a href="./lang_datatypes.html">Data Types</a></li>
+      <li><a href="./lang_comments.html">Comments</a></li>
+      <li><a href="./lang_virtual.html">Virtual Resources</a></li>
+      <li><a href="./lang_exported.html">Exported Resources</a></li>
+      <li><a href="./lang_tags.html">Tags</a></li>
+      <li><a href="./lang_run_stages.html">Run Stages</a></li>
+      <li><a href="./lang_import.html">Importing Manifest Files</a></li>
+    </ul>
+  </li>
+
+  <li><strong>Modules</strong>
+    <ul>
+      <li><a href="./modules_fundamentals.html">Fundamentals</a></li>
+      <li><a href="/guides/plugins_in_modules.html">Plugins in Modules</a></li>
+      <li><a href="./modules_installing.html">Installing Modules</a></li>
+      <li><a href="./modules_publishing.html">Publishing Modules on the Puppet Forge</a></li>
+      <li><a href="./modules_documentation.html">Module Documentation</a></li>
+    </ul>
+  </li>
+
+  <li><a href="/references/3.7.latest/type.html">The Resource Type Reference</a></li>
+
+  <li><strong>Resource Types: Tips and Examples</strong>
+    <ul>
+      <li><a href="./resources_service.html">Service Resources (All OSes)</a></li>
+      <li><a href="./resources_file_windows.html">File Resources (Windows)</a></li>
+      <li><a href="./resources_package_windows.html">Package Resources (Windows)</a></li>
+      <li><a href="./resources_user_group_windows.html">User and Group Resources (Windows)</a></li>
+      <li><a href="./resources_scheduled_task_windows.html">Scheduled Task Resources (Windows)</a></li>
+      <li><a href="./resources_exec_windows.html">Exec Resources (Windows)</a></li>
+      <li><a href="./resources_windows_optional.html">Optional Resource Types for Windows</a></li>
+    </ul>
+  </li>
+
+  <li><strong>Misc. References (Settings, Functions, HTTP, etc.)</strong>
+    <ul>
+      <li><a href="/references/3.7.latest/configuration.html">Settings (Configuration Reference)</a></li>
+      <li><a href="/references/3.7.latest/function.html">Functions</a></li>
+      <li><a href="/references/3.7.latest/metaparameter.html">Metaparameters</a></li>
+      <li><a href="/references/3.7.latest/report.html">Report Handlers</a></li>
+      <li><a href="/references/3.7.latest/indirection.html">Indirections and Termini</a></li>
+      <li><a href="/references/3.7.latest/developer/index.html">Ruby API for Developing Extensions</a></li>
+      <li><a href="/references/3.7.latest/developer/file.http_api_index.html">Puppet's HTTP API</a></li>
+    </ul>
+  </li>
+  <li><strong>Important Directories and Files</strong>
+    <ul>
+      <li><a href="./dirs_confdir.html">The Main Config Directory (Confdir)</a></li>
+      <li><a href="./dirs_manifest.html">The Main Manifest(s)</a></li>
+      <li><a href="./dirs_modulepath.html">The Modulepath</a></li>
+      <li><a href="./dirs_ssldir.html">The SSLdir</a></li>
+      <li><a href="./dirs_vardir.html">The Vardir</a></li>
+    </ul>
+  </li>
+  <li><strong>Environments</strong>
+    <ul>
+      <li><a href="./environments.html">About Environments</a></li>
+      <li><a href="./environments_configuring.html">Configuring Directory Environments</a></li>
+      <li><a href="./environments_creating.html">Creating Directory Environments</a></li>
+      <li><a href="./environments_assigning.html">Assigning Environments to Nodes</a></li>
+      <li><a href="./environments_classic.html">Using Config File Environments (deprecated)</a></li>
+      <li><a href="./environments_suggestions.html">Suggestions for Use</a></li>
+      <li><a href="./environments_limitations.html">Limitations of Environments</a></li>
+      <li><a href="./environments_https.html">Environments and Puppet's HTTPS Interface</a></li>
+    </ul>
+  </li>
+  <li><strong>Configuration</strong>
+    <ul>
+      <li><a href="./config_about_settings.html">About Puppet's Settings</a></li>
+      <li><a href="./config_print.html">Checking Values of Settings</a></li>
+      <li><a href="./config_set.html">Editing Settings on the Command Line</a></li>
+      <li><a href="./config_important_settings.html">Short List of Important Settings</a></li>
+      <li><a href="/references/3.7.latest/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
+      <li><strong>Config Files</strong>
+        <ul>
+          <li><a href="./config_file_main.html">puppet.conf: The Main Config File</a></li>
+          <li><a href="./config_file_auth.html">The auth.conf File</a></li>
+          <li><a href="./config_file_autosign.html">The autosign.conf File</a></li>
+          <li><a href="./config_file_csr_attributes.html">The csr_attributes.yaml File</a></li>
+          <li><a href="./config_file_device.html">The device.conf File</a></li>
+          <li><a href="./config_file_environment.html">The environment.conf Files</a></li>
+          <li><a href="./config_file_fileserver.html">The fileserver.conf File</a></li>
+          <li><a href="./config_file_hiera.html">The hiera.yaml File</a></li>
+          <li><a href="./config_file_puppetdb.html">The puppetdb.conf File</a></li>
+          <li><a href="./config_file_routes.html">The routes.yaml File</a></li>
+          <li><a href="./config_file_tagmail.html">The tagmail.conf File</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>SSL and Certificates</strong>
+    <ul>
+      <li><a href="./config_ssl_external_ca.html">Using an External CA</a></li>
+      <li><a href="./ssl_autosign.html">Configuring Autosigning</a></li>
+      <li><a href="./ssl_attributes_extensions.html">CSR Attributes and Certificate Extensions</a></li>
+      <li><a href="./ssl_regenerate_certificates.html">Regenerating All Certificates in a Deployment</a></li>
+    </ul>
+  </li>
+
+  <li><strong>Data Formats</strong>
+    <ul>
+      <li><a href="./format_report.html">Report Format</a></li>
+    </ul>
+  </li>
+
+  <li><strong>Puppet Subsystems</strong>
+    <ul>
+      <li><a href="./subsystem_agent_master_comm.html">Agent/Master HTTPS Communications</a></li>
+      <li><a href="./subsystem_catalog_compilation.html">Catalog Compilation</a></li>
+    </ul>
+  </li>
+  <li><strong>Experimental Features</strong>
+    <ul>
+      <li><a href="./experiments_overview.html">Overview</a></li>
+      <li><a href="./experiments_future.html">The Future Parser and Evaluator</a></li>
+      <li><a href="./experiments_lambdas.html">Iteration and Lambdas</a></li>
+      <li><a href="./experiments_msgpack.html">Msgpack Support</a></li>
+      <li><a href="./experiments_cfacter.html">Native Facter</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+                                                              <!-- Current promo images -->
+            <hr style="margin-top: 20px; margin-bottom: 20px;">
+            <div style="margin-top: 10px; padding-bottom: 10px;">
+                <p style="font-family: 'Lucida Grande',Lucida,Verdana,sans-serif;font-size: 16px; font-weight: bold; line-height: 22px; margin-bottom: 10px;">Learning Puppet VM</p>
+
+                <p style="font-size:0.9em;line-height: 1.5em;"><a href="http://info.puppetlabs.com/download-learning-puppet-VM.html">Learn Puppet</a> in a safe, convenient virtual environment - free download</p>
+                <a href="http://info.puppetlabs.com/download-learning-puppet-VM.html">
+                <img src="/images/learning-puppet-vm.jpg" class="Learning Puppet VM" alt="Learning Puppet VM screenshot">
+                </a>
+            </div>
+            <div style="margin-top: 10px; padding-bottom: 10px;">
+                <p style="font-family: 'Lucida Grande',Lucida,Verdana,sans-serif;font-size: 16px; font-weight: bold; line-height: 22px; margin-bottom: 10px;">Free Online Learning</p>
+                <a href="https://puppetlabs.com/learn"><img src="/images/LMS_Forge_Ad.png" alt="Puppet Labs Workshop promo"></a>
+            </div>
+            <div style="margin-top: 10px; padding-bottom: 10px;">
+                <p style="font-family: 'Lucida Grande',Lucida,Verdana,sans-serif;font-size: 16px; font-weight: bold; line-height: 22px; margin-bottom: 10px;">Download the Docs</p>
+                <a href="http://info.puppetlabs.com/download-pdfs.html"><img src="/images/smallbits_small_docs.png" alt="Puppet docs download"></a>
+            </div>
+
+                  </div>
+            </nav>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="https://puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="https://app-h.marketo.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='email' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="https://puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="https://puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="https://puppetlabs.com/sites/default/files/mktFormSupport.js"></script>
+
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+
+<a href="http://info.puppetlabs.com/puppet-enterprise" class="fbtn">Try Puppet Enterprise FREE</a>
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="https://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="https://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="https://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus">
+
+
+			<li><a href="http://feeds.feedburner.com/PuppetLabs" target="_blank"><img src="https://puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png" border="0"></a></li>
+			<li><a href="https://www.facebook.com/pages/Puppet-Labs/219089920711" target="_blank"><img src="https://puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png" border="0"></a></li>
+			<li><a href="https://www.twitter.com/puppetlabs" target="_blank"><img src="https://puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png" border="0"></a></li>
+			<li><a href="http://www.linkedin.com/groups?about=&amp;gid=696467&amp;trk=anet_ug_grppro" target="_blank"><img src="https://puppetlabs.com/wp-content/uploads/2011/01/LinkedIn_IN_Icon_32px.png" border="0"></a></li>    <li><a href="https://github.com/puppetlabs" target="_blank"><img src="https://puppetlabs.com/wp-content/uploads/2011/01/github_icon.png" border="0"></a></li>
+			<li><a href="https://plus.google.com/112682055028218091774?rel=author" target="_blank"><img src="https://puppetlabs.com/wp-content/uploads/2013/05/google_plus32x32.png" alt="Find Us on Google+" border="0"></a></li>
+					</ul>
+
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by Spencer Krum, Ben Kero, William Van Hevelingen, James Turnbull and Jeff McCune, <a href="http://www.apress.com/9781430260400" rel="nofollow">Pro Puppet, Second Edition</a> is a comprehensive and up-to-date look at Puppet and MCollective. </p>
+              <a href="http://www.apress.com/9781430260400" rel="nofollow"><img src="/images/propuppet2thumb.png" height="161" width="131" alt="Pro Puppet, Second Edition" title="Pro Puppet, Second Edition"/></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2014 <a href="https://puppetlabs.com/" title="Puppet Labs">Puppet Labs</a> &nbsp;&nbsp;•&nbsp;&nbsp; <a href="https://puppetlabs.com/terms">Terms of Use</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">926 NW 13th Avenue #210</span>
+           /
+           <span class="locality">Portland</span>,
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>
+      </div>
+    </div>
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+    <script src="https://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script>
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>

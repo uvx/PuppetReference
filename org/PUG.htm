@@ -1,0 +1,1002 @@
+<!doctype html>
+<!--[if lt IE 7]>    <html class="no-js is-ie lt-ie9 lt-ie8 lt-ie7" lang="en" xml:lang="en" dir="ltr" 
+  xmlns:og="http://ogp.me/ns#"> <![endif]-->
+<!--[if IE 7]>       <html class="no-js is-ie lt-ie9 lt-ie8 ie7" lang="en" xml:lang="en" dir="ltr" 
+  xmlns:og="http://ogp.me/ns#"> <![endif]-->
+<!--[if IE 8]>       <html class="no-js is-ie lt-ie9 ie8" lang="en" xml:lang="en" dir="ltr" 
+  xmlns:og="http://ogp.me/ns#"> <![endif]-->
+<!--[if IE 9]>       <html class="no-js is-ie ie9" lang="en" xml:lang="en" dir="ltr" 
+  xmlns:og="http://ogp.me/ns#"> <![endif]-->
+<!--[if gt IE 9]>    <html class="no-js is-ie" lang="en" xml:lang="en" dir="ltr" 
+  xmlns:og="http://ogp.me/ns#"> <![endif]-->
+<!--[if !(IE)]><!--> <html class="no-js" lang="en" xml:lang="en" dir="ltr" 
+  xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
+  <head>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+<meta charset="utf-8" />
+<meta property="og:image:secure_url" content="https://puppetlabs.com/sites/all/themes/puppetlabs/images/pl_vertical_970x.png" />
+<meta property="og:url" content="https://puppetlabs.com/community/PUG" />
+<meta property="og:locale" content="en_US" />
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<meta property="og:image" content="http://puppetlabs.com/sites/all/themes/puppetlabs/images/pl_vertical_970x.png" />
+<meta property="og:type" content="website" />
+<meta name="description" content="Use Puppet Enterprise to manage IT infrastructure at scale, so you spend less time fighting fires and more time deploying great software." />
+<link rel="image_src" href="http://puppetlabs.com/sites/all/themes/puppetlabs/images/pl_vertical_970x.png" />
+<meta property="og:site_name" content="Puppet Labs" />
+<meta property="og:title" content="Puppet User Groups" />
+<meta property="og:description" content="Use Puppet Enterprise to manage IT infrastructure at scale, so you spend less time fighting fires and more time deploying great software." />
+    <title>Puppet User Groups | Puppet Labs</title>
+    <link type="text/css" rel="stylesheet" href="https://puppetlabs.com/sites/default/files/advagg_css/css__5M8WAkP9o9CFtqrsC8TAePkapLnlx6q7NgcsgGe2CsE__EuZBPGKGBfCnRHDBmohykLnN4iA4Y39Ol7iz9q1KWOM__RIoSMS-r85qcpNm6To7wuaRYayczSkacizHIKZu3XM4.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://puppetlabs.com/sites/default/files/advagg_css/css__LVzLzxna5bbcO0o1841-HJdKmIU4iyfEjUf-Ix15mIU__2M4gSIUoA49P44hFXOrTdQQXhH_kQL9cp_GWrkhqOQ4__RIoSMS-r85qcpNm6To7wuaRYayczSkacizHIKZu3XM4.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://puppetlabs.com/sites/default/files/advagg_css/css__0zIq7N0_hhSBrPpFGnfReZtvzVWq93bw_ibYMd7tFC4__5DaUckJyQFbi4GzZDaybwBjU2_oNZ-pWC602Mw1A7EI__RIoSMS-r85qcpNm6To7wuaRYayczSkacizHIKZu3XM4.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://puppetlabs.com/sites/default/files/advagg_css/css__3IQrrme_jbJpKndHMC0yA7Fts-sVXhiieAWzgP434vY__BY_P8jDCXIHxaGDSTQKnvMam0AhZUP5kVFecn_zXV1k__RIoSMS-r85qcpNm6To7wuaRYayczSkacizHIKZu3XM4.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://puppetlabs.com/sites/default/files/advagg_css/css__kTawMGgk4MTFS3ytLiFCAwnkITCMn44Xy6hUVHBktRc__F9To9Hj3PbcmjfWJsp0shGX3BSjzKqcvnGx_uVssdpE__RIoSMS-r85qcpNm6To7wuaRYayczSkacizHIKZu3XM4.css" media="all" />
+    <script type="text/javascript" src="https://puppetlabs.com/profiles/panopoly/libraries/respondjs/respond.min.js?ngbw7y"></script>
+<script type="text/javascript" src="https://puppetlabs.com/sites/default/files/advagg_js/js__xzNyGCzs1mYgX1Q6IJx39MJUFUmmWbBKfLztsBW_qTo__xWZCZHJMjpGSW8ZBrvtc37IHTYWItpQTK8uG1ySjV3M__RIoSMS-r85qcpNm6To7wuaRYayczSkacizHIKZu3XM4.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+L_ROOT_URL = "/sites/all/libraries/leaflet/";
+//--><!]]>
+</script>
+<script type="text/javascript" src="https://puppetlabs.com/sites/all/libraries/leaflet/leaflet.js?ngbw7y"></script>
+<script type="text/javascript" src="https://puppetlabs.com/sites/default/files/advagg_js/js__yXju1mwKWpBtYuRU9EngOVYkjWNw2Q9fvPV_tWxsad8__5PHfJlJWEEDqn9MFsO7Zk5Pm1zmSQF4jRunmbIsJSWY__RIoSMS-r85qcpNm6To7wuaRYayczSkacizHIKZu3XM4.js"></script>
+<script type="text/javascript" src="//cdn.optimizely.com/js/212539509.js"></script>
+<script type="text/javascript" src="//pa-js.s3.amazonaws.com/pa.js"></script>
+<script type="text/javascript" src="https://puppetlabs.com/sites/default/files/advagg_js/js__6U4cNRTkxPCYzZsWugHYNmUr4eQSUX9M58mlshLfrzc__lwV2Sh2dhCS5O-hDhRjf0S3FtVyHPVWB8lP3tJtCJyg__RIoSMS-r85qcpNm6To7wuaRYayczSkacizHIKZu3XM4.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-1537572-5"]);_gaq.push(['_setCustomVar', 3, "drupal_taxo", ",,,", 2]);_gaq.push(['_setCustomVar', 4, "engagement", ",,,", 3]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+<script type="text/javascript" src="https://puppetlabs.com/sites/default/files/advagg_js/js__jBio5kRluVaMxj4HByGvkbNEwYUf4YMHtjybTbHuAE0__kHS2M2NnkeO-AfjZ9J0lp4XTWeekWUrf_ljh5oByx7E__RIoSMS-r85qcpNm6To7wuaRYayczSkacizHIKZu3XM4.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"puppetlabs","theme_token":"TBg5UA3KMu9dj3-mEtCJXFc6hFdGp36Z5Y3bEWs5eIo","css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"misc\/ui\/jquery.ui.core.css":1,"misc\/ui\/jquery.ui.theme.css":1,"misc\/ui\/jquery.ui.tabs.css":1,"misc\/ui\/jquery.ui.accordion.css":1,"sites\/all\/libraries\/prism\/prism.css":1,"modules\/comment\/comment.css":1,"profiles\/panopoly\/modules\/contrib\/date\/date_api\/date.css":1,"profiles\/panopoly\/modules\/contrib\/date\/date_popup\/themes\/datepicker.1.7.css":1,"sites\/all\/modules\/contrib\/environment_indicator\/environment_indicator.css":1,"modules\/field\/theme\/field.css":1,"sites\/all\/modules\/custom\/instance_manager\/instance_manager.css":1,"sites\/all\/modules\/contrib\/mollom\/mollom.css":1,"modules\/node\/node.css":1,"profiles\/panopoly\/modules\/panopoly\/panopoly_admin\/panopoly-admin.css":1,"profiles\/panopoly\/modules\/panopoly\/panopoly_admin\/panopoly-admin-navbar.css":1,"profiles\/panopoly\/modules\/panopoly\/panopoly_core\/css\/panopoly-dropbutton.css":1,"profiles\/panopoly\/modules\/panopoly\/panopoly_magic\/css\/panopoly-magic.css":1,"profiles\/panopoly\/modules\/panopoly\/panopoly_magic\/css\/panopoly-modal.css":1,"profiles\/panopoly\/modules\/panopoly\/panopoly_theme\/css\/panopoly-featured.css":1,"profiles\/panopoly\/modules\/panopoly\/panopoly_theme\/css\/panopoly-accordian.css":1,"profiles\/panopoly\/modules\/panopoly\/panopoly_widgets\/panopoly-widgets.css":1,"profiles\/panopoly\/modules\/panopoly\/panopoly_wysiwyg\/panopoly-wysiwyg.css":1,"sites\/all\/modules\/custom\/puppet_community_updates\/puppet_community_updates.css":1,"sites\/all\/modules\/contrib\/quiz\/quiz.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"profiles\/panopoly\/modules\/contrib\/views\/css\/views.css":1,"profiles\/panopoly\/modules\/contrib\/caption_filter\/caption-filter.css":1,"profiles\/panopoly\/modules\/contrib\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/contrib\/geshifilter\/geshifilter.css":1,"profiles\/panopoly\/modules\/contrib\/panels\/css\/panels.css":1,"sites\/all\/modules\/contrib\/rate\/rate.css":1,"sites\/all\/modules\/contrib\/taxonomy_access\/taxonomy_access.css":1,"sites\/all\/themes\/puppetlabs\/layouts\/sutro_double\/..\/..\/css\/compiled\/layouts\/sutro-double.css":1,"sites\/all\/libraries\/leaflet\/leaflet.css":1,"sites\/all\/libraries\/leaflet\/leaflet.ie.css":1,"sites\/all\/modules\/custom\/puppet_admin_tools\/css\/puppet_admin_tools.css":1,"sites\/all\/themes\/puppetlabs\/css\/compiled\/style-blessed2.css":1,"sites\/all\/themes\/puppetlabs\/css\/compiled\/style.css":1,"sites\/all\/themes\/puppetlabs\/css\/compiled\/style-blessed1.css":1,"profiles\/panopoly\/modules\/panopoly\/panopoly_images\/panopoly-images.css":1},"js":{"profiles\/panopoly\/modules\/panopoly\/panopoly_widgets\/panopoly-widgets.js":1,"\/\/munchkin.marketo.net\/munchkin.js":1,"profiles\/panopoly\/libraries\/respondjs\/respond.min.js":1,"profiles\/panopoly\/modules\/contrib\/jquery_update\/replace\/jquery\/1.7\/jquery.min.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"profiles\/panopoly\/modules\/contrib\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.core.min.js":1,"profiles\/panopoly\/modules\/contrib\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.widget.min.js":1,"profiles\/panopoly\/modules\/contrib\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.tabs.min.js":1,"profiles\/panopoly\/modules\/contrib\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.accordion.min.js":1,"sites\/all\/libraries\/prism\/prism.js":1,"sites\/all\/modules\/contrib\/prism\/js\/prism.settings.js":1,"sites\/all\/libraries\/leaflet\/leaflet.js":1,"sites\/all\/modules\/contrib\/environment_indicator\/tinycon.min.js":1,"sites\/all\/modules\/contrib\/environment_indicator\/environment_indicator.js":1,"sites\/all\/modules\/contrib\/environment_indicator\/color.js":1,"sites\/all\/modules\/custom\/instance_manager\/instance_manager.js":1,"profiles\/panopoly\/modules\/panopoly\/panopoly_admin\/panopoly-admin.js":1,"profiles\/panopoly\/modules\/panopoly\/panopoly_magic\/panopoly-magic.js":1,"profiles\/panopoly\/modules\/panopoly\/panopoly_theme\/js\/panopoly-accordion.js":1,"sites\/all\/modules\/custom\/puppet_community_updates\/puppet_community_updates.js":1,"profiles\/panopoly\/modules\/contrib\/caption_filter\/js\/caption-filter.js":1,"sites\/all\/modules\/contrib\/floating_block\/floating_block.js":1,"\/\/cdn.optimizely.com\/js\/212539509.js":1,"\/\/pa-js.s3.amazonaws.com\/pa.js":1,"sites\/all\/modules\/contrib\/leaflet\/leaflet.drupal.js":1,"sites\/all\/modules\/custom\/puppet_panels\/plugins\/styles\/puppet_tabs\/puppet_tabs.js":1,"sites\/all\/modules\/contrib\/google_analytics\/googleanalytics.js":1,"sites\/all\/modules\/custom\/puppet_admin_tools\/js\/puppet_admin_tools.js":1,"sites\/all\/modules\/contrib\/leaflet_more_maps\/leaflet_more_maps.js":1,"sites\/all\/themes\/puppetlabs\/js\/libs\/modernizr-2.8.2.min.js":1,"sites\/all\/themes\/puppetlabs\/js\/libs\/jquery.timeago.min.js":1,"sites\/all\/themes\/puppetlabs\/js\/libs\/jquery.flexslider-min.js":1,"sites\/all\/themes\/puppetlabs\/js\/libs\/jquery.placeholder.js":1,"sites\/all\/themes\/puppetlabs\/js\/script.js":1,"sites\/all\/themes\/puppetlabs\/js\/plugins.js":1,"sites\/all\/themes\/puppetlabs\/..\/..\/libraries\/fittext.js\/jquery.fittext.js":1,"sites\/all\/themes\/puppetlabs\/js\/jQueryString.js":1,"sites\/all\/themes\/puppetlabs\/js\/jquery.cookie.js":1}},"floating_block":{"div.pane-block.lms-course-instructions":[]},"CToolsModal":{"modalSize":{"type":"scale","width":".9","height":".9","addWidth":0,"addHeight":0,"contentRight":25,"contentBottom":75},"modalOptions":{"opacity":".55","background-color":"#FFF"},"animationSpeed":"fast","modalTheme":"CToolsModalDialog","throbberTheme":"CToolsModalThrobber"},"leaflet":[{"mapId":"leaflet-map","map":{"label":"Google roadmap (zoom 0..18)","description":"Google roadmap","settings":{"attributionControl":true,"closePopupOnClick":true,"doubleClickZoom":true,"dragging":true,"fadeAnimation":true,"layerControl":false,"maxZoom":"18","minZoom":"0","scrollWheelZoom":true,"touchZoom":true,"trackResize":true,"zoomAnimation":true,"zoomControl":true},"layers":{"layer":{"type":"google","urlTemplate":"\/\/mt{s}.googleapis.com\/vt?x={x}\u0026y={y}\u0026z={z}","options":{"attribution":"Map data \u0026copy; \u003Ca target=\u0022attr\u0022 href=\u0022http:\/\/googlemaps.com\u0022\u003EGoogle\u003C\/a\u003E","detectRetina":false,"subdomains":[0,1,2,3]}}}},"features":[{"type":"point","lat":52.2296756,"lon":21.0122287,"popup":"Warsaw Puppet User Group","label":"Warsaw Puppet User Group"},{"type":"point","lat":45.4930475,"lon":12.4177003,"popup":"Venezuela Puppet User Group","label":"Venezuela Puppet User Group"},{"type":"point","lat":49.261226,"lon":-123.1139268,"popup":"Vancouver Puppet User Group","label":"Vancouver Puppet User Group"},{"type":"point","lat":40.2338438,"lon":-111.6585337,"popup":"Utah County Puppet User Group","label":"Utah County Puppet User Group"},{"type":"point","lat":44.983334,"lon":-93.26667,"popup":"Twin Cities Puppet User Group","label":"Twin Cities Puppet User Group"},{"type":"point","lat":32.2217429,"lon":-110.926479,"popup":"Tucson Puppet User Group","label":"Tucson Puppet User Group"},{"type":"point","lat":43.653226,"lon":-79.3831843,"popup":"Toronto Puppet User Group","label":"Toronto Puppet User Group"},{"type":"point","lat":-33.8674869,"lon":151.2069902,"popup":"Sydney Puppet User Group","label":"Sydney Puppet User Group"},{"type":"point","lat":59.3293235,"lon":18.0685808,"popup":"Stockholm Puppet User Group","label":"Stockholm Puppet User Group"},{"type":"point","lat":37.3393857,"lon":-121.8949555,"popup":"Silicon Valley Puppet User Group","label":"Silicon Valley Puppet User Group"},{"type":"point","lat":47.6062095,"lon":-122.3320708,"popup":"Seattle Puppet User Group","label":"Seattle Puppet User Group"},{"type":"point","lat":37.7749295,"lon":-122.4194155,"popup":"San Francisco Puppet User Group","label":"San Francisco Puppet User Group"},{"type":"point","lat":32.715738,"lon":-117.1610838,"popup":"San Diego Puppet User Group","label":"San Diego Puppet User Group"},{"type":"point","lat":29.4241219,"lon":-98.4936282,"popup":"San Antonio Puppet User Group","label":"San Antonio Puppet User Group"},{"type":"point","lat":35.7795897,"lon":-78.6381787,"popup":"Raleigh Puppet User Group","label":"Raleigh Puppet User Group"},{"type":"point","lat":-27.4710107,"lon":153.0234489,"popup":"Queensland Puppet User Group","label":"Queensland Puppet User Group"},{"type":"point","lat":41.87194,"lon":12.56738,"popup":"Puppet Users Italia","label":"Puppet Users Italia"},{"type":"point","lat":41.3850639,"lon":2.1734035,"popup":"Puppet Users Barcelona","label":"Puppet Users Barcelona"},{"type":"point","lat":-14.235004,"lon":-51.92528,"popup":"Puppet Brasil","label":"Puppet Brasil"},{"type":"point","lat":41.8239891,"lon":-71.4128343,"popup":"Providence Puppet User Group","label":"Providence Puppet User Group"},{"type":"point","lat":45.5234515,"lon":-122.6762071,"popup":"Portland Puppet User Group","label":"Portland Puppet User Group"},{"type":"point","lat":39.952335,"lon":-75.163789,"popup":"Philadelphia Puppet User Group","label":"Philadelphia Puppet User Group"},{"type":"point","lat":-12.046374,"lon":-77.0427934,"popup":"Peru Pupper User Group","label":"Peru Pupper User Group"},{"type":"point","lat":48.856614,"lon":2.3522219,"popup":"Paris Puppet User Group","label":"Paris Puppet User Group"},{"type":"point","lat":45.4215296,"lon":-75.6971931,"popup":"Ottowa Puppet User Group","label":"Ottowa Puppet User Group"},{"type":"point","lat":59.9138688,"lon":10.7522454,"popup":"Oslo Puppet User Group","label":"Oslo Puppet User Group"},{"type":"point","lat":-36.8484597,"lon":174.7633315,"popup":"New Zealand Puppet User Group","label":"New Zealand Puppet User Group"},{"type":"point","lat":40.7056308,"lon":-73.9780035,"popup":"New York Puppet User Group","label":"New York Puppet User Group"},{"type":"point","lat":-37.814107,"lon":144.96328,"popup":"Melbourne Puppet User Group","label":"Melbourne Puppet User Group"},{"type":"point","lat":40.4167754,"lon":-3.7037902,"popup":"Madrid Puppet User Group","label":"Madrid Puppet User Group"},{"type":"point","lat":34.0522342,"lon":-118.2436849,"popup":"Los Angeles Puppet User Group","label":"Los Angeles Puppet User Group"},{"type":"point","lat":51.4888928,"lon":-0.1977995,"popup":"London Puppet User Group","label":"London Puppet User Group"},{"type":"point","lat":46.0569465,"lon":14.5057515,"popup":"Ljubljana Puppet User Group","label":"Ljubljana Puppet User Group"},{"type":"point","lat":39.768403,"lon":-86.158068,"popup":"Indianapolis Puppet User Group","label":"Indianapolis Puppet User Group"},{"type":"point","lat":50.85,"lon":4.35,"popup":"European Puppet User Group","label":"European Puppet User Group"},{"type":"point","lat":44.0520691,"lon":-123.0867536,"popup":"Eugene Puppet User Group","label":"Eugene Puppet User Group"},{"type":"point","lat":52.3702157,"lon":4.8951679,"popup":"Dutch Puppet User Group","label":"Dutch Puppet User Group"},{"type":"point","lat":39.737567,"lon":-104.9847179,"popup":"Denver Puppet User Group","label":"Denver Puppet User Group"},{"type":"point","lat":28.635308,"lon":77.22496,"popup":"Delhi Puppet User Group","label":"Delhi Puppet User Group"},{"type":"point","lat":38.9072309,"lon":-77.0364641,"popup":"D.C. Puppet User Group","label":"D.C. Puppet User Group"},{"type":"point","lat":-36.8250447,"lon":-72.9934544,"popup":"Chile Puppet User Group","label":"Chile Puppet User Group"},{"type":"point","lat":41.8781136,"lon":-87.6297982,"popup":"Chicago Puppet User Group","label":"Chicago Puppet User Group"},{"type":"point","lat":42.3584308,"lon":-71.0597732,"popup":"Boston Puppet User Group","label":"Boston Puppet User Group"},{"type":"point","lat":52.5200066,"lon":13.404954,"popup":"Berlin Puppet User Group","label":"Berlin Puppet User Group"},{"type":"point","lat":60.3912628,"lon":5.3220544,"popup":"Bergen Puppet User Group","label":"Bergen Puppet User Group"},{"type":"point","lat":50.85,"lon":4.35,"popup":"Belgian Puppet User Group","label":"Belgian Puppet User Group"},{"type":"point","lat":37.3393857,"lon":-121.8949555,"popup":"Bay Area Puppet User Group","label":"Bay Area Puppet User Group"},{"type":"point","lat":39.2903848,"lon":-76.6121893,"popup":"Baltimore Puppet User Group","label":"Baltimore Puppet User Group"},{"type":"point","lat":30.267153,"lon":-97.7430608,"popup":"Austin Puppet User Group","label":"Austin Puppet User Group"},{"type":"point","lat":33.7489954,"lon":-84.3879824,"popup":"Atlanta Puppet User Group","label":"Atlanta Puppet User Group"},{"type":"point","lat":-37.2017285,"lon":-59.8410697,"popup":"Argentina Puppet User Group","label":"Argentina Puppet User Group"},{"type":"point","lat":38.3459963,"lon":-0.4906855,"popup":"Alicante Puppet User Group","label":"Alicante Puppet User Group"}]}],"puppet_panels":{"tabs":{"tabs-panels-footer":{"options":{"active":0,"collapsible":0,"event":"click"}}}},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip","trackCrossDomains":["puppetlabs.com"]}});
+//--><!]]>
+</script>
+  </head>
+  <body class="html not-front not-logged-in no-sidebars page-community page-community-pug page-pug region-content" >
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PF6FV6"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script type="text/javascript">
+(function(w,d,s,l,i){
+
+  w[l]=w[l]||[];
+  w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+  var f=d.getElementsByTagName(s)[0];
+  var j=d.createElement(s);
+  var dl=l!='dataLayer'?'&l='+l:'';
+  j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;
+  j.type='text/javascript';
+  j.async=true;
+  f.parentNode.insertBefore(j,f);
+
+})(window,document,'script','dataLayer','GTM-PF6FV6');
+</script>
+<!-- End Google Tag Manager -->
+    <div id="skip">
+      <em><a href="#content">Skip to Content</a> &darr;</em>
+    </div>
+        
+<!-- A absolutely positioned DIV to help displaying the locations of break points -->
+<!--
+<div class="dev-grid">
+  <div class="dev-grid-content">
+    <div class="col col1">Col 1</div>
+    <div class="col col2">Col 2</div>
+    <div class="col col3">Col 3</div>
+    <div class="col col4">Col 4</div>
+    <div class="col col5">Col 5</div>
+    <div class="col col6">Col 6</div>
+    <div class="col col7">Col 7</div>
+    <div class="col col8">Col 8</div>
+    <div class="col col9">Col 9</div>
+    <div class="col col10">Col 10</div>
+    <div class="col col11">Col 11</div>
+    <div class="col col12">Col 12</div>
+  </div>
+</div>
+-->
+
+<div id="page" class="page">
+
+  <header id="site-header" role="banner">
+    <div class="header-wrapper">
+      
+      <div class="morebar">
+  <a class="button-more-menu" aria-haspopup="true">
+    <button type="button">
+      <span class="icon fa fa-cogs"></span>
+      <span class="title">More</span>
+    </button>
+  </a>
+  <ul>
+    <li class="icons-home top">
+      <a href="/" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Home']);">
+        <img src="/sites/all/themes/puppetlabs/images/svg/icon-home.svg" />
+        home</a>
+    </li>
+    <li class="icons-tools top">
+      <a href="http://forge.puppetlabs.com" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Forge']);">
+        <img src="/sites/all/themes/puppetlabs/images/svg/icon-tools.svg" />
+        Forge</a>
+    </li>
+    <li class="icons-book top">
+      <a href="http://docs.puppetlabs.com" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Docs']);">
+        <img src="/sites/all/themes/puppetlabs/images/svg/icon-book.svg" />
+        <abbr title="Documents">Docs</abbr></a>
+    </li>
+    <li class="icons-graduation top">
+      <a href="/learn" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Training']);">
+        <img src="/sites/all/themes/puppetlabs/images/svg/icon-graduation-cap.svg" />
+        Learn</a>
+    </li>
+    <li class="icons-users bottom">
+      <a href="/community/overview" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Community']);">
+        <img src="/sites/all/themes/puppetlabs/images/svg/icon-users.svg" />
+        Community</a>
+    </li>
+    <li class="icons-ticket bottom">
+      <a href="http://tickets.puppetlabs.com" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'JIRA']);">
+        <img src="/sites/all/themes/puppetlabs/images/svg/icon-ticket.svg" />
+        Tickets</a>
+    </li>
+    <li class="icons-help-circled bottom">
+      <a href="/help" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Help']);">
+        <img src="/sites/all/themes/puppetlabs/images/svg/icon-help-circled.svg" />
+        Help</a>
+    </li>
+  </ul>
+</div>
+
+      <div class="navbar">
+        <div class="navbar-section logo">
+          <a href="/" rel="home" id="site-logo" onclick="_gaq.push(['_trackEvent', 'Navbar', 'click', 'Home']);">
+            <span class="icon"></span>
+            <span class="title">PuppetLabs</span>
+          </a>
+        </div>
+        <div class="navbar-section mega-menu">
+          <a class="button-main" aria-haspopup="true">
+            <button type="button">
+              <span class="icon fa fa-bars"></span>
+              <span class="title">Menu</span>
+            </button>
+          </a>
+          <div class="mega-menu-container">
+            <div class="navbar-sub-section sub-menu">
+  <a class="button-sub-menu" aria-haspopup="true">
+    <button type="button">
+      <span class="icon fa fa-bars"></span>
+      <span class="title">Menu</span>
+    </button>
+  </a>
+  <div class="sub-menu-container">
+    <ul class="sub-menu-list">
+      <li class="menu-item active toggle first">
+        <a aria-haspopup="true">Products</a>
+        <div class="menu-item-container">
+          <div class="menu-col col-span-12">
+            <ul>
+              <li class="title">
+                <a href="/puppet/puppet-enterprise" onclick="_gaq.push(['_trackEvent', 'Menu Products', 'click', 'PE Head']);">
+                  <span class="main-title">Puppet Enterprise</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="menu-col col-span-6">
+            <ul>
+              <li class="title-img">
+                <a href="/puppet/puppet-enterprise" onclick="_gaq.push(['_trackEvent', 'Menu Products', 'click', 'PE Image']);">
+                  <span class="img"><img src="/sites/default/files/pe_nav_944x352.png" /></span>
+                </a>
+                <span class="copy mobile">
+                  Puppet Enterprise helps you automate repetitive tasks, make rapid changes and deploy critical applications, on prem or in the cloud.
+                </span>
+              </li>
+              <li class="clearfix pe-buttons">
+                <a href="/download-puppet-enterprise" onclick="_gaq.push(['_trackEvent', 'Menu Products', 'click', 'PE Try']);" class="align-left pe-button">
+                  <button type="button" class="orange">
+                    <span class=""></span>
+                    <span class="title">Try it</span>
+                  </button>
+                </a>
+                <a href="/puppet/how-to-buy" onclick="_gaq.push(['_trackEvent', 'Menu Products', 'click', 'PE Buy']);" class="align-left pe-button">
+                  <button type="button" class="green">
+                    <span class=""></span>
+                    <span class="title">Buy it</span>
+                  </button>
+                </a>
+                <a href="/puppet/puppet-enterprise" onclick="_gaq.push(['_trackEvent', 'Menu Products', 'click', 'PE Learn']);" class="align-left pe-button">
+                  <button type="button" class="dark-purple">
+                    <span class=""></span>
+                    <span class="title">Learn more</span>
+                  </button>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="menu-col col-span-6">
+            <ul>
+              <li class="clearfix">
+                <a href="/services/customer-support/premium" onclick="_gaq.push(['_trackEvent', 'Menu Products', 'click', 'Support']);">
+                  <span class="title">Premium Support</span>
+                </a>
+                <a href="/services/customer-support/premium" onclick="_gaq.push(['_trackEvent', 'Menu Products', 'click', 'Support Image']);">
+                  <span class="img icon"><img src="/sites/all/themes/puppetlabs/images/menu-prod-prem-support.png" /></span>
+                </a>
+                <span class="copy">Get 24/7 support and work in real time with a Puppet Labs support engineer.</span>
+              </li>
+              <li class="clearfix">
+                <a href="/services/consulting" onclick="_gaq.push(['_trackEvent', 'Menu Products', 'click', 'Services']);">
+                  <span class="title">Professional Services</span>
+                </a>
+                <a href="/services/consulting" onclick="_gaq.push(['_trackEvent', 'Menu Products', 'click', 'Services Image']);">
+                  <span class="img icon"><img src="/sites/all/themes/puppetlabs/images/menu-prod-proserve.png" /></span>
+                </a>
+               <span class="copy">Let our engineering consultants help you make the most of Puppet Enterprise.</span>
+              </li class="clearfix">
+              <li class="clearfix">
+                <a href="/services/training" onclick="_gaq.push(['_trackEvent', 'Menu Products', 'click', 'Training']);">
+                  <span class="title">Training Services</span>
+                </a>
+                <a href="/services/training" onclick="_gaq.push(['_trackEvent', 'Menu Products', 'click', 'Training Image']);">
+                  <span class="img icon"><img src="/sites/all/themes/puppetlabs/images/menu-prod-training.png" /></span>
+                </a>
+                <span class="copy">Attend an upcoming public or private training class, led by expert instructors.</span>
+              </li>
+              <li>
+                <a href="/puppet/open-source-projects" onclick="_gaq.push(['_trackEvent', 'Menu Products', 'click', 'Open Source']);" class="align-right">
+                  <span class="title">Open Source Projects</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li class="menu-item">
+        <a aria-haspopup="true">Solutions</a>
+        <div class="menu-item-container">
+          <div class="menu-col col-span-4">
+            <ul>
+              <h3>Use Puppet for</h3>
+              <li><a href="/solutions/devops" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'DevOps']);">DevOps</a></li>
+              <li><a href="/solutions/cloud-management" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Cloud Management']);">Cloud Management</a></li>
+              <li><a href="/solutions/configuration-management" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Config Management']);">Configuration Management</a></li>
+              <li><a href="/solutions/continuous-delivery" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Continuous Delivery']);">Continuous Delivery</a></li>
+              <li><a href="/solutions/it-compliance" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'IT Compliance']);">IT Compliance</a></li>
+              <li><a href="/solutions/next-generation-provisioning" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Bare Metal']);">Bare Metal Provisioning</a></li>
+            </ul>
+            <ul>
+              <h3>Customer Stories</h3>
+              <li><a href="/customer/cedexis" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Cedexis']);">Cedexis</a></li>
+              <li><a href="/customer/constant-contact" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Constant Contact']);">Constant Contact</a></li>
+              <li><a href="/customer/github" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Github']);">GitHub</a></li>
+              <li><a href="/customer/gns-science" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'GNS Science']);">GNS Science</a></li>
+              <li><a href="/customers/case-studies" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'More']);">more&hellip;</a></li>
+            </ul>
+          </div>
+          <div class="menu-col col-span-4">
+            <ul>
+              <h3>Use Puppet With</h3>
+              <li><a href="/solutions/ec2" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Amazon']);">Amazon EC2</a></li>
+              <li><a href="/solutions/google-compute-engine" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Google']);">Google Compute Engine</a></li>
+              <li><a href="/solutions/juniper-networks" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Juniper']);">Juniper Networks</a></li>
+              <li><a href="/solutions/microsoft" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Microsoft']);">Microsoft</a></li>
+              <li><a href="/solutions/cloud-automation/compute/openstack" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Open Stack']);">OpenStack</a></li>
+              <li><a href="/solutions/cloud-automation/compute/vmware" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'VMware']);">VMware</a></li>
+            </ul>
+          </div>
+          <div class="menu-col col-span-4 co-container">
+            <ul>
+              <h3>Industries</h3>
+              <li><a href="/industries/e-commerce" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'E-commerce']);">E-commerce</a></li>
+              <li><a href="/industries/financial-services" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Financial Services']);">Financial Services</a></li>
+              <li><a href="/industries/government" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Government']);">Government</a></li>
+              <li><a href="/industries/service-providers" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Service Providers']);">Service Providers</a></li>
+              <li><a href="/industries/technology" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Technology']);">Technology</a></li>
+            </ul>
+            <ul class="co">
+              <li class="contained">
+                <a href="/contact-sales" onclick="_gaq.push(['_trackEvent', 'Menu Solutions', 'click', 'Highlight Sales']);" title="Contact Sales">
+                  <span class="icon-callout fa fa-phone"></span>
+                  <span class="title">Contact Sales</span>
+                  <span class="copy">We’d love to help you get started.</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li class="menu-item"><a aria-haspopup="true">Resources</a>
+        <div class="menu-item-container">
+          <div class="menu-col col-span-4">
+            <ul>
+              <h3>Discover Puppet</h3>
+              <li><a href="/resources/webinars" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'Webinars']);">Webinars</a></li>
+              <li><a href="/resources/podcasts" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'Podcasts']);">Podcasts</a></li>
+              <li><a href="http://puppetlabs.com/misc/white-paper-options" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'Whitepapers']);">White Papers</a></li>
+              <li><a href="/blog" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'Blog']);">Blog</a></li>
+              <li><a href="/services/partners" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'Partners']);">Partners</a></li>
+              <li><a href="/2014-devops-report" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'DevOps Report']);">2014 DevOps Report</a></li>
+              <li><a href="/changeagent" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'Change Agents of Ops']);">Change Agents of Ops</a></li>
+            </ul>
+          </div>
+          <div class="menu-col col-span-4">
+            <ul>
+              <h3>Learn Puppet</h3>
+              <li><a href="/learn" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'Learn']);">Puppet Learning</a></li>
+              <li><a href="/download-learning-vm" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'LVM']);">Learning VM</a></li>
+              <li><a href="/learn/library" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'LMS']);">Puppet Workshop</a></li>
+              <li><a href="/services/certification" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'Certification']);">Get Certified</a></li>
+              <li><a href="http://docs.puppetlabs.com" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'Docs']);" target="_blank">Documentation</a></li>
+              <li><a href="http://docs.puppetlabs.com/pe/latest/quick_start.html" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'Quick Start']);" target="_blank">Quick Start Guide</a></li>
+              <li><a href="http://docs.puppetlabs.com/references/latest/type.html" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'TRG']);" target="_blank">Type Reference Guide</a></li>
+              <li><a href="/resources/books" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'Recommended Reading']);">Recommended Reading</a></li>
+            </ul>
+          </div>
+          <div class="menu-col col-span-4 co-container">
+            <ul>
+              <h3>Engage with Puppet</h3>
+              <li><a href="http://forge.puppetlabs.com" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'Forge']);" target="_blank">Puppet Forge</a></li>
+              <li><a href="/events" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'Events']);">Events</a></li>
+              <li><a href="/community/PUG" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'PUG']);">Puppet User Groups (PUGs)</a></li>
+              <li><a href="https://groups.google.com/group/puppet-users?pli=1" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'User Group']);" target="_blank">Mailing List</a></li>
+              <li><a href="http://tickets.puppetlabs.com" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'Tickets']);" target="_blank">Bug Tracker</a></li>
+              <li><a href="https://ask.puppetlabs.com/questions/" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'Ask']);" target="_blank">Q&amp;A</a></li>
+              <li><a href="http://webchat.freenode.net/?channels=puppet" onclick="_gaq.push(['_trackEvent', 'Menu Resources', 'click', 'IRC']);" target="_blank">IRC: #puppet</a></li>
+            </ul>
+            <ul class="co">
+              <li class="contained">
+                <a href="http://shop.puppetlabs.com/">
+                  <span class="icon-callout fa fa-shopping-cart"></span>
+                  <span class="title">Puppet Store</span>
+                  <span class="copy">Get the latest Puppet Labs buttons, t-shirts and more.</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li class="menu-item last"><a aria-haspopup="true">About</a>
+        <div class="menu-item-container">
+          <div class="menu-col col-span-4">
+            <ul>
+              <h3>Team</h3>
+              <li><a href="/about/management" onclick="_gaq.push(['_trackEvent', 'Menu About', 'click', 'Management']);">Management</a></li>
+              <li><a href="/about/board-and-advisors" onclick="_gaq.push(['_trackEvent', 'Menu About', 'click', 'Board']);">Board and Advisors</a></li>
+              <li><a href="/about/investors" onclick="_gaq.push(['_trackEvent', 'Menu About', 'click', 'Investors']);">Investors</a></li>
+              <li><a href="/about/careers" onclick="_gaq.push(['_trackEvent', 'Menu About', 'click', 'Careers']);">Careers</a></li>
+            </ul>
+          </div>
+          <div class="menu-col col-span-4">
+            <ul>
+              <h3>Updates</h3>
+              <li><a href="/about/news" onclick="_gaq.push(['_trackEvent', 'News']);">News</a></li>
+              <li><a href="/about/press-releases" onclick="_gaq.push(['_trackEvent', 'Press Releases']);">Press Releases</a></li>
+              <li><a href="/about/awards" onclick="_gaq.push(['_trackEvent', 'Awards']);">Awards</a></li>
+              <li><a href="/company/news/media-kit" onclick="_gaq.push(['_trackEvent', 'Media Kit']);">Media Kit</a></li>
+              <li><a href="/about/customers" onclick="_gaq.push(['_trackEvent', 'Customers']);">Customers</a></li>
+            </ul>
+          </div>
+          <div class="menu-col col-span-4 co-container">
+            <ul>
+              <h3>Connect</h3>
+              <li><a href="/about" onclick="_gaq.push(['_trackEvent', 'Company']);">Company Info</a></li>
+              <li><a href="/events" onclick="_gaq.push(['_trackEvent', 'Events']);">Events</a></li>
+              <li><a href="/community/overview" onclick="_gaq.push(['_trackEvent', 'Community']);">Community</a></li>
+              <li><a href="/contact-sales" onclick="_gaq.push(['_trackEvent', 'Sales']);">Sales</a></li>
+              <li><a href="/contact" onclick="_gaq.push(['_trackEvent', 'Contact']);">Contact Info</a></li>
+            </ul>
+            <ul class="co">
+              <li class="contained">
+                <a href="/about/careers">
+                  <span class="icon-callout fa fa-users"></span>
+                  <span class="title">Careers</span>
+                  <span class="copy">We’re growing fast. Come do great work with us.</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- sub-menu -->
+            <div class="navbar-sub-section sub-download">
+              <a href="/download-puppet-enterprise" onclick="_gaq.push(['_trackEvent', 'PE Download', 'click', 'Header Button Get Started']);">
+                <button type="button" class="bg-orange">
+                  <span class="icon"></span>
+                  <span class="description">Get Started</span>
+                </button>
+              </a>
+            </div>
+            <div class="navbar-sub-section sub-search">
+              <form action="/community/PUG" method="post" id="search-block-form" accept-charset="UTF-8"><div><div class="container-inline">
+      <h2 class="element-invisible">Search form</h2>
+    <div class="form-item form-type-textfield form-item-search-block-form">
+  <label class="element-invisible" for="edit-search-block-form--2">Search </label>
+ <input title="Enter the terms you wish to search for." type="text" id="edit-search-block-form--2" name="search_block_form" value="" size="15" maxlength="128" class="form-text" />
+</div>
+<div class="form-actions form-wrapper" id="edit-actions"><input onclick="_gaq.push([&#039;_trackEvent&#039;, &#039;search_block_form&#039;, &#039;click&#039;, &#039;Search&#039;]);" type="submit" id="edit-submit" name="op" value="Search" class="form-submit" /></div><input type="hidden" name="form_build_id" value="form-p-VccTrm_AnlBZy2U-L1-jLD8Jgmmn8vhYlWnm5CV10" />
+<input type="hidden" name="form_id" value="search_block_form" />
+</div>
+</div></form>            </div>
+            <div class="navbar-sub-section sub-login">
+              	<div class="login-info-inner direction">
+          <p><a href="/user/login?destination=community/PUG">Log in</a> or <a href="/user/register?destination=community/PUG">Create new account</a></p>
+      </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="underlay"></div>
+    </div><!-- /header-wrapper -->
+  </header> <!-- /header -->
+
+  
+  <hr>
+
+  <div id="main" class="clearfix" role="main">
+    <div id="content">
+      <div id="content-inner" class="inner column center">
+                          <div id="content-header">
+                                      <h1 class="title">Puppet User Groups</h1>
+                                                                          <div class="tabs"></div>
+                                              </div> <!-- /#content-header -->
+                <div id="content-area">
+            <div class="region region-content">
+    <div id="block-system-main" class="block block-system block-odd">
+        <div class="content">
+    
+<div class="panel-display sutro-double clearfix " >
+
+  <div class="sutro-double-container sutro-double-header clearfix panel-panel">
+    <div class="sutro-double-container-inner sutro-double-header-inner panel-panel-inner">
+      <div class="panel-pane pane-fieldable-panels-pane pane-uuid-61d123d5-e724-4be7-a671-e510d00ad746 in-page-nav pane-bundle-text" >
+  
+      
+  
+  <div class="pane-content">
+    <div class="fieldable-panels-pane">
+    <div class="field field-name-field-basic-text-text field-type-text-long field-label-hidden"><div class="field-items" id="md56"><div class="field-item even"><ul>
+<li><a href="/community/participate"><i class="fa fa-angle-double-right"></i> Participate</a></li>
+<li><a href="/community/get-help"><i class="fa fa-angle-double-right"></i> Get Help</a></li>
+<li><a href="/community/PUG" title=""><i class="fa fa-angle-double-right"></i> User Groups</a></li>
+<li><a href="/community/puppet-camp"><i class="fa fa-angle-double-right"></i> Puppet Camps</a></li>
+<li><a href="http://bitergia.dev.puppetlabs.com/browser/"><i class="fa fa-angle-double-right"></i> Metrics</a></li>
+<li><a href="/community/puppet-test-pilots-program"><i class="fa fa-angle-double-right"></i> Puppet Test Pilots</a></li>
+<li><a href="/community/contributor-events"><i class="fa fa-angle-double-right"></i> Contributor Events</a></li>
+</ul>
+<hr></div></div></div></div>
+  </div>
+
+  
+  </div>
+<div class="panel-separator"></div><div class="panel-pane pane-fieldable-panels-pane pane-uuid-a5206b8d-8262-411c-9acf-68a986277bab pane-bundle-text" >
+  
+      
+  
+  <div class="pane-content">
+    <div class="fieldable-panels-pane">
+    <div class="field field-name-field-basic-text-text field-type-text-long field-label-hidden"><div class="field-items" id="md57"><div class="field-item even"><p>Puppet user groups are community-organized meetups, where people can discuss topics of interest related to Puppet.</p>
+</div></div></div></div>
+  </div>
+
+  
+  </div>
+    </div>
+  </div>
+  
+  <div class="sutro-double-container sutro-double-column-content sutro-double-first-column-content clearfix">
+    <div class="sutro-double-column-content-region sutro-double-column1 sutro-double-column panel-panel">
+      <div class="sutro-double-column-content-region-inner sutro-double-column1-inner sutro-double-column-inner panel-panel-inner">
+        <div class="panel-pane pane-fieldable-panels-pane pane-uuid-00f28028-42c2-4267-ba29-a97bd7aa6824 promo promo-new-pug pane-bundle-text" >
+  
+      
+  
+  <div class="pane-content">
+    <div class="fieldable-panels-pane">
+    <div class="field field-name-field-basic-text-text field-type-text-long field-label-hidden"><div class="field-items" id="md1"><div class="field-item even"><div class="feature-box">
+<h2>Start a Group</h2>
+<p>Anyone can start a Puppet User Group. Read our guide.</p>
+<p><a href="/community/starting-a-user-group/" class="btn orange"><i class="icon-caret-right"></i> Learn More</a>
+</div>
+</div></div></div></div>
+  </div>
+
+  
+  </div>
+      </div>
+    </div>
+    <div class="sutro-double-column-content-region sutro-double-column2 sutro-double-column panel-panel">
+      <div class="sutro-double-column-content-region-inner sutro-double-column2-inner sutro-double-column-inner panel-panel-inner">
+        <div class="panel-pane pane-fieldable-panels-pane pane-uuid-5ceb8f1a-e71d-4b00-8ddf-886cc49e2af4 promo promo-existing-pug pane-bundle-text" >
+  
+      
+  
+  <div class="pane-content">
+    <div class="fieldable-panels-pane">
+    <div class="field field-name-field-basic-text-text field-type-text-long field-label-hidden"><div class="field-items" id="md2"><div class="field-item even"><div class="feature-box">
+<h2>Add an Existing Group</h2>
+<p>Let us know if you want your group listed here.</p>
+<p><a href="/community/PUG/add-existing-user-group" class="btn orange"><i class="icon-caret-right"></i> Add Existing Group</a>
+</div>
+</div></div></div></div>
+  </div>
+
+  
+  </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="sutro-double-container sutro-double-middle clearfix panel-panel">
+    <div class="sutro-double-container-inner sutro-double-middle-inner panel-panel-inner">
+      <div class="panel-pane pane-views-panes pane-puppet-user-groups-detail-panel-pane-1" >
+  
+        <h2 class="pane-title">Find a user group</h2>
+    
+  
+  <div class="pane-content">
+    <div class="view view-puppet-user-groups-detail view-id-puppet_user_groups_detail view-display-id-panel_pane_1 view-dom-id-71477021ba7d86797dc388e37603c69c">
+        
+  
+  
+      <div class="view-content">
+      <div id="leaflet-map" style="height: 400px"></div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>  </div>
+
+  
+  </div>
+    </div>
+  </div>
+  
+  <div class="sutro-double-container sutro-double-column-content sutro-double-second-column-content clearfix">
+    <div class="sutro-double-column-content-region sutro-double-column1 sutro-double-column panel-panel">
+      <div class="sutro-double-column-content-region-inner sutro-double-column1-inner sutro-double-column-inner panel-panel-inner">
+              </div>
+    </div>
+    <div class="sutro-double-column-content-region sutro-double-column2 sutro-double-column panel-panel">
+      <div class="sutro-double-column-content-region-inner sutro-double-column2-inner sutro-double-column-inner panel-panel-inner">
+              </div>
+    </div>
+  </div>
+  
+  <div class="sutro-double-container sutro-double-footer clearfix panel-panel">
+    <div class="sutro-double-container-inner sutro-double-footer-inner panel-panel-inner">
+      <div class="puppet-panels-tabs" id="tabs-panels-footer"><ul><li><a href="#3241">US</a></li><li><a href="#3242">Canada</a></li><li><a href="#3240">Europe</a></li><li><a href="#3239">Asia/Pacific</a></li><li><a href="#3238">South America</a></li><li><a href="#2503">DevOps</a></li></ul><div class="tab-contenttabs-panels-footer-3241" id="3241"><div class="panel-pane pane-views-panes pane-user-groups-pug-region-list" >
+  
+        <h2 class="pane-title">US</h2>
+    
+  
+  <div class="pane-content">
+    <div class="view view-user-groups view-id-user_groups view-display-id-pug_region_list view-dom-id-e180e568f2e759e59bb3859097f98ca3">
+        
+  
+  
+      <div class="view-content">
+      <div class="item-list">    <ul>          <li class="views-row views-row-1 views-row-odd views-row-first">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/South-East-Puppet-User-Group/">Atlanta Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-2 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Austin-Puppet-User-Group">Austin Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-3 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Baltimore-Puppet-User-Group">Baltimore Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-4 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/SiPMUG/">Bay Area Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-5 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Boston-Puppet-User-Group">Boston Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-6 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Chicago-Puppet-users-group/">Chicago Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-7 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Washington-D-C-Puppet-User-Group">D.C. Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-8 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Denver-Puppet-User-Group/">Denver Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-9 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Eugene-Puppet-User-Group/">Eugene Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-10 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Indy-Puppet-Meetup">Indianapolis Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-11 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/lapmug/">Los Angeles Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-12 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/puppetnyc-meetings">New York Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-13 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Philadelphia-Puppet-User-Group/">Philadelphia Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-14 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="https://groups.google.com/group/pdx-puppet">Portland Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-15 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Providence-Puppet-User-Group/">Providence Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-16 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Raleigh-Puppet-User-Group/events/186181052/">Raleigh Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-17 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/San-Antonio-Puppet-User-Group/">San Antonio Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-18 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/San-Diego-Puppet-Users/">San Diego Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-19 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/SFPMUG/">San Francisco Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-20 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Seattle-Puppet-Meetup/">Seattle Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-21 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/sipmug/">Silicon Valley Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-22 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Tucson-Puppet-User-Group/">Tucson Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-23 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Puppet/Twin-Cities/">Twin Cities Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-24 views-row-even views-row-last">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Utah-County-Puppet-User-Group/">Utah County Puppet User Group</a></span>  </div></li>
+      </ul></div>    </div>
+  
+  
+  
+  
+  
+  
+</div>  </div>
+
+  
+  </div>
+</div><div class="tab-contenttabs-panels-footer-3242" id="3242"><div class="panel-pane pane-views-panes pane-user-groups-pug-region-list" >
+  
+        <h2 class="pane-title">Canada</h2>
+    
+  
+  <div class="pane-content">
+    <div class="view view-user-groups view-id-user_groups view-display-id-pug_region_list view-dom-id-cf3c0df771e1a15ff2571871a6b2ce4b">
+        
+  
+  
+      <div class="view-content">
+      <div class="item-list">    <ul>          <li class="views-row views-row-1 views-row-odd views-row-first">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Ottawa-Puppet-Users-Group/">Ottowa Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-2 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Toronto-Puppet-User-Group/">Toronto Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-3 views-row-odd views-row-last">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Vancouver-Puppet-Automation/">Vancouver Puppet User Group</a></span>  </div></li>
+      </ul></div>    </div>
+  
+  
+  
+  
+  
+  
+</div>  </div>
+
+  
+  </div>
+</div><div class="tab-contenttabs-panels-footer-3240" id="3240"><div class="panel-pane pane-views-panes pane-user-groups-pug-region-list" >
+  
+        <h2 class="pane-title">Europe</h2>
+    
+  
+  <div class="pane-content">
+    <div class="view view-user-groups view-id-user_groups view-display-id-pug_region_list view-dom-id-6c8a2f442648d26e5204aefed28d9e83">
+        
+  
+  
+      <div class="view-content">
+      <div class="item-list">    <ul>          <li class="views-row views-row-1 views-row-odd views-row-first">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Alicante-Puppet-Users-Group/">Alicante Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-2 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Belgian-Puppet-User-Group/">Belgian Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-3 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Puppet/Bergen/">Bergen Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-4 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Puppet-User-Group-Berlin/">Berlin Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-5 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Dutch-Puppet-User-Group/">Dutch Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-6 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/European-Puppet-User-Group/">European Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-7 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Puppet/Ljubljana-SI/">Ljubljana Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-8 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/London-Puppet-User-Group">London Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-9 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Madrid-Puppet-Users-Group/">Madrid Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-10 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Oslo-Puppet-Meetup/">Oslo Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-11 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Paris-Puppet-DevOps-Meetup/">Paris Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-12 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://bit.ly/18mGEHj">Puppet Users Barcelona</a></span>  </div></li>
+          <li class="views-row views-row-13 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="https://www.facebook.com/home.php?sk=group_192847720730511&amp;ap=1">Puppet Users Italia</a></span>  </div></li>
+          <li class="views-row views-row-14 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Stockholm-Puppet-Users/">Stockholm Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-15 views-row-odd views-row-last">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Warsaw-Puppet-Users-Group/">Warsaw Puppet User Group</a></span>  </div></li>
+      </ul></div>    </div>
+  
+  
+  
+  
+  
+  
+</div>  </div>
+
+  
+  </div>
+</div><div class="tab-contenttabs-panels-footer-3239" id="3239"><div class="panel-pane pane-views-panes pane-user-groups-pug-region-list" >
+  
+        <h2 class="pane-title">Asia/Pacific</h2>
+    
+  
+  <div class="pane-content">
+    <div class="view view-user-groups view-id-user_groups view-display-id-pug_region_list view-dom-id-355e4e3d32c6878ed5703354c862f6f3">
+        
+  
+  
+      <div class="view-content">
+      <div class="item-list">    <ul>          <li class="views-row views-row-1 views-row-odd views-row-first">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Delhi-Puppet/">Delhi Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-2 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Melbourne-Puppet-User-Group/">Melbourne Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-3 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/New-Zealand-Puppet-Masters/">New Zealand Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-4 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Queensland-Puppet-Meetup/">Queensland Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-5 views-row-odd views-row-last">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Sydney-Puppet-Masters/">Sydney Puppet User Group</a></span>  </div></li>
+      </ul></div>    </div>
+  
+  
+  
+  
+  
+  
+</div>  </div>
+
+  
+  </div>
+</div><div class="tab-contenttabs-panels-footer-3238" id="3238"><div class="panel-pane pane-views-panes pane-user-groups-pug-region-list" >
+  
+        <h2 class="pane-title">South America</h2>
+    
+  
+  <div class="pane-content">
+    <div class="view view-user-groups view-id-user_groups view-display-id-pug_region_list view-dom-id-d61d4b00bfb25aa7ff20103d6cae1529">
+        
+  
+  
+      <div class="view-content">
+      <div class="item-list">    <ul>          <li class="views-row views-row-1 views-row-odd views-row-first">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Puppet-en-Espanol">Argentina Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-2 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://www.meetup.com/Puppet-User-Group-Chile/">Chile Puppet User Group</a></span>  </div></li>
+          <li class="views-row views-row-3 views-row-odd">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="https://www.google.com/url?q=https%3A//groups.google.com/d/forum/peru-puppet-users-group&amp;sa=D&amp;usg=ALhdy29r0b6hhy-_CVpiMhl6LovWjNWSaw">Peru Pupper User Group</a></span>  </div></li>
+          <li class="views-row views-row-4 views-row-even">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://puppet-br.org">Puppet Brasil</a></span>  </div></li>
+          <li class="views-row views-row-5 views-row-odd views-row-last">  
+  <div class="views-field views-field-title">        <span class="field-content"><a href="http://bit.ly/18cdwaX">Venezuela Puppet User Group</a></span>  </div></li>
+      </ul></div>    </div>
+  
+  
+  
+  
+  
+  
+</div>  </div>
+
+  
+  </div>
+</div><div class="tab-contenttabs-panels-footer-2503" id="2503"><div class="panel-pane pane-fieldable-panels-pane pane-uuid-174083d2-28c5-46ae-8d5c-60edc043a28c pane-bundle-text" >
+  
+        <h2 class="pane-title">DevOps</h2>
+    
+  
+  <div class="pane-content">
+    <div class="fieldable-panels-pane">
+    <div class="field field-name-field-basic-text-text field-type-text-long field-label-hidden"><div class="field-items" id="md55"><div class="field-item even"><h4>Online References for Devops Meetups, and communities</h4>
+<ul>
+<li>List of DevOps Groups on <a href="http://devops.meetup.com/">Meetup.com</a></li>
+<li><a href="http://www.linkedin.com/groups?about=&amp;gid=2825397&amp;trk=anet_ug_grppro">DevOps</a> on LinkedIn</li>
+<li><a href="http://lanyrd.com/search/?q=devops">Lanyrd</a>'s list of DevOps Events</li>
+</ul>
+</div></div></div></div>
+  </div>
+
+  
+  </div>
+</div></div>    </div>
+  </div>
+  
+</div><!-- /.sutro-double -->
+  </div>
+</div> <!-- /.block -->
+<meta  itemscope="" itemref="md1" /><meta  itemscope="" itemref="md2" /><meta  itemscope="" itemref="md55" /><meta  itemscope="" itemref="md56" /><meta  itemscope="" itemref="md57" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/atlanta-puppet-user-group" itemref="md3 md93 md145 md197 md249" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/austin-puppet-user-group" itemref="md4 md144 md196 md248" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/baltimore-puppet-user-group" itemref="md5 md143 md195 md247" /><meta  itemscope="" itemid="https://puppetlabs.com/bay-area-puppet-user-group" itemref="md6 md92 md142 md194 md246" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/boston-puppet-user-group" itemref="md7 md88 md138 md190 md242" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/chicago-puppet-user-group" itemref="md8 md87 md137 md189 md241" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/dc-puppet-user-group" itemref="md9 md86 md135 md187 md239" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/denver-puppet-user-group" itemref="md10 md85 md133 md185 md237" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/eugene-puppet-user-group" itemref="md11 md131 md183 md235" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/indianapolis-puppet-user-group" itemref="md12 md129 md181 md233" /><meta  itemscope="" itemid="https://puppetlabs.com/los-angeles-puppet-user-group" itemref="md13 md80 md126 md178 md230" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/new-york-puppet-user-group" itemref="md14 md77 md123 md175 md227" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/philadelphia-puppet-user-group" itemref="md15 md117 md169 md221" /><meta  itemscope="" itemid="https://puppetlabs.com/portland-puppet-user-group" itemref="md16 md72 md116 md168 md220" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/providence-ri" itemref="md17 md115 md167 md219" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/raleigh-puppet-user-group" itemref="md18 md110 md162 md214" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/san-antonio-puppet-user-group" itemref="md19 md67 md109 md161 md213" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/san-diego-puppet-user-group" itemref="md20 md66 md108 md160 md212" /><meta  itemscope="" itemid="https://puppetlabs.com/san-francisco-puppet-user-group" itemref="md21 md65 md107 md159 md211" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/seattle-puppet-user-group" itemref="md22 md64 md106 md158 md210" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/silicon-valley-puppet-user-group" itemref="md23 md105 md157 md209" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/tucson-puppet-user-group" itemref="md24 md61 md101 md153 md205" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/twin-cities-puppet-user-group" itemref="md25 md60 md100 md152 md204" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/utah-county-puppet-user-group" itemref="md26 md99 md151 md203" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/ottowa-puppet-user-group" itemref="md27 md74 md120 md172 md224" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/toronto-puppet-user-group" itemref="md28 md102 md154 md206" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/vancouver-puppet-user-group" itemref="md29 md59 md98 md150 md202" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/alicante-puppet-user-group" itemref="md30 md95 md147 md199 md251" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/belgian-puppet-user-group" itemref="md31 md91 md141 md193 md245" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/bergen-puppet-user-group" itemref="md32 md90 md140 md192 md244" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/berlin-puppet-user-group" itemref="md33 md89 md139 md191 md243" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/dutch-puppet-user-group" itemref="md34 md84 md132 md184 md236" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/european-puppet-user-group" itemref="md35 md83 md130 md182 md234" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/ljubljana-puppet-user-group" itemref="md36 md82 md128 md180 md232" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/london-puppet-user-group" itemref="md37 md81 md127 md179 md231" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/madrid-puppet-user-group" itemref="md38 md79 md125 md177 md229" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/oslo-puppet-user-group" itemref="md39 md75 md121 md173 md225" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/paris-puppet-user-group" itemref="md40 md73 md119 md171 md223" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/puppet-users-barcelona" itemref="md41 md70 md113 md165 md217" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/puppet-users-italia" itemref="md42 md69 md112 md164 md216" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/stockholm-puppet-user-group" itemref="md43 md63 md104 md156 md208" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/warsaw-puppet-user-group" itemref="md44 md96 md148 md200" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/delhi-puppet-user-group" itemref="md45 md134 md186 md238" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/melbourne-puppet-user-group" itemref="md46 md78 md124 md176 md228" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/new-zealand-puppet-user-group" itemref="md47 md76 md122 md174 md226" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/queensland-puppet-user-group" itemref="md48 md68 md111 md163 md215" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/sydney-puppet-user-group" itemref="md49 md62 md103 md155 md207" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/argentina-puppet-user-group" itemref="md50 md94 md146 md198 md250" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/chile-puppet-user-group" itemref="md51 md136 md188 md240" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/peru-pupper-user-group" itemref="md52 md118 md170 md222" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/puppet-brasil" itemref="md53 md71 md114 md166 md218" /><meta  itemscope="" itemid="https://puppetlabs.com/usergroup/venezuela-puppet-user-group" itemref="md54 md58 md97 md149 md201" />  </div>
+        </div>
+                      </div>
+    </div> <!-- /content-inner /content -->
+
+    
+    
+  </div> <!-- /main -->
+
+  <hr>
+
+  <footer id="site-footer" role="contentinfo">
+    <div class="footer-wrapper">
+	<div class="footer-col footer-col-left">
+		<ul>
+			<h4>Resources</h4>
+			<li><a href="/download-puppet-enterprise"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Download']);">Free Download</a></li>
+			<li><a href="/blog"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Blog']);">Blog</a></li>
+			<li><a href="/security"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Security']);">Security</a></li>
+			<li><a href="/sitemap"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Site Map']);">Site Map</a></li>
+			<li><a href="http://feeds.feedburner.com/PuppetLabs"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'RSS']);"
+target="_blank">RSS</a></li>
+		</ul>
+		<ul>
+			<h4>Support</h4>
+			<li><a href="/services/customer-support"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Support']);">Customer Support</a></li>
+			<li><a href="http://tickets.puppetlabs.com"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Tickets']);" target="_blank">Bug Tracker</a></li>
+			<li><a href="http://ask.puppetlabs.com"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Ask']);" target="_blank">Puppet Ask</a></li>
+			<li><a href="http://groups.google.com/group/puppet-users?pli=1"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Users']);" target="_blank">Puppet Users</a></li>
+			<li><a href="https://github.com/puppetlabs"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'GitHub']);" target="_blank">GitHub</a></li>
+		</ul>
+		<ul>
+			<h4>Company</h4>
+			<li><a href="/about"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'About Us']);">About Us</a></li>
+			<li><a href="/about/careers"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Careers']);">Careers</a></li>
+			<li><a href="/licensing"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Licensing']);">Licensing</a></li>
+			<li><a href="/privacy"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Privacy Policy']);">Privacy Policy</a></li>
+			<li><a href="/terms"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Terms of Use']);">Terms of Use</a></li>
+		</ul>
+
+		<ul>
+			<h4>Connect</h4>
+			<li><a href="/contact"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Contact Us']);">Contact Us</a></li>
+            <li><a href="/contact-sales"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Contact Sales']);">Contact Sales</a></li>
+			<li><a href="https://twitter.com/puppetlabs" target="_blank" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Twitter']);">Twitter</a></li>
+			<li><a href="https://www.facebook.com/puppetlabs" target="_blank" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Facebook']);">Facebook</a></li>
+			<li><a href="http://www.linkedin.com/company/621389" target="_blank" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'LinkedIn']);">LinkedIn</a></li>
+			<li><a href="https://plus.google.com/112682055028218091774" target="_blank" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Google+']);">Google+</a></li>
+			<li><a href="http://webchat.freenode.net/?channels=puppet" target="_blank" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'IRC']);">IRC</a></li>
+		</ul>
+	</div>
+	<div class="footer-col footer-col-right">
+		<div class="puppet-blocks puppet-blocks-mailing-list-signup">
+      <span class="puppet-blocks-mkto-pe-download-text before-text">
+      Get Puppet Labs News    </span>
+  
+
+  <form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save" id="puppet-blocks-mailing-list-signup" name="mktForm_1047">
+    <ul class='mktLblAbove'>
+      <li class='mktFormReq mktField'>
+        <span class='mktInput'>
+          <input class='mktFormText mktFormEmail mktFReq' name="Email" id="Email" type='text' value=""  placeholder="enter your email address" maxlength='255' tabIndex='1' />
+        </span>
+      </li>
+
+      <li class='mktField' style="display: none;">
+        <span class='mktInput'>
+          <input class='mktFormHidden' name="Form_Name__c" id="Form_Name__c" type='hidden' value="Newsletter" />
+        </span>
+      </li>
+
+      <li class='mktField' style="display: none;">
+        <span class='mktInput'>
+          <input class='mktFormHidden' name="Current_Form_Name__c" id="Current_Form_Name__c" type='hidden' value="Newsletter" />
+        </span>
+      </li>
+
+      <li class='mktField' style="display: none;">
+        <span class='mktInput'>
+          <input class='mktFormHidden' name="Original_Campaign_ID__c" id="Original_Campaign_ID__c" type='hidden' value="701G0000000F68K" />
+        </span>
+      </li>
+
+      <li class='mktField' style="display: none;">
+        <span class='mktInput'>
+         <input class='mktFormHidden' name="campaign_ID__c" id="campaign_ID__c" type='hidden' value="701G0000000F68K" />
+        </span>
+      </li>
+
+      <li class='mktField' style="display: none;">
+        <span class='mktInput'>
+         <input class='mktFormHidden' name="Current_Lead_Source__c" id="Current_Lead_Source__c" type='hidden' value="website-corporate" />
+        </span>
+      </li>
+
+      <li class='mktField' style="display: none;">
+        <span class='mktInput'>
+          <input class='mktFormHidden' name="LeadSource" id="LeadSource" type='hidden' value="website-corporate" />
+        </span>
+      </li>
+
+      <li class='mktField' style="display: none;">
+        <span class='mktInput'>
+          <input class='mktFormHidden' name="Custom_Campaign__c" id="Custom_Campaign__c" type='hidden' value="null" />
+        </span>
+      </li>
+
+      <li class='mktField' style="display: none;">
+        <span class='mktInput'>
+          <input class='mktFormHidden' name="Current_Custom_Campaign__c" id="Current_Custom_Campaign__c" type='hidden' value="null" />
+        </span>
+      </li>
+
+      <li class='mktField' style="display: none;">
+        <span class='mktInput'>
+          <input class='mktFormHidden' name="honeypot" id="honeypot" type='hidden' value="null" />
+        </span>
+      </li>
+
+      <li id='mktFrmButtons'>
+        <span class="icon fa fa-arrow-circle-right">
+          <input id='mktFrmSubmit' type='submit' value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("puppet-blocks-mailing-list-signup")); return false;' />
+        </span>
+        <input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("puppet-blocks-mailing-list-signup")); return false;' />
+      </li>
+    </ul>
+
+    <span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+    <input type="hidden" name="lpId" value="-1" />
+    <input type="hidden" name="subId" value="100" />
+    <input type="hidden" name="munchkinId" value="307-QLA-991" />
+    <input type="hidden" name="kw" value="" />
+    <input type="hidden" name="cr" value="" />
+    <input type="hidden" name="searchstr" value="" />
+    <input type="hidden" name="lpurl" value="http://info.puppetlabs.com/newslettersubscribe.html?cr={creative}&kw={keyword}" />
+    <input type="hidden" name="formid" value="1047" />
+    <input type="hidden" name="returnURL" value="http://puppetlabs.com/misc/subscription-thank-you" />
+    <input type="hidden" name="retURL" value="http://puppetlabs.com/misc/subscription-thank-you" />
+    <input type="hidden" name="returnLPId" value="-1" />
+    <input type="hidden" name="_mkt_disp" value="return" />
+    <input type="hidden" name="_mkt_trk" value="" />
+  </form>
+
+  <script type="text/javascript" src="/sites/default/files/mktFormSupport.js"></script>
+
+  <script type="text/javascript">
+    function formSubmit(elt) {
+      return Mkto.formSubmit(elt);
+    }
+    function formReset(elt) {
+      return Mkto.formReset(elt);
+    }
+  </script>
+
+
+      <span class="puppet-blocks-mkto-pe-download-text after-text">
+          </span>
+  </div>
+		<p>&copy; 2014 <a href="/about">Puppet Labs</a> <br />
+		<a href="tel:877-575-9775" class="tel">877-575-9775</a></p>
+	</div>
+</div>
+
+  </footer>
+
+</div> <!-- /page -->
+    <script type="text/javascript" src="https://puppetlabs.com/sites/default/files/advagg_js/js__KxoYj9-fDIcDv1VureXTtKrH3A2yOwSqeDMLqY8NCJo__lDeNkRjXjWXYr_fFwQ4GZAAeKPB-_yCFgeHfiqxevuc__RIoSMS-r85qcpNm6To7wuaRYayczSkacizHIKZu3XM4.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+
+      setTimeout(function(){var a=document.createElement("script");
+      var b=document.getElementsByTagName('script')[0];
+      a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0021/9884.js";
+      a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+      
+//--><!]]>
+</script>
+<script type="text/javascript" src="//munchkin.marketo.net/munchkin.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+mktoMunchkin("307-QLA-991");
+
+//--><!]]>
+</script>
+  </body>
+</html>

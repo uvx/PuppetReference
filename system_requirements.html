@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Puppet 3.7 System Requirements — Documentation — Puppet Labs</title>
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+    <link rel='icon' href='/favicon.ico' />
+
+     
+  <meta name="description" content="  To install Puppet 3.7, see the Puppet installation guide.HardwareThe puppet agent service has no particular hardware requirements and can run on ...">
+
+<!-- Google analytics -->
+<!-- End Google analytics -->
+
+
+    <!-- FIXME: absolute paths -->
+
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <!-- /all in one seo pack -->
+
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com/puppet/latest/reference/system_requirements.html" />
+
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="./style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="./ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="./ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+<link rel="stylesheet" href="./anchor.css">
+<!-- Code for hover anchor links ends -->
+
+</head>
+
+
+
+
+  <body id="puppetlabsdocs" class="docs">
+  <!-- Google Tag Manager -->
+  <!-- End Google Tag Manager -->
+  <style type="text/css">h1, h2{ visibility : hidden }</style>
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->
+
+
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1>Puppet 3.7 System Requirements</h1>
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#hardware">Hardware</a></li>
+  <li class="toc-lv2"><a href="#platforms-with-packages">Platforms With Packages</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#red-hat-enterprise-linux-and-derivatives">Red Hat Enterprise Linux (and Derivatives)</a></li>
+   <li class="toc-lv3"><a href="#debian-and-ubuntu">Debian and Ubuntu</a></li>
+   <li class="toc-lv3"><a href="#fedora">Fedora</a></li>
+   <li class="toc-lv3"><a href="#windows">Windows</a></li>
+   <li class="toc-lv3"><a href="#mac-os-x">Mac OS X</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#platforms-without-packages">Platforms Without Packages</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#other-linux">Other Linux</a></li>
+   <li class="toc-lv3"><a href="#other-unix">Other Unix</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#basic-requirements">Basic Requirements</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#ruby">Ruby</a></li>
+   <li class="toc-lv3"><a href="#mandatory-libraries">Mandatory Libraries</a></li>
+   <li class="toc-lv3"><a href="#optional-libraries">Optional Libraries</a></li>
+</ol></li>
+</ol></nav>
+              <blockquote>
+  <p>To install Puppet 3.7, see <a href="/guides/install_puppet/pre_install.html">the Puppet installation guide</a>.</p>
+</blockquote>
+
+<h2 id="hardware">Hardware</h2>
+
+<p>The puppet agent service has no particular hardware requirements and can run on nearly anything.</p>
+
+<p>However, the puppet master service is fairly resource intensive, and should be installed on a robust dedicated server.</p>
+
+<ul>
+  <li>At minimum, your puppet master server should have two processor cores and at least 1 GB RAM.</li>
+  <li>To comfortably serve at least 1000 nodes, it should have 2-4 processor cores and at least 4 GB RAM.</li>
+</ul>
+
+<p>The demands on the puppet master will vary widely between different deployments. The total needs are affected by the number of agents being served, how frequently those agents check in, how many resources are being managed on each agent, and the complexity of the manifests and modules in use.</p>
+
+<h2 id="platforms-with-packages">Platforms With Packages</h2>
+
+<p>Puppet 3.7 and all of its prerequisites will run on the following platforms, and Puppet Labs provides official packages in <a href="/guides/puppetlabs_package_repositories.html">our package repositories.</a></p>
+
+<h3 id="red-hat-enterprise-linux-and-derivatives">Red Hat Enterprise Linux (and Derivatives)</h3>
+
+<p>We publish official packages and run automated testing on the following versions:</p>
+
+<ul>
+  <li>Enterprise Linux 5 (also supported by <a href="/pe/latest/install_windows.html">Puppet Enterprise</a>)</li>
+  <li>Enterprise Linux 6 (also supported by <a href="/pe/latest/install_windows.html">Puppet Enterprise</a>)</li>
+  <li>Enterprise Linux 7 (also supported by <a href="/pe/latest/install_windows.html">Puppet Enterprise</a>)</li>
+</ul>
+
+<p>Puppet Enterprise also supports RHEL 4, which does not receive packages for open source Puppet.</p>
+
+<p>(Note that RHEL 5 requires an <a href="/guides/puppetlabs_package_repositories.html">updated Ruby ≥ 1.8.7 from our yum repo.</a>)</p>
+
+<p>This information applies to RHEL itself, as well as any distributions that maintain binary compatibility with it, including but not limited to CentOS, Scientific Linux, Oracle Linux, and Ascendos.</p>
+
+<!-- When updating these, also edit guides/puppetlabs_package_repositories.markdown and add/delete the repo packages as needed. -->
+
+<h3 id="debian-and-ubuntu">Debian and Ubuntu</h3>
+
+<p>We publish official packages and run automated testing on the following versions:</p>
+
+<ul>
+  <li>Debian 6 “Squeeze” (obsolete stable release) (also supported by <a href="/pe/latest/install_windows.html">Puppet Enterprise</a>)</li>
+  <li>Debian 7 “Wheezy” (current stable release) (also supported by <a href="/pe/latest/install_windows.html">Puppet Enterprise</a>)</li>
+  <li>Ubuntu 14.04 LTS “Trusty Tahr” (also supported by <a href="/pe/latest/install_windows.html">Puppet Enterprise</a>)</li>
+  <li>Ubuntu 12.04 LTS “Precise Pangolin” (also supported by <a href="/pe/latest/install_windows.html">Puppet Enterprise</a>)</li>
+  <li>Ubuntu 10.04 LTS “Lucid Lynx” (also supported by <a href="/pe/latest/install_windows.html">Puppet Enterprise</a>)</li>
+</ul>
+
+<!-- When updating these, you don't need to update any other area of the docs. -->
+
+<h3 id="fedora">Fedora</h3>
+
+<p>We publish official packages and run automated testing on the following versions:</p>
+
+<ul>
+  <li>Fedora 19</li>
+  <li>Fedora 20</li>
+</ul>
+
+<!-- When updating these, also edit guides/puppetlabs_package_repositories.markdown and add/delete the repo packages as needed. -->
+
+<h3 id="windows">Windows</h3>
+
+<p>We publish official packages and run automated testing on the following versions:</p>
+
+<ul>
+  <li>Windows Server 2012 and 2012 R2 (also supported by <a href="/pe/latest/install_windows.html">Puppet Enterprise</a>)</li>
+  <li>Windows Server 2008 R2 (also supported by <a href="/pe/latest/install_windows.html">Puppet Enterprise</a>)</li>
+  <li>Windows Server 2003 R2 (also supported by <a href="/pe/latest/install_windows.html">Puppet Enterprise</a>)</li>
+</ul>
+
+<p>We publish packages for the following versions, but do not run automated testing on them:</p>
+
+<ul>
+  <li>Windows Server 2008 (also supported by <a href="/pe/latest/install_windows.html">Puppet Enterprise</a>)</li>
+  <li>Windows Server 2003 (also supported by <a href="/pe/latest/install_windows.html">Puppet Enterprise</a>)</li>
+  <li>Windows 7 and 8 (also supported by <a href="/pe/latest/install_windows.html">Puppet Enterprise</a>)</li>
+  <li>Windows Vista</li>
+</ul>
+
+<!-- When updating these, check the current version of the PE system requirements and make sure they don't need a bump as well. -->
+
+<h3 id="mac-os-x">Mac OS X</h3>
+
+<p>Although we publish packages for Mac OS X, we do not run automated testing on it.</p>
+
+<ul>
+  <li>Mac OS X, version 10.9 (Mavericks) and higher</li>
+</ul>
+
+<h2 id="platforms-without-packages">Platforms Without Packages</h2>
+
+<p>Puppet and its prerequisites are known to run on the following platforms, but we do not provide official packages and do not perform automated testing.</p>
+
+<h3 id="other-linux">Other Linux</h3>
+
+<ul>
+  <li>SUSE Linux Enterprise Server, version 11 and higher</li>
+  <li>Gentoo Linux</li>
+  <li>Mandriva Corporate Server 4 </li>
+  <li>ArchLinux</li>
+</ul>
+
+<h3 id="other-unix">Other Unix</h3>
+
+<ul>
+  <li>Oracle Solaris, version 10 and higher (Puppet Labs performs limited automated testing on Solaris 11.)</li>
+  <li>AIX, version 5.3 and higher</li>
+  <li>FreeBSD 4.7 and later </li>
+  <li>OpenBSD 4.1 and later </li>
+  <li>HP-UX</li>
+</ul>
+
+<h2 id="basic-requirements">Basic Requirements</h2>
+
+<p>If you’re installing Puppet via the official packages, you won’t need to worry about these prerequisites; your system’s package manager will handle all of them. These are only listed for those running Puppet from source or on unsupported systems.</p>
+
+<p>Puppet 3.7 has the following prerequisites:</p>
+
+<h3 id="ruby">Ruby</h3>
+
+<p>Use one of the following versions of MRI (standard) Ruby:</p>
+
+<ul>
+  <li>2.1.x — <strong>Note:</strong> We run spec tests for Ruby 2.1, but since none of our tested platforms ship with it yet, we don’t run acceptance tests on it. This means we think it’s good, but it might have problems we don’t know about yet.</li>
+  <li>2.0.x</li>
+  <li>1.9.3</li>
+  <li>1.8.7</li>
+</ul>
+
+<p>Other interpreters and versions of Ruby are not covered by our tests, and may or may not work.</p>
+
+<h3 id="mandatory-libraries">Mandatory Libraries</h3>
+
+<ul>
+  <li><a href="http://www.puppetlabs.com/puppet/related-projects/facter/">Facter</a> 1.7.0 or later</li>
+  <li><a href="/hiera/latest/">Hiera</a> 1.0 or later</li>
+  <li>The <code>json</code> gem (any modern version).</li>
+</ul>
+
+<h3 id="optional-libraries">Optional Libraries</h3>
+
+<ul>
+  <li>The <a href="http://ruby-gen.org/downloads"><code>rgen</code> gem</a> version 0.6.1 or later is required when using Puppet <a href="./experiments_future.html">with <code>parser = future</code> enabled</a>.</li>
+  <li>The <code>msgpack</code> gem is required if you are using <a href="./experiments_msgpack.html">msgpack serialization</a>.</li>
+</ul>
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>

@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Language: Classes — Documentation — Puppet Labs</title>
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+    <link rel='icon' href='/favicon.ico' />
+
+     
+  <meta name="description" content="Classes are named blocks of Puppet code, which are stored in modules for later use and are not applied until they are invoked by name. They can be ...">
+
+<!-- Google analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1537572-5']);
+  _gaq.push(['_setDomainName', 'puppetlabs.com']);
+  _gaq.push(['_addIgnoredRef', 'puppetlabs.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
+</script>
+<!-- End Google analytics -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.11.1.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/navigation-accordion.js'></script>
+
+    <script type="text/javascript" src="https://puppetlabs.com/sites/all/themes/puppetlabs/js/leadcapture.js"></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <!-- /all in one seo pack -->
+
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html" />
+
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+<script type="text/javascript" src="/files/javascripts/anchor.min.js"></script>
+<link rel="stylesheet" href="/files/stylesheets/anchor.css">
+<script>
+$(document).ready(function(){ 
+    addAnchors("#content h1"); 
+    addAnchors("#content h2"); 
+    addAnchors("#content h3"); 
+    addAnchors("#content h4"); 
+    });
+</script>
+<!-- Code for hover anchor links ends -->
+
+</head>
+
+
+
+
+  <body id="puppetlabsdocs" class="docs">
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PF6FV6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PF6FV6');</script>
+  <!-- End Google Tag Manager -->
+  <style type="text/css">h1, h2{ visibility : hidden }</style>
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="https://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/puppet/puppet-enterprise">
+              <span>Products</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+			<li>
+                <ul>
+                   <a href="https://puppetlabs.com/puppet/what-is-puppet/">What is Puppet?</a>
+                </ul>
+              </li>
+			       <li>
+                <ul>
+                   <a href="https://puppetlabs.com/puppet/puppet-enterprise/">Puppet Enterprise</a>
+                </ul>
+              </li>
+            <li>
+                <ul>
+                   <a href="https://puppetlabs.com/puppet/whats-new/">What's New in 2.5</a>
+                </ul>
+              </li>
+            <li>
+                <ul>
+                   <a href="https://puppetlabs.com/puppet/puppet-open-source/">Puppet Open Source</a>
+                </ul>
+              </li>
+            <li>
+                <ul>
+                   <a href="https://puppetlabs.com/puppet/enterprise-vs-open-source/">Enterprise vs. Open Source</a>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <a href="https://forge.puppetlabs.com">Puppet Forge</a>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <a href="https://puppetlabs.com/puppet/requirements/">Components &amp; Requirements</a>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <a href="https://puppetlabs.com/puppet/faq/">FAQ</a>
+                </ul>
+              </li>
+			  <li>
+                <ul>
+                  <a href="https://puppetlabs.com/puppet/how-to-buy/">How to Buy</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="solutions-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/solutions/">
+              <span>Solutions</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-12296"><a href="https://puppetlabs.com/solutions/configuration-management/">Configuration Management</a></li>
+<li class="page_item page-item-986"><a href="https://puppetlabs.com/solutions/virtualization-management/">Virtualization Management</a></li>
+<li class="page_item page-item-993"><a href="https://puppetlabs.com/solutions/cloud-management/">Cloud Management</a></li>
+<li class="page_item page-item-996"><a href="https://puppetlabs.com/solutions/it-compliance/">IT Compliance</a></li>
+<li class="page_item page-item-9520"><a href="https://puppetlabs.com/solutions/devops/">DevOps</a></li>
+<li class="page_item page-item-991"><a href="https://puppetlabs.com/solutions/manage-os-x-resources/">OS X Desktops</a></li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="https://puppetlabs.com/services/overview/">Overview</a></li>
+<li class="page_item page-item-1052"><a href="https://puppetlabs.com/services/customer-support/">Customer Support</a></li>
+<li class="page_item page-item-11022"><a href="https://puppetlabs.com/services/support-plans/">Support Plans</a></li>
+<li class="page_item page-item-845"><a href="https://puppetlabs.com/services/training-workshops/">On-Site Education</a></li>
+<li class="page_item page-item-4899"><a href="https://puppetlabs.com/services/consulting/">Professional Services</a></li>
+<li class="page_item page-item-849"><a href="https://puppetlabs.com/category/events/upcoming/">Events &amp; Workshops</a></li>
+<li class="page_item page-item-851"><a href="https://puppetlabs.com/services/partners/">Partners</a></li>
+            </ul>
+          </li>
+                    <li id="resources-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/resources/">
+              <span>Resources</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="https://puppetlabs.com/resources/overview-2/">Overview</a></li>
+<li class="page_item page-item-1040"><a href="https://docs.puppetlabs.com">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download">Downloads</a></li>
+<li class="page_item page-item-1961"><a href="https://forge.puppetlabs.com">Puppet Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/download-whitepapers.html">White Papers</a></li>
+<li class="page_item page-item-7279"><a href="https://puppetlabs.com/resources/webinars/">Upcoming Webinars</a></li>
+<li class="page_item page-item-10183"><a href="https://puppetlabs.com/resources/newsletter/">Newsletter</a></li>
+<li class="page_item page-item-12263"><a href="https://puppetlabs.com/resources/tech-notes/">Tech Notes</a></li>
+<li class="page_item page-item-10265"><a href="http://info.puppetlabs.com/pe2-webinar.html">Webinars</a></li>
+            </ul>
+          </li>
+
+          <li id="customers-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/customers/companies/">
+              <span>Customers</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+			<li>
+                <ul>
+                  <a href="https://puppetlabs.com/customers/companies/">Companies</a>
+                </ul>
+              </li>
+			  <li>
+                <ul>
+                  <a href="https://puppetlabs.com/customers/case-studies/">Case Studies</a>
+                </ul>
+              </li>
+			  <li>
+                <ul>
+                  <a href="https://puppetlabs.com/customers/product-testimonials/">Product Testimonials</a>
+                </ul>
+              </li>
+			    <li>
+                <ul>
+                  <a href="https://puppetlabs.com/customers/what-customers-are-saying/">Service Testimonials</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/community/">
+              <span>Community</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+ <ul>
+			<li>
+                <ul>
+                  <a href="https://puppetlabs.com/community/overview/">Overview</a>
+                </ul>
+              </li>
+			<li>
+                <ul>
+                  <a href="https://puppetlabs.com/blog">Blog</a>
+                </ul>
+              </li>
+			  <li>
+                <ul>
+                  <a href="https://puppetlabs.com/community/puppet-camp/">Puppet Camp</a>
+                </ul>
+              </li>
+			  <li>
+                <ul>
+                  <a href="https://puppetlabs.com/community/user-groups-and-devops-groups/">Puppet User Groups & DevOps Groups</a>
+                </ul>
+              </li>
+	          <li>
+                <ul>
+                  <a href="https://puppetlabs.com/community/presentations/">Presentations</a>
+                </ul>
+              </li>
+			    <li>
+                <ul>
+                  <a href="https://puppetlabs.com/community/videos/">Videos</a>
+                </ul>
+              </li>
+            </ul>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2316"><a href="https://puppetlabs.com/company/overview/">Overview</a></li>
+<li class="page_item page-item-2179"><a href="https://puppetlabs.com/company/news/">News</a>
+<ul class='children'>
+	<li class="page_item page-item-2338"><a href="https://puppetlabs.com/company/news/press-releases/">Press Releases</a></li>
+	<li class="page_item page-item-2383"><a href="https://puppetlabs.com/company/news/media-kit/">Media Kit</a></li>
+</ul>
+</li>
+<li class="page_item page-item-1571"><a href="https://puppetlabs.com/company/careers/">Careers</a></li>
+<li class="page_item page-item-10372"><a href="https://puppetlabs.com/company/management/">Management</a></li>
+<li class="page_item page-item-10311"><a href="https://puppetlabs.com/company/board-and-advisors/">Board and Advisors</a></li>
+<li class="page_item page-item-10367"><a href="https://puppetlabs.com/company/investors/">Investors</a></li>
+<li class="page_item page-item-2313"><a href="https://puppetlabs.com/company/contact-us/">Contact Us</a></li>
+<li class="page_item page-item-10579"><a href="https://puppetlabs.com/company/awards/">Awards</a></li>
+            </ul>
+          </li>
+    		</ul>
+          <div id="misc-navigation">
+			  <ul>
+				<li><a href="https://puppetlabs.com/security/">Security</a></li>
+				<li><a href="https://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="https://puppetlabs.com/resources/customer-support/">Support</a></li>
+			        <li><a href="https://tickets.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="https://puppetlabs.com/company/contact/contact-us">Contact Us</a></li>
+				<li><a href="http://info.puppetlabs.com/download-pe2.html" class="gateway">Download</a></li>
+			  </ul>
+			<form action="https://www.google.com/cse" id="cse-search-box">
+			  <div>
+				<input type="hidden" name="cx" value="017668764424496204839:ubligvgbenm" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" class="gsc-input" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="https://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+          </div>
+      </nav>
+    	</div>
+    </header>
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Language: Classes</span></h1>
+        </div>
+        <br />
+      </section>
+
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1>Language: Classes</h1>
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#defining-classes">Defining Classes</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#syntax">Syntax</a></li>
+   <li class="toc-lv3"><a href="#class-parameters-and-variables">Class Parameters and Variables</a></li>
+   <li class="toc-lv3"><a href="#location">Location</a></li>
+   <li class="toc-lv3"><a href="#containment">Containment</a></li>
+   <li class="toc-lv3"><a href="#auto-tagging">Auto-Tagging</a></li>
+   <li class="toc-lv3"><a href="#inheritance">Inheritance</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#declaring-classes">Declaring Classes</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#include-like-vs-resource-like">Include-Like vs. Resource-Like</a></li>
+   <li class="toc-lv3"><a href="#using-include">Using include</a></li>
+   <li class="toc-lv3"><a href="#using-require">Using require</a></li>
+   <li class="toc-lv3"><a href="#using-contain">Using contain</a></li>
+   <li class="toc-lv3"><a href="#using-hierainclude">Using hiera_include</a></li>
+   <li class="toc-lv3"><a href="#using-resource-like-declarations">Using Resource-Like Declarations</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#assigning-classes-from-an-enc">Assigning Classes From an ENC</a></li>
+  <li class="toc-lv2"><a href="#aside-writing-for-multiple-puppet-versions">Aside: Writing for Multiple Puppet Versions</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#expect-users-to-handle-parameters">Expect Users to Handle Parameters</a></li>
+   <li class="toc-lv3"><a href="#use-hiera-functions-in-default-values">Use Hiera Functions in Default Values</a></li>
+   <li class="toc-lv3"><a href="#avoid-class-parameters">Avoid Class Parameters</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#appendix-smart-parameter-defaults">Appendix: Smart Parameter Defaults</a></li>
+</ol></nav>
+              
+<p><strong>Classes</strong> are named blocks of Puppet code, which are stored in <a href="./modules_fundamentals.html">modules</a> for later use and are not applied until they are invoked by name. They can be added to a node’s <a href="./lang_summary.html#compilation-and-catalogs">catalog</a> by either <strong>declaring</strong> them in your manifests or by <strong>assigning</strong> them from an <a href="/guides/external_nodes.html">ENC</a>.</p>
+
+<p>Classes generally configure large or medium-sized chunks of functionality, such as all of the packages, config files, and services needed to run an application.</p>
+
+<h2 id="defining-classes">Defining Classes</h2>
+
+<p>Defining a class makes it available for later use. It doesn’t yet add any resources to the catalog; to do that, you must <a href="#declaring-classes">declare it (see below)</a> or <a href="/guides/external_nodes.html">assign it from an ENC</a>.</p>
+
+<h3 id="syntax">Syntax</h3>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># A class with no parameters</span>
+    <span class="k">class</span> <span class="n">base</span><span class="o">::</span><span class="n">linux</span> <span class="p">{</span>
+      <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;/etc/passwd&#39;</span><span class="p">:</span>
+        <span class="n">owner</span> <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+        <span class="n">group</span> <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+        <span class="n">mode</span>  <span class="o">=&gt;</span> <span class="s1">&#39;0644&#39;</span><span class="p">,</span>
+      <span class="p">}</span>
+      <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;/etc/shadow&#39;</span><span class="p">:</span>
+        <span class="n">owner</span> <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+        <span class="n">group</span> <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+        <span class="n">mode</span>  <span class="o">=&gt;</span> <span class="s1">&#39;0440&#39;</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># A class with parameters</span>
+    <span class="k">class</span> <span class="n">apache</span> <span class="p">(</span><span class="vg">$version</span> <span class="o">=</span> <span class="s1">&#39;latest&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">package</span> <span class="p">{</span><span class="s1">&#39;httpd&#39;</span><span class="p">:</span>
+        <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="vg">$version</span><span class="p">,</span> <span class="c1"># Using the class parameter from above</span>
+        <span class="n">before</span> <span class="o">=&gt;</span> <span class="no">File</span><span class="o">[</span><span class="s1">&#39;/etc/httpd.conf&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="p">}</span>
+      <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;/etc/httpd.conf&#39;</span><span class="p">:</span>
+        <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+        <span class="n">owner</span>   <span class="o">=&gt;</span> <span class="s1">&#39;httpd&#39;</span><span class="p">,</span>
+        <span class="n">content</span> <span class="o">=&gt;</span> <span class="n">template</span><span class="p">(</span><span class="s1">&#39;apache/httpd.conf.erb&#39;</span><span class="p">),</span> <span class="c1"># Template from a module</span>
+      <span class="p">}</span>
+      <span class="n">service</span> <span class="p">{</span><span class="s1">&#39;httpd&#39;</span><span class="p">:</span>
+        <span class="k">ensure</span>    <span class="o">=&gt;</span> <span class="n">running</span><span class="p">,</span>
+        <span class="n">enable</span>    <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+        <span class="n">subscribe</span> <span class="o">=&gt;</span> <span class="no">File</span><span class="o">[</span><span class="s1">&#39;/etc/httpd.conf&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>The general form of a class definition is:</p>
+
+<ul>
+  <li>The <code>class</code> keyword</li>
+  <li>The <a href="./lang_reserved.html#classes-and-types">name</a> of the class</li>
+  <li>An optional <strong>set of parameters,</strong> which consists of:
+    <ul>
+      <li>An opening parenthesis</li>
+      <li>A comma-separated list of <strong>parameters,</strong> each of which consists of:
+        <ul>
+          <li>A new <a href="./lang_variables.html">variable</a> name, including the <code>$</code> prefix</li>
+          <li>An optional equals (=) sign and <strong>default value</strong> (any data type)</li>
+        </ul>
+      </li>
+      <li>An optional trailing comma after the last parameter</li>
+      <li>A closing parenthesis</li>
+    </ul>
+  </li>
+  <li>Optionally, the <code>inherits</code> keyword followed by a single class name</li>
+  <li>An opening curly brace</li>
+  <li>A block of arbitrary Puppet code, which generally contains at least one <a href="./lang_resources.html">resource declaration</a></li>
+  <li>A closing curly brace</li>
+</ul>
+
+<h3 id="class-parameters-and-variables">Class Parameters and Variables</h3>
+
+<p><strong>Parameters</strong> allow a class to request external data. If a class needs to configure itself with data other than <a href="./lang_variables.html#facts-and-built-in-variables">facts</a>, that data should usually enter the class via a parameter.</p>
+
+<p>Each class parameter can be used as a normal <a href="./lang_variables.html">variable</a> inside the class definition. The values of these variables are not set with <a href="./lang_variables.html#assignment">normal assignment statements</a> or read from top or node scope; instead, they are <a href="#include-like-vs-resource-like">automatically set when the class is declared</a>.</p>
+
+<p>Note that if a class parameter lacks a default value, the user of the module <strong>must</strong> set a value themselves (either in their <a href="/hiera/latest/puppet.html">external data</a> or an <a href="#using-resource-like-declarations">override</a>). As such, you should supply defaults wherever possible.</p>
+
+<h3 id="location">Location</h3>
+
+<p>Class definitions should be stored in <a href="./modules_fundamentals.html">modules</a>. Puppet is <strong>automatically aware</strong> of classes in modules and can autoload them by name.</p>
+
+<p>Classes should be stored in their module’s <code>manifests/</code> directory as one class per file, and each filename should reflect the name of its class; see <a href="./modules_fundamentals.html">Module Fundamentals</a> and <a href="./lang_namespaces.html">Namespaces and Autoloading</a> for more details.</p>
+
+<blockquote>
+  <h4 id="other-locations">Other Locations</h4>
+
+  <p>Most users should <strong>only</strong> load classes from modules. However, you can also put classes in the following additional locations:</p>
+
+  <ul>
+    <li><a href="./dirs_manifest.html">The main manifest</a>. If you do so, they may be placed anywhere in the file and are not parse-order dependent.</li>
+    <li><a href="./lang_import.html">Imported manifests</a>. If you do so, you must <a href="./lang_import.html">import</a> the file containing the class before you may declare it.</li>
+    <li>Other class definitions. This puts the interior class under the exterior class’s <a href="./lang_namespaces.html">namespace</a>, causing its real name to be something other than the name with which it was defined. It does not cause the interior class to be automatically declared along with the exterior class. Nested classes cannot be autoloaded; in order for the interior class to be visible to Puppet, the manifest containing it must have been forcibly loaded, either by autoloading the outermost class, using an <a href="./lang_import.html">import</a> statement, or placing the entire nested structure in the site manifest. Although nesting classes is not yet formally deprecated, it is <strong>very much</strong> not recommended.</li>
+  </ul>
+</blockquote>
+
+<h3 id="containment">Containment</h3>
+
+<p>A class <a href="./lang_containment.html">contains</a> all of its resources. This means any <a href="./lang_relationships.html">relationships</a> formed with the class as a whole will be extended to every resource in the class.</p>
+
+<p>Classes can also contain other classes, but <em>you must manually specify that a class should be contained.</em> For details, <a href="./lang_containment.html#containing-classes">see the “Containing Classes” section of the Containment page.</a></p>
+
+<h3 id="auto-tagging">Auto-Tagging</h3>
+
+<p>Every resource in a class gets automatically <a href="./lang_tags.html">tagged</a> with the class’s name (and each of its <a href="./lang_namespaces.html">namespace segments</a>).</p>
+
+<h3 id="inheritance">Inheritance</h3>
+
+<p>Classes can be derived from other classes using the <code>inherits</code> keyword. This allows you to make special-case classes that extend the functionality of a more general “base” class.</p>
+
+<blockquote>
+  <p>Note: This version of Puppet does not support using parameterized classes for inheritable base classes. The base class <strong>must</strong> have no parameters.</p>
+</blockquote>
+
+<p>Inheritance causes three things to happen:</p>
+
+<ul>
+  <li>When a derived class is declared, its base class is automatically declared <strong>first</strong> (if it wasn’t already declared elsewhere).</li>
+  <li>The base class becomes the <a href="./lang_scope.html#scope-lookup-rules">parent scope</a> of the derived class, so that the new class receives a copy of all of the base class’s variables and resource defaults.</li>
+  <li>Code in the derived class is given special permission to override any resource attributes that were set in the base class.</li>
+</ul>
+
+<blockquote>
+  <h4 id="aside-when-to-inherit">Aside: When to Inherit</h4>
+
+  <p>Class inheritance should be used <strong>very sparingly,</strong> generally only in the following situations:</p>
+
+  <ul>
+    <li>When you need to override resource attributes in the base class.</li>
+    <li>
+      <p>To let a “params class” provide default values for another class’s parameters:</p>
+
+      <pre><code>class example ($my_param = $example::params::myparam) inherits example::params { ... }
+</code></pre>
+
+      <p>This pattern works by guaranteeing that the params class is evaluated before Puppet attempts to evaluate the main class’s parameter list. It is especially useful when you want your default values to change based on system facts and other data, since it lets you isolate and encapsulate all that conditional logic.</p>
+    </li>
+  </ul>
+
+  <p><strong>In nearly all other cases, inheritance is unnecessary complexity.</strong> If you need some class’s resources declared before proceeding further, you can <a href="#using-include">include</a> it inside another class’s definition. If you need to read internal data from another class, you should generally use <a href="./lang_variables.html#accessing-out-of-scope-variables">qualified variable names</a> instead of assigning parent scopes. If you need to use an “anti-class” pattern (e.g. to disable a service that is normally enabled), you can use a class parameter to override the standard behavior.</p>
+
+  <p>Note also that you can <a href="./lang_resources.html#amending-attributes-with-a-collector">use resource collectors to override resource attributes</a> in unrelated classes, although this feature should be handled with care.</p>
+</blockquote>
+
+<h4 id="overriding-resource-attributes">Overriding Resource Attributes</h4>
+
+<p>The attributes of any resource in the base class can be overridden with a <a href="./lang_datatypes.html#resource-references">reference</a> to the resource you wish to override, followed by a set of curly braces containing attribute =&gt; value pairs:</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">class</span> <span class="n">base</span><span class="o">::</span><span class="n">freebsd</span> <span class="n">inherits</span> <span class="n">base</span><span class="o">::</span><span class="n">unix</span> <span class="p">{</span>
+      <span class="no">File</span><span class="o">[</span><span class="s1">&#39;/etc/passwd&#39;</span><span class="o">]</span> <span class="p">{</span>
+        <span class="n">group</span> <span class="o">=&gt;</span> <span class="s1">&#39;wheel&#39;</span>
+      <span class="p">}</span>
+      <span class="no">File</span><span class="o">[</span><span class="s1">&#39;/etc/shadow&#39;</span><span class="o">]</span> <span class="p">{</span>
+        <span class="n">group</span> <span class="o">=&gt;</span> <span class="s1">&#39;wheel&#39;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>This is identical to the syntax for <a href="./lang_resources.html#adding-or-modifying-attributes">adding attributes to an existing resource</a>, but in a derived class, it gains the ability to rewrite resources instead of just adding to them. Note that you can also use <a href="./lang_datatypes.html#multi-resource-references">multi-resource references</a> here.</p>
+
+<p>You can remove an attribute’s previous value without setting a new one by overriding it with the special value <a href="./lang_datatypes.html#undef"><code>undef</code></a>:</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">class</span> <span class="n">base</span><span class="o">::</span><span class="n">freebsd</span> <span class="n">inherits</span> <span class="n">base</span><span class="o">::</span><span class="n">unix</span> <span class="p">{</span>
+      <span class="no">File</span><span class="o">[</span><span class="s1">&#39;/etc/passwd&#39;</span><span class="o">]</span> <span class="p">{</span>
+        <span class="n">group</span> <span class="o">=&gt;</span> <span class="k">undef</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>This causes the attribute to be unmanaged by Puppet.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> If a base class declares other classes with the resource-like syntax, a class derived from it cannot override the class parameters of those inner classes. This is a known bug.</p>
+</blockquote>
+
+<h4 id="appending-to-resource-attributes">Appending to Resource Attributes</h4>
+
+<p>Some resource attributes (such as the <a href="./lang_relationships.html">relationship metaparameters</a>) can accept multiple values in an array. When overriding attributes in a derived class, you can add to the existing values instead of replacing them by using the <code>+&gt;</code> (“plusignment”) keyword instead of the standard <code>=&gt;</code> hash rocket:</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">class</span> <span class="n">apache</span> <span class="p">{</span>
+      <span class="n">service</span> <span class="p">{</span><span class="s1">&#39;apache&#39;</span><span class="p">:</span>
+        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Package</span><span class="o">[</span><span class="s1">&#39;httpd&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">class</span> <span class="n">apache</span><span class="o">::</span><span class="n">ssl</span> <span class="n">inherits</span> <span class="n">apache</span> <span class="p">{</span>
+      <span class="c1"># host certificate is required for SSL to function</span>
+      <span class="no">Service</span><span class="o">[</span><span class="s1">&#39;apache&#39;</span><span class="o">]</span> <span class="p">{</span>
+        <span class="nb">require</span> <span class="o">+&gt;</span> <span class="o">[</span> <span class="no">File</span><span class="o">[</span><span class="s1">&#39;apache.pem&#39;</span><span class="o">]</span><span class="p">,</span> <span class="no">File</span><span class="o">[</span><span class="s1">&#39;httpd.conf&#39;</span><span class="o">]</span> <span class="o">]</span><span class="p">,</span>
+        <span class="c1"># Since `require` will retain its previous values, this is equivalent to:</span>
+        <span class="c1"># require =&gt; [ Package[&#39;httpd&#39;], File[&#39;apache.pem&#39;], File[&#39;httpd.conf&#39;] ],</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="declaring-classes">Declaring Classes</h2>
+
+<p><strong>Declaring</strong> a class in a Puppet manifest adds all of its resources to the catalog. You can declare classes in <a href="./lang_node_definitions.html">node definitions</a>, at top scope in the <a href="./dirs_manifest.html">site manifest</a>, and in other classes or <a href="./lang_defined_types.html">defined types</a>. Declaring classes isn’t the only way to add them to the catalog; you can also <a href="#assigning-classes-from-an-enc">assign classes to nodes with an ENC</a>.</p>
+
+<p>Classes are singletons — although a given class may have very different behavior depending on how its parameters are set, the resources in it will only be evaluated <strong>once per compilation.</strong></p>
+
+<h3 id="include-like-vs-resource-like">Include-Like vs. Resource-Like</h3>
+
+<p>Puppet has two main ways to declare classes: include-like and resource-like.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> These two behaviors <strong>should not be mixed</strong> for a given class. Puppet’s behavior when declaring or assigning a class with both styles is undefined, and will sometimes work and sometimes cause compilation failures.</p>
+</blockquote>
+
+<h4 id="include-like-behavior">Include-Like Behavior</h4>
+
+<p>The <code>include</code>, <code>require</code>, <code>contain</code>, and <code>hiera_include</code> functions let you safely declare a class <strong>multiple times;</strong> no matter how many times you declare it, a class will only be added to the catalog once. This can allow classes or defined types to manage their own dependencies, and lets you create overlapping “role” classes where a given node may have more than one role.</p>
+
+<p>Include-like behavior relies on <a href="/hiera/latest/puppet.html">external data</a> and defaults for class parameter values, which allows the external data source to act like cascading configuration files for all of your classes. When a class is declared, Puppet will try the following for each of its parameters:</p>
+
+<ol>
+  <li>Request a value from <a href="/hiera/latest/puppet.html">the external data source</a>, using the key <code>&lt;class name&gt;::&lt;parameter name&gt;</code>. (For example, to get the <code>apache</code> class’s <code>version</code> parameter, Puppet would search for <code>apache::version</code>.)</li>
+  <li>Use the default value.</li>
+  <li>Fail compilation with an error if no value can be found.</li>
+</ol>
+
+<blockquote>
+  <p><strong>Aside: Best Practices</strong></p>
+
+  <p><strong>Most</strong> users in <strong>most</strong> situations should use include-like declarations and set parameter values in their external data. However, compatibility with earlier versions of Puppet may require compromises. See <a href="#aside-writing-for-multiple-puppet-versions">Aside: Writing for Multiple Puppet Versions</a> below for details.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Version Note:</strong> Automatic external parameter lookup was a new feature in Puppet 3. Puppet 2.7 and earlier could only use default values or override values from resource-like declarations. <a href="#aside-writing-for-multiple-puppet-versions">See below for more details.</a></p>
+</blockquote>
+
+<h4 id="resource-like-behavior">Resource-like Behavior</h4>
+
+<p>Resource-like class declarations require that you <strong>only declare a given class once.</strong> They allow you to override class parameters at compile time, and will fall back to <a href="/hiera/latest/puppet.html">external data</a> for any parameters you don’t override.  When a class is declared, Puppet will try the following for each of its parameters:</p>
+
+<ol>
+  <li>Use the override value from the declaration, if present.</li>
+  <li>Request a value from <a href="/hiera/latest/puppet.html">the external data source</a>, using the key <code>&lt;class name&gt;::&lt;parameter name&gt;</code>. (For example, to get the <code>apache</code> class’s <code>version</code> parameter, Puppet would search for <code>apache::version</code>.)</li>
+  <li>Use the default value.</li>
+  <li>Fail compilation with an error if no value can be found.</li>
+</ol>
+
+<blockquote>
+  <p><strong>Aside: Why Do Resource-Like Declarations Have to Be Unique?</strong></p>
+
+  <p>This is necessary to avoid paradoxical or conflicting parameter values. Since overridden values from the class declaration always win, are computed at compile-time, and do not have a built-in hierarchy for resolving conflicts, allowing repeated overrides would cause catalog compilation to be unreliable and parse-order dependent.</p>
+
+  <p>This was the original reason for adding external data bindings to include-like declarations: since external data is set <strong>before</strong> compile-time and has a <strong>fixed hierarchy,</strong> the compiler can safely rely on it without risk of conflicts.</p>
+</blockquote>
+
+<h3 id="using-include">Using <code>include</code></h3>
+
+<p>The <code>include</code> <a href="./lang_functions.html">function</a> is the standard way to declare classes.</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="kp">include</span> <span class="n">base</span><span class="o">::</span><span class="n">linux</span>
+    <span class="kp">include</span> <span class="n">base</span><span class="o">::</span><span class="n">linux</span> <span class="c1"># no additional effect; the class is only declared once</span>
+
+    <span class="kp">include</span> <span class="n">base</span><span class="o">::</span><span class="n">linux</span><span class="p">,</span> <span class="n">apache</span> <span class="c1"># including a list</span>
+
+    <span class="vg">$my_classes</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;base::linux&#39;</span><span class="p">,</span> <span class="s1">&#39;apache&#39;</span><span class="o">]</span>
+    <span class="kp">include</span> <span class="vg">$my_classes</span> <span class="c1"># including an array</span>
+</code></pre>
+</div>
+
+<p>The <code>include</code> function uses <a href="#include-like-behavior">include-like behavior</a>. (Multiple declarations OK; relies on external data for parameters.) It can accept:</p>
+
+<ul>
+  <li>A single class</li>
+  <li>A comma-separated list of classes</li>
+  <li>An array of classes</li>
+</ul>
+
+<h3 id="using-require">Using <code>require</code></h3>
+
+<p>The <code>require</code> function (not to be confused with the <a href="./lang_relationships.html"><code>require</code> metaparameter</a>) declares one or more classes, then causes them to become a <a href="./lang_relationships.html">dependency</a> of the surrounding container.</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">define</span> <span class="n">apache</span><span class="o">::</span><span class="n">vhost</span> <span class="p">(</span><span class="vg">$port</span><span class="p">,</span> <span class="vg">$docroot</span><span class="p">,</span> <span class="vg">$servername</span><span class="p">,</span> <span class="vg">$vhost_name</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nb">require</span> <span class="n">apache</span>
+      <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>In the above example, Puppet will ensure that every resource in the <code>apache</code> class gets applied before every resource in <strong>any</strong> <code>apache::vhost</code> instance.</p>
+
+<p>The <code>require</code> function uses <a href="#include-like-behavior">include-like behavior</a>. (Multiple declarations OK; relies on external data for parameters.) It can accept:</p>
+
+<ul>
+  <li>A single class</li>
+  <li>A comma-separated list of classes</li>
+  <li>An array of classes</li>
+</ul>
+
+<h3 id="using-contain">Using <code>contain</code></h3>
+
+<p>The <code>contain</code> function is meant to be used <em>inside another class definition.</em> It declares one or more classes, then causes them to become <a href="./lang_containment.html">contained</a> by the surrounding class. For details, <a href="./lang_containment.html#containing-classes">see the “Containing Classes” section of the Containment page.</a></p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">class</span> <span class="n">ntp</span> <span class="p">{</span>
+      <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;/etc/ntp.conf&#39;</span><span class="p">:</span>
+        <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Package</span><span class="o">[</span><span class="s1">&#39;ntp&#39;</span><span class="o">]</span><span class="p">,</span>
+        <span class="n">notify</span>  <span class="o">=&gt;</span> <span class="no">Class</span><span class="o">[</span><span class="s1">&#39;ntp::service&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="p">}</span>
+      <span class="n">contain</span> <span class="n">ntp</span><span class="o">::</span><span class="n">service</span>
+      <span class="n">package</span> <span class="p">{</span> <span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+        <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>In the above example, any resource that forms a <code>before</code> or <code>require</code> relationship with class <code>ntp</code> will also be applied before or after class <code>ntp::service</code>, respectively.</p>
+
+<p>The <code>contain</code> function uses <a href="#include-like-behavior">include-like behavior</a>. (Multiple declarations OK; relies on external data for parameters.) It can accept:</p>
+
+<ul>
+  <li>A single class</li>
+  <li>A comma-separated list of classes</li>
+  <li>An array of classes</li>
+</ul>
+
+<h3 id="using-hierainclude">Using <code>hiera_include</code></h3>
+
+<p>The <code>hiera_include</code> function requests a list of class names from <a href="/hiera/latest">Hiera</a>, then declares all of them. Since it uses the <a href="/hiera/latest/lookup_types.html#array-merge">array resolution type</a>, it will get a combined list that includes classes from <strong>every level</strong> of the <a href="/hiera/latest/hierarchy.html">hierarchy</a>. This allows you to abandon <a href="./lang_node_definitions.html">node definitions</a> and use Hiera like a lightweight ENC.</p>
+
+<pre><code># /etc/puppetlabs/puppet/hiera.yaml
+...
+hierarchy:
+  - "%{::clientcert}"
+  - common
+
+# /etc/puppetlabs/puppet/hieradata/web01.example.com.yaml
+---
+classes:
+  - apache
+  - memcached
+  - wordpress
+
+# /etc/puppetlabs/puppet/hieradata/common.yaml
+---
+classes:
+  - base::linux
+</code></pre>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /etc/puppetlabs/puppet/manifests/site.pp</span>
+    <span class="n">hiera_include</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>On the node <code>web01.example.com</code>, the example above would declare the classes <code>apache</code>, <code>memcached</code>, <code>wordpress</code>, and <code>base::linux</code>. On other nodes, it would only declare <code>base::linux</code>.</p>
+
+<p>The <code>hiera_include</code> function uses <a href="#include-like-behavior">include-like behavior</a>. (Multiple declarations OK; relies on external data for parameters.) It accepts a single lookup key.</p>
+
+<h3 id="using-resource-like-declarations">Using Resource-Like Declarations</h3>
+
+<p>Resource-like declarations look like <a href="./lang_resources.html">normal resource declarations</a>, using the special <code>class</code> pseudo-resource type.</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># Overriding a parameter:</span>
+    <span class="k">class</span> <span class="p">{</span><span class="s1">&#39;apache&#39;</span><span class="p">:</span>
+      <span class="n">version</span> <span class="o">=&gt;</span> <span class="s1">&#39;2.2.21&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="c1"># Declaring a class with no parameters:</span>
+    <span class="k">class</span> <span class="p">{</span><span class="s1">&#39;base::linux&#39;</span><span class="p">:}</span>
+</code></pre>
+</div>
+
+<p>Resource-like declarations use <a href="#resource-like-behavior">resource-like behavior</a>. (Multiple declarations prohibited; parameters may be overridden at compile-time.) You can provide a value for any class parameter by specifying it as resource attribute; any parameters not specified will follow the normal external/default/fail lookup path.</p>
+
+<p>In addition to class-specific parameters, you can also specify a value for any <a href="./lang_resources.html#metaparameters">metaparameter</a>. In such cases, every resource contained in the class will also have that metaparameter:</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># Cause the entire class to be noop:</span>
+    <span class="k">class</span> <span class="p">{</span><span class="s1">&#39;apache&#39;</span><span class="p">:</span>
+      <span class="n">noop</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>However, note that:</p>
+
+<ul>
+  <li>Any resource can specifically override metaparameter values received from its container.</li>
+  <li>Metaparameters which can take more than one value (like the <a href="./lang_relationships.html">relationship</a> metaparameters) will merge the values from the container and any resource-specific values.</li>
+</ul>
+
+<h2 id="assigning-classes-from-an-enc">Assigning Classes From an ENC</h2>
+
+<p>Classes can also be assigned to nodes by <a href="/guides/external_nodes.html">external node classifiers</a> and <a href="http://projects.puppetlabs.com/projects/1/wiki/Ldap_Nodes">LDAP node data</a>. Note that most ENCs assign classes with include-like behavior, and some ENCs assign them with resource-like behavior. See the <a href="/guides/external_nodes.html">documentation of the ENC interface</a> or the documentation of your specific ENC for complete details.</p>
+
+<blockquote>
+  <h2 id="aside-writing-for-multiple-puppet-versions">Aside: Writing for Multiple Puppet Versions</h2>
+
+  <p>Hiera integration and automatic parameter lookup were new features in Puppet 3; older versions may install the Hiera functions as an add-on, but will not automatically find parameters. If you are writing code for multiple Puppet versions, you have several options:</p>
+
+  <h3 id="expect-users-to-handle-parameters">Expect Users to Handle Parameters</h3>
+
+  <p>The simplest approach is to not look back, and expect Puppet 2.x users to use resource-like declarations. This isn’t the friendliest approach, but many modules did this even before auto-parameters were available, and users are accustomed to a subset of their modules requiring it.</p>
+
+  <h3 id="use-hiera-functions-in-default-values">Use Hiera Functions in Default Values</h3>
+
+  <p>If you are willing to require Hiera and the <code>hiera-puppet</code> add-on package for pre-3.0 users, you can emulate Puppet 3’s behavior by using a <code>hiera</code> function call in each parameter’s default value:</p>
+</blockquote>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">class</span> <span class="n">example</span> <span class="p">(</span> <span class="vg">$parameter_one</span> <span class="o">=</span> <span class="n">hiera</span><span class="p">(</span><span class="s1">&#39;example::parameter_one&#39;</span><span class="p">),</span> <span class="vg">$parameter_two</span> <span class="o">=</span> <span class="n">hiera</span><span class="p">(</span><span class="s1">&#39;example::parameter_two&#39;</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>Be sure to use 3.0-compatible lookup keys (<code>&lt;class name&gt;::&lt;parameter&gt;</code>). This will let 2.x users declare the class with <code>include</code>, and their Hiera data will continue to work without changes once they upgrade to Puppet 3.</p>
+
+  <p>This approach can also be combined with the “params class” pattern, if default values are necessary:</p>
+</blockquote>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">class</span> <span class="n">example</span> <span class="p">(</span>
+      <span class="vg">$parameter_one</span> <span class="o">=</span> <span class="n">hiera</span><span class="p">(</span><span class="s1">&#39;example::parameter_one&#39;</span><span class="p">,</span> <span class="vg">$example</span><span class="o">::</span><span class="n">params</span><span class="o">::</span><span class="n">parameter_one</span><span class="p">),</span>
+      <span class="vg">$parameter_two</span> <span class="o">=</span> <span class="n">hiera</span><span class="p">(</span><span class="s1">&#39;example::parameter_two&#39;</span><span class="p">,</span> <span class="vg">$example</span><span class="o">::</span><span class="n">params</span><span class="o">::</span><span class="n">parameter_two</span><span class="p">)</span>
+    <span class="p">)</span> <span class="n">inherits</span> <span class="n">example</span><span class="o">::</span><span class="n">params</span> <span class="p">{</span> <span class="c1"># Inherit the params class to let the parameter list see its variables.</span>
+      <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>The drawbacks of this approach are:</p>
+
+  <ul>
+    <li>It requires 2.x users to install Hiera and <code>hiera-puppet</code>.</li>
+    <li>It’s slower on Puppet 3 — if you don’t set a value in your external data, Puppet will do <em>two</em> searches before falling back to the default value.</li>
+  </ul>
+
+  <p>However, depending on your needs, it can be a useful stopgap until all of your users are off Puppet 2.7.</p>
+
+  <h3 id="avoid-class-parameters">Avoid Class Parameters</h3>
+
+  <p>Prior to Puppet 2.6, classes could only request data by reading arbitrary variables outside their local <a href="./lang_scope.html">scope</a>. It is still possible to design classes like this. <strong>However,</strong> since dynamic scope was removed in Puppet 3, old-style classes can only read <strong>top-scope or node-scope</strong> variables, which makes them less flexible than they were in previous versions. Your best options for using old-style classes with Puppet 3 are to use an ENC to set your classes’ variables, or to manually insert <code>$special_variable = hiera('class::special_variable')</code> calls at top scope in your site manifest.</p>
+</blockquote>
+
+<h2 id="appendix-smart-parameter-defaults">Appendix: Smart Parameter Defaults</h2>
+
+<p>This design pattern can make for significantly cleaner code while enabling some really sophisticated behavior around default values.</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /etc/puppet/modules/webserver/manifests/params.pp</span>
+
+    <span class="k">class</span> <span class="n">webserver</span><span class="o">::</span><span class="n">params</span> <span class="p">{</span>
+     <span class="vg">$packages</span> <span class="o">=</span> <span class="vg">$operatingsystem</span> <span class="p">?</span> <span class="p">{</span>
+       <span class="sr">/(?i-mx:ubuntu|debian)/</span>        <span class="o">=&gt;</span> <span class="s1">&#39;apache2&#39;</span><span class="p">,</span>
+       <span class="sr">/(?i-mx:centos|fedora|redhat)/</span> <span class="o">=&gt;</span> <span class="s1">&#39;httpd&#39;</span><span class="p">,</span>
+     <span class="p">}</span>
+     <span class="vg">$vhost_dir</span> <span class="o">=</span> <span class="vg">$operatingsystem</span> <span class="p">?</span> <span class="p">{</span>
+       <span class="sr">/(?i-mx:ubuntu|debian)/</span>        <span class="o">=&gt;</span> <span class="s1">&#39;/etc/apache2/sites-enabled&#39;</span><span class="p">,</span>
+       <span class="sr">/(?i-mx:centos|fedora|redhat)/</span> <span class="o">=&gt;</span> <span class="s1">&#39;/etc/httpd/conf.d&#39;</span><span class="p">,</span>
+     <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1"># /etc/puppet/modules/webserver/manifests/init.pp</span>
+
+    <span class="k">class</span> <span class="n">webserver</span><span class="p">(</span>
+     <span class="vg">$packages</span>  <span class="o">=</span> <span class="vg">$webserver</span><span class="o">::</span><span class="n">params</span><span class="o">::</span><span class="n">packages</span><span class="p">,</span>
+     <span class="vg">$vhost_dir</span> <span class="o">=</span> <span class="vg">$webserver</span><span class="o">::</span><span class="n">params</span><span class="o">::</span><span class="n">vhost_dir</span>
+    <span class="p">)</span> <span class="n">inherits</span> <span class="n">webserver</span><span class="o">::</span><span class="n">params</span> <span class="p">{</span>
+
+     <span class="n">package</span> <span class="p">{</span> <span class="vg">$packages</span><span class="p">:</span> <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">present</span> <span class="p">}</span>
+
+     <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;vhost_dir&#39;</span><span class="p">:</span>
+       <span class="n">path</span>   <span class="o">=&gt;</span> <span class="vg">$vhost_dir</span><span class="p">,</span>
+       <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">directory</span><span class="p">,</span>
+       <span class="n">mode</span>   <span class="o">=&gt;</span> <span class="s1">&#39;0750&#39;</span><span class="p">,</span>
+       <span class="n">owner</span>  <span class="o">=&gt;</span> <span class="s1">&#39;www-data&#39;</span><span class="p">,</span>
+       <span class="n">group</span>  <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+     <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>To summarize what’s happening here: When a class inherits from another class, it implicitly declares the base class. Since the base class’s local scope already exists before the new class’s parameters get declared, those parameters can be set based on information in the base class.</p>
+
+<p>This is functionally equivalent to doing the following:</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /etc/puppet/modules/webserver/manifests/init.pp</span>
+
+    <span class="k">class</span> <span class="n">webserver</span><span class="p">(</span> <span class="vg">$packages</span> <span class="o">=</span> <span class="s1">&#39;UNSET&#39;</span><span class="p">,</span> <span class="vg">$vhost_dir</span> <span class="o">=</span> <span class="s1">&#39;UNSET&#39;</span> <span class="p">)</span> <span class="p">{</span>
+
+     <span class="k">if</span> <span class="vg">$packages</span> <span class="o">==</span> <span class="s1">&#39;UNSET&#39;</span> <span class="p">{</span>
+       <span class="vg">$real_packages</span> <span class="o">=</span> <span class="vg">$operatingsystem</span> <span class="p">?</span> <span class="p">{</span>
+         <span class="sr">/(?i-mx:ubuntu|debian)/</span>        <span class="o">=&gt;</span> <span class="s1">&#39;apache2&#39;</span><span class="p">,</span>
+         <span class="sr">/(?i-mx:centos|fedora|redhat)/</span> <span class="o">=&gt;</span> <span class="s1">&#39;httpd&#39;</span><span class="p">,</span>
+       <span class="p">}</span>
+     <span class="p">}</span>
+     <span class="k">else</span> <span class="p">{</span>
+        <span class="vg">$real_packages</span> <span class="o">=</span> <span class="vg">$packages</span>
+     <span class="p">}</span>
+
+     <span class="k">if</span> <span class="vg">$vhost_dir</span> <span class="o">==</span> <span class="s1">&#39;UNSET&#39;</span> <span class="p">{</span>
+       <span class="vg">$real_vhost_dir</span> <span class="o">=</span> <span class="vg">$operatingsystem</span> <span class="p">?</span> <span class="p">{</span>
+         <span class="sr">/(?i-mx:ubuntu|debian)/</span>        <span class="o">=&gt;</span> <span class="s1">&#39;/etc/apache2/sites-enabled&#39;</span><span class="p">,</span>
+         <span class="sr">/(?i-mx:centos|fedora|redhat)/</span> <span class="o">=&gt;</span> <span class="s1">&#39;/etc/httpd/conf.d&#39;</span><span class="p">,</span>
+       <span class="p">}</span>
+     <span class="p">}</span>
+     <span class="k">else</span> <span class="p">{</span>
+        <span class="vg">$real_vhost_dir</span> <span class="o">=</span> <span class="vg">$vhost_dir</span>
+    <span class="p">}</span>
+
+     <span class="n">package</span> <span class="p">{</span> <span class="vg">$real_packages</span><span class="p">:</span> <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">present</span> <span class="p">}</span>
+
+     <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;vhost_dir&#39;</span><span class="p">:</span>
+       <span class="n">path</span>   <span class="o">=&gt;</span> <span class="vg">$real_vhost_dir</span><span class="p">,</span>
+       <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">directory</span><span class="p">,</span>
+       <span class="n">mode</span>   <span class="o">=&gt;</span> <span class="s1">&#39;0750&#39;</span><span class="p">,</span>
+       <span class="n">owner</span>  <span class="o">=&gt;</span> <span class="s1">&#39;www-data&#39;</span><span class="p">,</span>
+       <span class="n">group</span>  <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+     <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>… but it’s a significant readability win, especially if the amount of logic or the number of parameters gets any higher than what’s shown in the example.</p>
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+            <nav class="main">
+                  <div id="subCol">
+                      <ul id="doc-navigation">
+                        <li class="with-submenu">
+                          <a href="#">
+                            <span>Docs Quick Nav</span>
+                            <span class="drop-down-trigger"></span>
+                          </a>
+                                           <dl>
+                  <dt>Home</dt>
+                    <dd><a href="/">Puppet Docs Front Page</a></dd>
+                  <dt>#1 Most Popular</dt>
+                    <dd><a href="/references/stable/type.html">The Resource Type Reference</a></dd>
+                  <dt>Puppet Enterprise</dt>
+                    <dd><a href="/pe/latest/">Puppet Enterprise User's Guide (latest)</a></dd>
+                    <dd><a href="/pe/latest/quick_start.html">Quick Start Guide</a></dd>
+                  <dt>Puppet in General (PE &amp; Open Source)</dt>
+                      <dd><a href="/puppet/latest/reference">Puppet Reference Manual (latest)</a></dd>
+                      <dd><a href="/learning/">Learning Puppet</a></dd>
+                      <dd><a href="/references/glossary.html">Glossary of Puppet Terms</a></dd>
+                  <dt>Open Source Puppet</dt>
+                    <dd><a href="/guides/install_puppet/pre_install.html">Installing</a></dd>
+                    <dd><a href="/guides/install_puppet/upgrading.html">Upgrading</a></dd>
+                  <dt>Facter</dt>
+                      <dd><a href="/facter/latest/core_facts.html">Core Facts Reference</a></dd>
+                      <dd><a href="/facter/latest/fact_overview.html">Writing Custom Facts</a></dd>
+                  <dt>PuppetDB</dt>
+                      <dd><a href="/puppetdb/latest">PuppetDB Manual</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">All MCollective Docs</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">Writing Plugins</a></dd>
+                </dl>
+
+                        </li>
+                      </ul>
+
+                      <h3 id="puppet-3-7-reference-manual">Puppet 3.7 Reference Manual</h3>
+
+<ul>
+  <li><a href="./index.html">Introduction</a></li>
+  <li><a href="./release_notes.html">Puppet 3.7 Release Notes</a></li>
+  <li><strong>Deprecated Features</strong>
+    <ul>
+      <li><a href="./deprecated_summary.html">About Deprecations in This Version</a></li>
+      <li><a href="./deprecated_language.html">Language Features</a></li>
+      <li><a href="./deprecated_resource.html">Resource Type Features</a></li>
+      <li><a href="./deprecated_api.html">Extension Points and APIs</a></li>
+      <li><a href="./deprecated_command.html">Command Line Features</a></li>
+      <li><a href="./deprecated_settings.html">Settings</a></li>
+      <li><a href="./deprecated_windows_api.html">Breaking Changes to Private Windows APIs</a></li>
+      <li><a href="./deprecated_misc.html">Other Features</a></li>
+    </ul>
+  </li>
+
+  <li><a href="./system_requirements.html">System Requirements</a></li>
+  <li><a href="./architecture.html">Overview of Puppet's Architecture</a></li>
+
+  <li><strong>Puppet's Services and Tools</strong>
+    <ul>
+      <li><a href="./services_commands.html">Puppet's Commands</a></li>
+      <li><a href="./services_commands_windows.html">Running Puppet Commands on Windows</a></li>
+      <li><a href="./services_master_webrick.html">The WEBrick Puppet Master</a></li>
+      <li><a href="./services_master_rack.html">The Rack Puppet Master</a></li>
+      <li><a href="./services_agent_unix.html">Puppet Agent on *nix</a></li>
+      <li><a href="./services_agent_windows.html">Puppet Agent on Windows</a></li>
+      <li><a href="./services_apply.html">Puppet Apply</a></li>
+    </ul>
+  </li>
+
+  <li><strong>The Puppet Language</strong>
+    <ul>
+      <li><a href="./lang_visual_index.html">Visual Index</a></li>
+      <li><a href="./lang_summary.html">Basics</a></li>
+      <li><a href="./lang_reserved.html">Reserved Words and Allowed Names</a></li>
+      <li><a href="./lang_resources.html">Resources</a></li>
+      <li><a href="./lang_windows_file_paths.html">Handling File Paths on Windows</a></li>
+      <li><a href="./lang_relationships.html">Relationships and Ordering</a></li>
+      <li><a href="./lang_defaults.html">Resource Defaults</a></li>
+      <li><a href="./lang_variables.html">Variables</a></li>
+      <li><a href="./lang_facts_and_builtin_vars.html">Facts and Built-in Variables</a></li>
+      <li><a href="./lang_scope.html">Scope</a></li>
+      <li><a href="./lang_conditional.html">Conditional Statements</a></li>
+      <li><a href="./lang_expressions.html">Expressions</a></li>
+      <li><a href="./lang_functions.html">Functions</a></li>
+      <li><a href="./lang_classes.html">Classes</a></li>
+      <li><a href="./lang_defined_types.html">Defined Types</a></li>
+      <li><a href="./lang_containment.html">Containment</a></li>
+      <li><a href="./lang_namespaces.html">Namespaces and Autoloading</a></li>
+      <li><a href="./lang_collectors.html">Resource Collectors</a></li>
+      <li><a href="./lang_node_definitions.html">Node Definitions</a></li>
+      <li><a href="./lang_datatypes.html">Data Types</a></li>
+      <li><a href="./lang_comments.html">Comments</a></li>
+      <li><a href="./lang_virtual.html">Virtual Resources</a></li>
+      <li><a href="./lang_exported.html">Exported Resources</a></li>
+      <li><a href="./lang_tags.html">Tags</a></li>
+      <li><a href="./lang_run_stages.html">Run Stages</a></li>
+      <li><a href="./lang_import.html">Importing Manifest Files</a></li>
+    </ul>
+  </li>
+
+  <li><strong>Modules</strong>
+    <ul>
+      <li><a href="./modules_fundamentals.html">Fundamentals</a></li>
+      <li><a href="/guides/plugins_in_modules.html">Plugins in Modules</a></li>
+      <li><a href="./modules_installing.html">Installing Modules</a></li>
+      <li><a href="./modules_publishing.html">Publishing Modules on the Puppet Forge</a></li>
+      <li><a href="./modules_documentation.html">Module Documentation</a></li>
+    </ul>
+  </li>
+
+  <li><a href="/references/3.7.latest/type.html">The Resource Type Reference</a></li>
+
+  <li><strong>Resource Types: Tips and Examples</strong>
+    <ul>
+      <li><a href="./resources_service.html">Service Resources (All OSes)</a></li>
+      <li><a href="./resources_file_windows.html">File Resources (Windows)</a></li>
+      <li><a href="./resources_package_windows.html">Package Resources (Windows)</a></li>
+      <li><a href="./resources_user_group_windows.html">User and Group Resources (Windows)</a></li>
+      <li><a href="./resources_scheduled_task_windows.html">Scheduled Task Resources (Windows)</a></li>
+      <li><a href="./resources_exec_windows.html">Exec Resources (Windows)</a></li>
+      <li><a href="./resources_windows_optional.html">Optional Resource Types for Windows</a></li>
+    </ul>
+  </li>
+
+  <li><strong>Misc. References (Settings, Functions, HTTP, etc.)</strong>
+    <ul>
+      <li><a href="/references/3.7.latest/configuration.html">Settings (Configuration Reference)</a></li>
+      <li><a href="/references/3.7.latest/function.html">Functions</a></li>
+      <li><a href="/references/3.7.latest/metaparameter.html">Metaparameters</a></li>
+      <li><a href="/references/3.7.latest/report.html">Report Handlers</a></li>
+      <li><a href="/references/3.7.latest/indirection.html">Indirections and Termini</a></li>
+      <li><a href="/references/3.7.latest/developer/index.html">Ruby API for Developing Extensions</a></li>
+      <li><a href="/references/3.7.latest/developer/file.http_api_index.html">Puppet's HTTP API</a></li>
+    </ul>
+  </li>
+  <li><strong>Important Directories and Files</strong>
+    <ul>
+      <li><a href="./dirs_confdir.html">The Main Config Directory (Confdir)</a></li>
+      <li><a href="./dirs_manifest.html">The Main Manifest(s)</a></li>
+      <li><a href="./dirs_modulepath.html">The Modulepath</a></li>
+      <li><a href="./dirs_ssldir.html">The SSLdir</a></li>
+      <li><a href="./dirs_vardir.html">The Vardir</a></li>
+    </ul>
+  </li>
+  <li><strong>Environments</strong>
+    <ul>
+      <li><a href="./environments.html">About Environments</a></li>
+      <li><a href="./environments_configuring.html">Configuring Directory Environments</a></li>
+      <li><a href="./environments_creating.html">Creating Directory Environments</a></li>
+      <li><a href="./environments_assigning.html">Assigning Environments to Nodes</a></li>
+      <li><a href="./environments_classic.html">Using Config File Environments (deprecated)</a></li>
+      <li><a href="./environments_suggestions.html">Suggestions for Use</a></li>
+      <li><a href="./environments_limitations.html">Limitations of Environments</a></li>
+      <li><a href="./environments_https.html">Environments and Puppet's HTTPS Interface</a></li>
+    </ul>
+  </li>
+  <li><strong>Configuration</strong>
+    <ul>
+      <li><a href="./config_about_settings.html">About Puppet's Settings</a></li>
+      <li><a href="./config_print.html">Checking Values of Settings</a></li>
+      <li><a href="./config_set.html">Editing Settings on the Command Line</a></li>
+      <li><a href="./config_important_settings.html">Short List of Important Settings</a></li>
+      <li><a href="/references/3.7.latest/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
+      <li><strong>Config Files</strong>
+        <ul>
+          <li><a href="./config_file_main.html">puppet.conf: The Main Config File</a></li>
+          <li><a href="./config_file_auth.html">The auth.conf File</a></li>
+          <li><a href="./config_file_autosign.html">The autosign.conf File</a></li>
+          <li><a href="./config_file_csr_attributes.html">The csr_attributes.yaml File</a></li>
+          <li><a href="./config_file_device.html">The device.conf File</a></li>
+          <li><a href="./config_file_environment.html">The environment.conf Files</a></li>
+          <li><a href="./config_file_fileserver.html">The fileserver.conf File</a></li>
+          <li><a href="./config_file_hiera.html">The hiera.yaml File</a></li>
+          <li><a href="./config_file_puppetdb.html">The puppetdb.conf File</a></li>
+          <li><a href="./config_file_routes.html">The routes.yaml File</a></li>
+          <li><a href="./config_file_tagmail.html">The tagmail.conf File</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>SSL and Certificates</strong>
+    <ul>
+      <li><a href="./config_ssl_external_ca.html">Using an External CA</a></li>
+      <li><a href="./ssl_autosign.html">Configuring Autosigning</a></li>
+      <li><a href="./ssl_attributes_extensions.html">CSR Attributes and Certificate Extensions</a></li>
+      <li><a href="./ssl_regenerate_certificates.html">Regenerating All Certificates in a Deployment</a></li>
+    </ul>
+  </li>
+
+  <li><strong>Data Formats</strong>
+    <ul>
+      <li><a href="./format_report.html">Report Format</a></li>
+    </ul>
+  </li>
+
+  <li><strong>Puppet Subsystems</strong>
+    <ul>
+      <li><a href="./subsystem_agent_master_comm.html">Agent/Master HTTPS Communications</a></li>
+      <li><a href="./subsystem_catalog_compilation.html">Catalog Compilation</a></li>
+    </ul>
+  </li>
+  <li><strong>Experimental Features</strong>
+    <ul>
+      <li><a href="./experiments_overview.html">Overview</a></li>
+      <li><a href="./experiments_future.html">The Future Parser and Evaluator</a></li>
+      <li><a href="./experiments_lambdas.html">Iteration and Lambdas</a></li>
+      <li><a href="./experiments_msgpack.html">Msgpack Support</a></li>
+      <li><a href="./experiments_cfacter.html">Native Facter</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+                                                              <!-- Current promo images -->
+            <hr style="margin-top: 20px; margin-bottom: 20px;">
+            <div style="margin-top: 10px; padding-bottom: 10px;">
+                <p style="font-family: 'Lucida Grande',Lucida,Verdana,sans-serif;font-size: 16px; font-weight: bold; line-height: 22px; margin-bottom: 10px;">Learning Puppet VM</p>
+
+                <p style="font-size:0.9em;line-height: 1.5em;"><a href="http://info.puppetlabs.com/download-learning-puppet-VM.html">Learn Puppet</a> in a safe, convenient virtual environment - free download</p>
+                <a href="http://info.puppetlabs.com/download-learning-puppet-VM.html">
+                <img src="/images/learning-puppet-vm.jpg" class="Learning Puppet VM" alt="Learning Puppet VM screenshot">
+                </a>
+            </div>
+            <div style="margin-top: 10px; padding-bottom: 10px;">
+                <p style="font-family: 'Lucida Grande',Lucida,Verdana,sans-serif;font-size: 16px; font-weight: bold; line-height: 22px; margin-bottom: 10px;">Free Online Learning</p>
+                <a href="https://puppetlabs.com/learn"><img src="/images/LMS_Forge_Ad.png" alt="Puppet Labs Workshop promo"></a>
+            </div>
+            <div style="margin-top: 10px; padding-bottom: 10px;">
+                <p style="font-family: 'Lucida Grande',Lucida,Verdana,sans-serif;font-size: 16px; font-weight: bold; line-height: 22px; margin-bottom: 10px;">Download the Docs</p>
+                <a href="http://info.puppetlabs.com/download-pdfs.html"><img src="/images/smallbits_small_docs.png" alt="Puppet docs download"></a>
+            </div>
+
+                  </div>
+            </nav>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="https://puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="https://app-h.marketo.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='email' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="https://puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="https://puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="https://puppetlabs.com/sites/default/files/mktFormSupport.js"></script>
+
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+
+<a href="http://info.puppetlabs.com/puppet-enterprise" class="fbtn">Try Puppet Enterprise FREE</a>
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="https://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="https://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="https://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus">
+
+
+			<li><a href="http://feeds.feedburner.com/PuppetLabs" target="_blank"><img src="https://puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png" border="0"></a></li>
+			<li><a href="https://www.facebook.com/pages/Puppet-Labs/219089920711" target="_blank"><img src="https://puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png" border="0"></a></li>
+			<li><a href="https://www.twitter.com/puppetlabs" target="_blank"><img src="https://puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png" border="0"></a></li>
+			<li><a href="http://www.linkedin.com/groups?about=&amp;gid=696467&amp;trk=anet_ug_grppro" target="_blank"><img src="https://puppetlabs.com/wp-content/uploads/2011/01/LinkedIn_IN_Icon_32px.png" border="0"></a></li>    <li><a href="https://github.com/puppetlabs" target="_blank"><img src="https://puppetlabs.com/wp-content/uploads/2011/01/github_icon.png" border="0"></a></li>
+			<li><a href="https://plus.google.com/112682055028218091774?rel=author" target="_blank"><img src="https://puppetlabs.com/wp-content/uploads/2013/05/google_plus32x32.png" alt="Find Us on Google+" border="0"></a></li>
+					</ul>
+
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by Spencer Krum, Ben Kero, William Van Hevelingen, James Turnbull and Jeff McCune, <a href="http://www.apress.com/9781430260400" rel="nofollow">Pro Puppet, Second Edition</a> is a comprehensive and up-to-date look at Puppet and MCollective. </p>
+              <a href="http://www.apress.com/9781430260400" rel="nofollow"><img src="/images/propuppet2thumb.png" height="161" width="131" alt="Pro Puppet, Second Edition" title="Pro Puppet, Second Edition"/></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2014 <a href="https://puppetlabs.com/" title="Puppet Labs">Puppet Labs</a> &nbsp;&nbsp;•&nbsp;&nbsp; <a href="https://puppetlabs.com/terms">Terms of Use</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">926 NW 13th Avenue #210</span>
+           /
+           <span class="locality">Portland</span>,
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>
+      </div>
+    </div>
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+    <script src="https://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script>
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>

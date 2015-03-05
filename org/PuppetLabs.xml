@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" version="2.0" xml:base="http://puppetlabs.com/blog/rss.xml">
+  <channel>
+    <title />
+    <link>http://puppetlabs.com/blog/rss.xml</link>
+    <description />
+    <language>en</language>
+          <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/PuppetLabs" /><feedburner:info uri="puppetlabs" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /><item>
+    <title>Case Study: How a UK Insurance Company Makes Changes Faster, with Fewer Errors</title>
+    <link>http://feedproxy.google.com/~r/PuppetLabs/~3/tEFBuB2P3gU/case-study-how-uk-insurance-company-makes-changes-faster-fewer-errors</link>
+    <description>&lt;div class="field field-name-body field-type-text-with-summary field-label-hidden"&gt;&lt;div class="field-items" id="md1"&gt;&lt;div class="field-item even"&gt;&lt;p&gt;&lt;a href="http://www.lv.com/"&gt;LV= Liverpool Victoria&lt;/a&gt; had a challenge most organizations are familiar with: they wanted to improve the speed and quality of their builds and shorten their software development lifecycle, while reducing the time spent on fixing urgent problems. Their manual build process, which included hand-crafted scripts and required regular fixes, was a big impediment to deploying code more frequently.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="sharethis-buttons"&gt;&lt;div class="sharethis-wrapper"&gt;&lt;span st_url="http://puppetlabs.com/blog/case-study-how-uk-insurance-company-makes-changes-faster-fewer-errors" st_title="Case Study: How a UK Insurance Company Makes Changes Faster, with Fewer Errors" class="st_googleplus_custom" displaytext="googleplus"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/case-study-how-uk-insurance-company-makes-changes-faster-fewer-errors" st_title="Case Study: How a UK Insurance Company Makes Changes Faster, with Fewer Errors" class="st_twitter_custom" st_via="puppetlabs" st_username="" displaytext="twitter"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/case-study-how-uk-insurance-company-makes-changes-faster-fewer-errors" st_title="Case Study: How a UK Insurance Company Makes Changes Faster, with Fewer Errors" class="st_facebook_custom" displaytext="facebook"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/case-study-how-uk-insurance-company-makes-changes-faster-fewer-errors" st_title="Case Study: How a UK Insurance Company Makes Changes Faster, with Fewer Errors" class="st_reddit_custom" displaytext="reddit"&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;img src="//feeds.feedburner.com/~r/PuppetLabs/~4/tEFBuB2P3gU" height="1" width="1" alt=""/&gt;</description>
+     <pubDate>Tue, 09 Dec 2014 16:50:35 +0000</pubDate>
+ <dc:creator>Justin Dorff</dc:creator>
+ <guid isPermaLink="false">5451 at http://puppetlabs.com</guid>
+  <feedburner:origLink>http://puppetlabs.com/blog/case-study-how-uk-insurance-company-makes-changes-faster-fewer-errors</feedburner:origLink></item>
+  <item>
+    <title>New! Ratings for Puppet Forge Modules</title>
+    <link>http://feedproxy.google.com/~r/PuppetLabs/~3/ZoCaB-Z01Ak/new-ratings-puppet-forge-modules</link>
+    <description>&lt;div class="field field-name-body field-type-text-with-summary field-label-hidden"&gt;&lt;div class="field-items" id="md2"&gt;&lt;div class="field-item even"&gt;&lt;p&gt;Now you can see how highly Puppet Labs &amp;amp; the Puppet community have rated any Forge module for quality and ease of use, before you download and try using it yourself.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="sharethis-buttons"&gt;&lt;div class="sharethis-wrapper"&gt;&lt;span st_url="http://puppetlabs.com/blog/new-ratings-puppet-forge-modules" st_title="New! Ratings for Puppet Forge Modules" class="st_googleplus_custom" displaytext="googleplus"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/new-ratings-puppet-forge-modules" st_title="New! Ratings for Puppet Forge Modules" class="st_twitter_custom" st_via="puppetlabs" st_username="" displaytext="twitter"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/new-ratings-puppet-forge-modules" st_title="New! Ratings for Puppet Forge Modules" class="st_facebook_custom" displaytext="facebook"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/new-ratings-puppet-forge-modules" st_title="New! Ratings for Puppet Forge Modules" class="st_reddit_custom" displaytext="reddit"&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;img src="//feeds.feedburner.com/~r/PuppetLabs/~4/ZoCaB-Z01Ak" height="1" width="1" alt=""/&gt;</description>
+     <pubDate>Mon, 08 Dec 2014 21:57:00 +0000</pubDate>
+ <dc:creator>Ryan Coleman</dc:creator>
+ <guid isPermaLink="false">5463 at http://puppetlabs.com</guid>
+  <feedburner:origLink>http://puppetlabs.com/blog/new-ratings-puppet-forge-modules</feedburner:origLink></item>
+  <item>
+    <title>Managing Windows Security Policies with Puppet Enterprise: Two Modules </title>
+    <link>http://feedproxy.google.com/~r/PuppetLabs/~3/vD39bTiCW8M/managing-windows-security-policies-puppet-enterprise-two-modules</link>
+    <description>&lt;div class="field field-name-body field-type-text-with-summary field-label-hidden"&gt;&lt;div class="field-items" id="md3"&gt;&lt;div class="field-item even"&gt;&lt;p&gt;Intro to two useful Puppet modules for handling Local Security Policy and Local Group Policy in Windows, offering automation without complex scripting plus the ability to validate all your settings.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="sharethis-buttons"&gt;&lt;div class="sharethis-wrapper"&gt;&lt;span st_url="http://puppetlabs.com/blog/managing-windows-security-policies-puppet-enterprise-two-modules" st_title="Managing Windows Security Policies with Puppet Enterprise: Two Modules " class="st_googleplus_custom" displaytext="googleplus"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/managing-windows-security-policies-puppet-enterprise-two-modules" st_title="Managing Windows Security Policies with Puppet Enterprise: Two Modules " class="st_twitter_custom" st_via="puppetlabs" st_username="" displaytext="twitter"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/managing-windows-security-policies-puppet-enterprise-two-modules" st_title="Managing Windows Security Policies with Puppet Enterprise: Two Modules " class="st_facebook_custom" displaytext="facebook"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/managing-windows-security-policies-puppet-enterprise-two-modules" st_title="Managing Windows Security Policies with Puppet Enterprise: Two Modules " class="st_reddit_custom" displaytext="reddit"&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;img src="//feeds.feedburner.com/~r/PuppetLabs/~4/vD39bTiCW8M" height="1" width="1" alt=""/&gt;</description>
+     <pubDate>Mon, 08 Dec 2014 16:51:00 +0000</pubDate>
+ <dc:creator>Paul Cannon</dc:creator>
+ <guid isPermaLink="false">5459 at http://puppetlabs.com</guid>
+  <feedburner:origLink>http://puppetlabs.com/blog/managing-windows-security-policies-puppet-enterprise-two-modules</feedburner:origLink></item>
+  <item>
+    <title>Puppet + H.P. Lovecraft + Markov Chain = Awesome</title>
+    <link>http://feedproxy.google.com/~r/PuppetLabs/~3/xrdGxVFtVlI/puppet-hp-lovecraft-markov-chain-awesome</link>
+    <description>&lt;div class="field field-name-body field-type-text-with-summary field-label-hidden"&gt;&lt;div class="field-items" id="md4"&gt;&lt;div class="field-item even"&gt;&lt;p&gt;Beats SSH and a for loop every time.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="sharethis-buttons"&gt;&lt;div class="sharethis-wrapper"&gt;&lt;span st_url="http://puppetlabs.com/blog/puppet-hp-lovecraft-markov-chain-awesome" st_title="Puppet + H.P. Lovecraft + Markov Chain = Awesome" class="st_googleplus_custom" displaytext="googleplus"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/puppet-hp-lovecraft-markov-chain-awesome" st_title="Puppet + H.P. Lovecraft + Markov Chain = Awesome" class="st_twitter_custom" st_via="puppetlabs" st_username="" displaytext="twitter"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/puppet-hp-lovecraft-markov-chain-awesome" st_title="Puppet + H.P. Lovecraft + Markov Chain = Awesome" class="st_facebook_custom" displaytext="facebook"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/puppet-hp-lovecraft-markov-chain-awesome" st_title="Puppet + H.P. Lovecraft + Markov Chain = Awesome" class="st_reddit_custom" displaytext="reddit"&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;img src="//feeds.feedburner.com/~r/PuppetLabs/~4/xrdGxVFtVlI" height="1" width="1" alt=""/&gt;</description>
+     <pubDate>Sat, 06 Dec 2014 04:11:00 +0000</pubDate>
+ <dc:creator>Aliza Earnshaw</dc:creator>
+ <guid isPermaLink="false">5457 at http://puppetlabs.com</guid>
+  <feedburner:origLink>http://puppetlabs.com/blog/puppet-hp-lovecraft-markov-chain-awesome</feedburner:origLink></item>
+  <item>
+    <title>Terri Haber: How Cultural Readiness Affects Your Ability To Automate</title>
+    <link>http://feedproxy.google.com/~r/PuppetLabs/~3/rq-7NV6thqQ/terri-haber-how-cultural-readiness-affects-your-ability-automate</link>
+    <description>&lt;div class="field field-name-body field-type-text-with-summary field-label-hidden"&gt;&lt;div class="field-items" id="md5"&gt;&lt;div class="field-item even"&gt;&lt;p&gt;In today's installment of Conversations with Puppet Labs, we talk with Terri Haber, a professional services engineer here at Puppet. Terri works closely with our customers, and helps set them up for success with Puppet Enterprise.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="sharethis-buttons"&gt;&lt;div class="sharethis-wrapper"&gt;&lt;span st_url="http://puppetlabs.com/podcasts/terri-haber-how-cultural-readiness-affects-your-ability-automate" st_title="Terri Haber: How Cultural Readiness Affects Your Ability To Automate" class="st_googleplus_custom" displaytext="googleplus"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/podcasts/terri-haber-how-cultural-readiness-affects-your-ability-automate" st_title="Terri Haber: How Cultural Readiness Affects Your Ability To Automate" class="st_twitter_custom" st_via="puppetlabs" st_username="" displaytext="twitter"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/podcasts/terri-haber-how-cultural-readiness-affects-your-ability-automate" st_title="Terri Haber: How Cultural Readiness Affects Your Ability To Automate" class="st_facebook_custom" displaytext="facebook"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/podcasts/terri-haber-how-cultural-readiness-affects-your-ability-automate" st_title="Terri Haber: How Cultural Readiness Affects Your Ability To Automate" class="st_reddit_custom" displaytext="reddit"&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;img src="//feeds.feedburner.com/~r/PuppetLabs/~4/rq-7NV6thqQ" height="1" width="1" alt=""/&gt;</description>
+     <pubDate>Fri, 05 Dec 2014 18:03:00 +0000</pubDate>
+ <dc:creator>Kent Bye</dc:creator>
+ <guid isPermaLink="false">5452 at http://puppetlabs.com</guid>
+  <feedburner:origLink>http://puppetlabs.com/podcasts/terri-haber-how-cultural-readiness-affects-your-ability-automate</feedburner:origLink></item>
+  <item>
+    <title>Why Automation? Predictability, Consistency &amp; the Confidence to Innovate</title>
+    <link>http://feedproxy.google.com/~r/PuppetLabs/~3/nYj0IbF0uJU/automation-predictability-consistency-confidence-innovate</link>
+    <description>&lt;div class="field field-name-body field-type-text-with-summary field-label-hidden"&gt;&lt;div class="field-items" id="md6"&gt;&lt;div class="field-item even"&gt;&lt;p&gt;With the right automation in place, you'll spend less time fixing bugs, and more time developing the next feature, or tuning a feature according to user feedback.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="sharethis-buttons"&gt;&lt;div class="sharethis-wrapper"&gt;&lt;span st_url="http://puppetlabs.com/blog/automation-predictability-consistency-confidence-innovate" st_title="Why Automation? Predictability, Consistency &amp;amp; the Confidence to Innovate" class="st_googleplus_custom" displaytext="googleplus"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/automation-predictability-consistency-confidence-innovate" st_title="Why Automation? Predictability, Consistency &amp;amp; the Confidence to Innovate" class="st_twitter_custom" st_via="puppetlabs" st_username="" displaytext="twitter"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/automation-predictability-consistency-confidence-innovate" st_title="Why Automation? Predictability, Consistency &amp;amp; the Confidence to Innovate" class="st_facebook_custom" displaytext="facebook"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/automation-predictability-consistency-confidence-innovate" st_title="Why Automation? Predictability, Consistency &amp;amp; the Confidence to Innovate" class="st_reddit_custom" displaytext="reddit"&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;img src="//feeds.feedburner.com/~r/PuppetLabs/~4/nYj0IbF0uJU" height="1" width="1" alt=""/&gt;</description>
+     <pubDate>Thu, 04 Dec 2014 16:41:43 +0000</pubDate>
+ <dc:creator>Aliza Earnshaw</dc:creator>
+ <guid isPermaLink="false">5404 at http://puppetlabs.com</guid>
+  <feedburner:origLink>http://puppetlabs.com/blog/automation-predictability-consistency-confidence-innovate</feedburner:origLink></item>
+  <item>
+    <title>Podcast: Node Manager</title>
+    <link>http://feedproxy.google.com/~r/PuppetLabs/~3/_xLyrUaOKJ4/podcast-node-manager</link>
+    <description>&lt;div class="field field-name-body field-type-text-with-summary field-label-hidden"&gt;&lt;div class="field-items" id="md7"&gt;&lt;div class="field-item even"&gt;&lt;p&gt;This week on the Puppet Podcast, Kara and Kent talk to Dan Lidral-Porter and Justin Holguin about the Puppet Node Manager.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="sharethis-buttons"&gt;&lt;div class="sharethis-wrapper"&gt;&lt;span st_url="http://puppetlabs.com/podcasts/podcast-node-manager" st_title="Podcast: Node Manager" class="st_googleplus_custom" displaytext="googleplus"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/podcasts/podcast-node-manager" st_title="Podcast: Node Manager" class="st_twitter_custom" st_via="puppetlabs" st_username="" displaytext="twitter"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/podcasts/podcast-node-manager" st_title="Podcast: Node Manager" class="st_facebook_custom" displaytext="facebook"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/podcasts/podcast-node-manager" st_title="Podcast: Node Manager" class="st_reddit_custom" displaytext="reddit"&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;img src="//feeds.feedburner.com/~r/PuppetLabs/~4/_xLyrUaOKJ4" height="1" width="1" alt=""/&gt;</description>
+     <pubDate>Wed, 03 Dec 2014 16:51:00 +0000</pubDate>
+ <dc:creator>Kara Sowles</dc:creator>
+ <guid isPermaLink="false">5415 at http://puppetlabs.com</guid>
+  <feedburner:origLink>http://puppetlabs.com/podcasts/podcast-node-manager</feedburner:origLink></item>
+  <item>
+    <title>DevOps and Change Agents: Common Themes</title>
+    <link>http://feedproxy.google.com/~r/PuppetLabs/~3/lPBu2fIUGro/devops-and-change-agents-common-themes</link>
+    <description>&lt;div class="field field-name-body field-type-text-with-summary field-label-hidden"&gt;&lt;div class="field-items" id="md8"&gt;&lt;div class="field-item even"&gt;&lt;p&gt;Shifting to the DevOps way of working takes a shift in processes, decision-making, measures of success and more.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="sharethis-buttons"&gt;&lt;div class="sharethis-wrapper"&gt;&lt;span st_url="http://puppetlabs.com/blog/devops-and-change-agents-common-themes" st_title="DevOps and Change Agents: Common Themes" class="st_googleplus_custom" displaytext="googleplus"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/devops-and-change-agents-common-themes" st_title="DevOps and Change Agents: Common Themes" class="st_twitter_custom" st_via="puppetlabs" st_username="" displaytext="twitter"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/devops-and-change-agents-common-themes" st_title="DevOps and Change Agents: Common Themes" class="st_facebook_custom" displaytext="facebook"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/devops-and-change-agents-common-themes" st_title="DevOps and Change Agents: Common Themes" class="st_reddit_custom" displaytext="reddit"&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;img src="//feeds.feedburner.com/~r/PuppetLabs/~4/lPBu2fIUGro" height="1" width="1" alt=""/&gt;</description>
+     <pubDate>Wed, 03 Dec 2014 16:19:00 +0000</pubDate>
+ <dc:creator>Aliza Earnshaw</dc:creator>
+ <guid isPermaLink="false">5418 at http://puppetlabs.com</guid>
+  <feedburner:origLink>http://puppetlabs.com/blog/devops-and-change-agents-common-themes</feedburner:origLink></item>
+  <item>
+    <title>Where's Puppet Labs? Winter Edition</title>
+    <link>http://feedproxy.google.com/~r/PuppetLabs/~3/wdzhf9KzzbU/wheres-puppet-labs-winter-edition</link>
+    <description>&lt;div class="field field-name-body field-type-text-with-summary field-label-hidden"&gt;&lt;div class="field-items" id="md9"&gt;&lt;div class="field-item even"&gt;&lt;p&gt;Summary: Where you'll find Puppet Labs in Winter 2015: Puppet Camp Atlanta, Portland, Amsterdam.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="sharethis-buttons"&gt;&lt;div class="sharethis-wrapper"&gt;&lt;span st_url="http://puppetlabs.com/blog/wheres-puppet-labs-winter-edition" st_title="Where&amp;#039;s Puppet Labs? Winter Edition" class="st_googleplus_custom" displaytext="googleplus"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/wheres-puppet-labs-winter-edition" st_title="Where&amp;#039;s Puppet Labs? Winter Edition" class="st_twitter_custom" st_via="puppetlabs" st_username="" displaytext="twitter"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/wheres-puppet-labs-winter-edition" st_title="Where&amp;#039;s Puppet Labs? Winter Edition" class="st_facebook_custom" displaytext="facebook"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/wheres-puppet-labs-winter-edition" st_title="Where&amp;#039;s Puppet Labs? Winter Edition" class="st_reddit_custom" displaytext="reddit"&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;img src="//feeds.feedburner.com/~r/PuppetLabs/~4/wdzhf9KzzbU" height="1" width="1" alt=""/&gt;</description>
+     <pubDate>Tue, 02 Dec 2014 19:49:38 +0000</pubDate>
+ <dc:creator>Briana de Jong</dc:creator>
+ <guid isPermaLink="false">5419 at http://puppetlabs.com</guid>
+  <feedburner:origLink>http://puppetlabs.com/blog/wheres-puppet-labs-winter-edition</feedburner:origLink></item>
+  <item>
+    <title>Continuous Delivery in a .NET Shop with Puppet Enterprise</title>
+    <link>http://feedproxy.google.com/~r/PuppetLabs/~3/h1O-_zzy7xs/continuous-delivery-net-shop-puppet-enterprise</link>
+    <description>&lt;div class="field field-name-body field-type-text-with-summary field-label-hidden"&gt;&lt;div class="field-items" id="md10"&gt;&lt;div class="field-item even"&gt;&lt;p&gt;Application architect Jason Moorehead lists the steps &amp;amp; tools of continuous delivery at IP Commerce  &amp;amp; talks about the business results. (Hint: They’re good!)&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="sharethis-buttons"&gt;&lt;div class="sharethis-wrapper"&gt;&lt;span st_url="http://puppetlabs.com/blog/continuous-delivery-net-shop-puppet-enterprise" st_title="Continuous Delivery in a .NET Shop with Puppet Enterprise" class="st_googleplus_custom" displaytext="googleplus"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/continuous-delivery-net-shop-puppet-enterprise" st_title="Continuous Delivery in a .NET Shop with Puppet Enterprise" class="st_twitter_custom" st_via="puppetlabs" st_username="" displaytext="twitter"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/continuous-delivery-net-shop-puppet-enterprise" st_title="Continuous Delivery in a .NET Shop with Puppet Enterprise" class="st_facebook_custom" displaytext="facebook"&gt;&lt;/span&gt;
+&lt;span st_url="http://puppetlabs.com/blog/continuous-delivery-net-shop-puppet-enterprise" st_title="Continuous Delivery in a .NET Shop with Puppet Enterprise" class="st_reddit_custom" displaytext="reddit"&gt;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;img src="//feeds.feedburner.com/~r/PuppetLabs/~4/h1O-_zzy7xs" height="1" width="1" alt=""/&gt;</description>
+     <pubDate>Tue, 25 Nov 2014 17:45:00 +0000</pubDate>
+ <dc:creator>Jason Moorehead</dc:creator>
+ <guid isPermaLink="false">4919 at http://puppetlabs.com</guid>
+  <feedburner:origLink>http://puppetlabs.com/blog/continuous-delivery-net-shop-puppet-enterprise</feedburner:origLink></item>
+  </channel>
+</rss>

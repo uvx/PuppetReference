@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","errorBeacon":"bam.nr-data.net","licenseKey":"838b168c54","applicationID":"1826113","transactionName":"dl5fQkVbDl5UQBo3XltQRURWGzVXUx1yIWMV","queueTime":0,"applicationTime":1469,"agentToken":null,"agent":"js-agent.newrelic.com/nr-476.min.js","ttGuid":"d49258bf82e447ef"}</script>
+<script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VQEAUFZACQsCUlBTBA=="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),u=c.length,f=i(a,o,r),d=0;u>d;d++)c[d].apply(f,n);return f}function a(t,e){u[t]=s(t).concat(e)}function s(t){return u[t]||[]}function c(){return n(e)}var u={};return{on:a,emit:e,create:c,listeners:s,_events:u}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(u){try{r("ierr",[u,(new Date).getTime(),!0])}catch(f){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(4),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(u){"stack"in u&&(t(5),t(3),"addEventListener"in window&&t(1),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(2),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:4,2:7,3:5,4:18,5:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:18,2:19,ee:"QJf3ax",gos:"7eSDFh"}],5:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:19,2:18,ee:"QJf3ax"}],6:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:19,2:18,ee:"QJf3ax"}],7:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),u=s(a),f=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new f(t);try{i.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=f.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:4,2:19,ee:"QJf3ax"}],8:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,u="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(u);if(f&&(r.rxSize=f),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,u=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var u=e(o);u&&(r.txSize=u)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var f=0;c>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+u(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:9,3:7,4:4,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],9:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,u="addEventListener",f="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[u]?(c[u]("DOMContentLoaded",o,!1),s[u]("load",n,!1)):(c[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],18:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],19:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,u;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){f([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return u=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,u],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,u(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,u="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,u?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){f([o,e,n,r])}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){f([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function f(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:18,ee:"QJf3ax"}]},{},["G9z0Bl",3,8]);</script>
+    <title>Puppet Forge</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/0f08330/images/favicon.ico"/>
+
+    <link href='//fonts.googleapis.com/css?family=Arvo:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="/assets/0f08330/styles/vendor/font-awesome.css" />
+    <link rel="stylesheet" href="/assets/0f08330/styles/vendor/jquery.qtip.css" />
+    <link rel="stylesheet" href="/assets/0f08330/styles/application.css" />
+
+    <script type="text/javascript">
+      var PFData = {
+        api_base: "https://forgeapi.puppetlabs.com",
+      };
+    </script>
+  </head>
+  <body>
+      <!-- Google Tag Manager -->
+      <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PF6FV6"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PF6FV6');</script>
+      <!-- End Google Tag Manager -->
+    <section id="masthead">
+      <div class="site-width">
+      <ul>
+        <li><a href="http://puppetlabs.com/puppet/puppet-open-source/">Open Source Projects</a></li>
+        <li><a href="http://docs.puppetlabs.com/">Docs</a></li>
+        <li><a href="http://puppetlabs.com/services/customer-support/">Support</a></li>
+        <li><a href="http://ask.puppetlabs.com">Ask</a></li>
+        <li><a href="http://tickets.puppetlabs.com">Bug Tracker</a></li>
+        <li><a href="http://puppetlabs.com/security">Security</a></li>
+        <li><a href="http://www.puppetlabs.com">Puppet Labs</a></li>
+      </ul>
+      </div>
+    </section>
+    <section id="header">
+       <div class="site-width clearfix">
+      <div id="logo">
+        <a href="/">
+          <img src="/assets/0f08330/images/forge-logo.png" class="logo" width="200" alt="Puppet Forge Home">
+        </a>
+      </div>
+      
+      
+      <div class="top-search">
+        <form action="/modules" method="get" accept-charset="UTF-8">
+          <input type="hidden" name="utf-8" value="&#x2713;" />
+          <input type="hidden" name="sort" value="rank" />
+          <input type="search" name="q" required placeholder="Search from 2,989 modules" autofocus/>
+          <input type="submit" value="Find" class="search-btn"/>
+        </form>
+      </div>
+      
+      <div class="session">
+      
+        <ul class="login-links signed-out">
+          <li><a href="/upload">Publish a Module</a></li>
+          <li><a href="/signup">Sign Up</a></li>
+          <li><a href="/login">Log In</a></li>
+        </ul>
+      </div>
+      </div>
+    </section>
+    <section id="content">
+      <div class="site-width clearfix">
+        <section id="body" class=" with-sidebar">
+          
+<h1>Welcome to the Puppet Forge</h1>
+<p>
+  A repository of modules written by our community for
+  <a href="http://puppetlabs.com/puppet/puppet-open-source/">Puppet Open Source</a> and
+  <a href="http://puppetlabs.com/puppet/puppet-enterprise/">Puppet Enterprise</a> IT
+  automation software
+</p>
+
+<div class="panel-pane">
+  <h2>Writing Great Modules</h2>
+  <p>
+    Modules are reusable, sharable units of Puppet code. You can use modules to extend
+    Puppet across your infrastructure by automating tasks such as setting up a database,
+    web server, or mail server.
+  </p>
+
+  <div class="text-columns clearfix">
+    <div class="col pad grey-pane">
+      <h3>Read the Docs</h3>
+  		<p>If you're new to Puppet, we recommend the following:</p>
+  		<ul class="bullets">
+  		  <li><a href="http://docs.puppetlabs.com/learning/">
+  		Learning Puppet Guide</a></li>
+  		<li><a href="http://docs.puppetlabs.com/puppet/latest/reference/modules_fundamentals.html"> Module
+  		Fundamentals</a></li>
+  		<li><a href="http://docs.puppetlabs.com/guides/module_guides/bgtm.html">
+  	    Beginner's Guide to Modules</a> - all about writing modules</li>
+  	    </ul>
+
+    </div>
+
+    <div class="col grey-pane right">
+      <h3>Check out Geppetto</h3>
+      <p>
+        <a href="http://puppetlabs.github.io/geppetto/download.html">Geppetto</a> is an integrated development
+        environment for Puppet. It provides syntax highlighting, content assistance, error tracing/debugging, and
+        code completion features.
+      </p>
+      <p>
+        <strong><a href="http://docs.puppetlabs.com/geppetto/latest/index.html">Read more about Geppetto</a></strong>
+      </p>
+    </div>
+  </div>
+
+  <div class="grey-pane">
+  <h3>Authors: Add compatibility data to your modules</h3>
+  <p>We recently added search filters to help people find modules that are compatible with their Puppet versions and platforms. <a href="http://puppetlabs.com/blog/puppet-forge-search-module-compatibility">Learn how to add this data to your modules here</a>.</p>
+  </div>
+</div>
+
+<div class="panel-pane">
+  <h2>New to the Puppet Forge?</h2>
+  <div class="text-columns clearfix">
+    <div class="col pad grey-pane">
+      <h3>A Video Introduction</h3>
+  	  <iframe src="//player.vimeo.com/video/71523434" width="300" height="169" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    	<p>
+    	  Learn more at the <a href="http://puppetlabs.com/learn">Puppet Labs Workshop</a>.
+    	</p>
+    </div>
+
+    <div class="col grey-pane right">
+      <h3>Share modules</h3>
+      <p>
+        <a href="/signup">Register an account</a>, create a module, upload a release of
+        it and your automation code is now shared with the Puppet community.
+        <a href="http://docs.puppetlabs.com/puppet/latest/reference/modules_publishing.html">
+        Learn how to create and share modules using the puppet module tool.</a>
+      </p>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="panel-pane">
+  <div class="text-columns clearfix">
+    <div class="col pad">
+      <h3>Recent Releases</h3>
+      <ol class="count">
+        <li><a href="/herculesteam/augeasproviders_sysctl/2.0.1">herculesteam/augeasproviders_sysctl</a><span class="small-inline-text">v2.0.1</span></li>
+        <li><a href="/spantree/phpldapadmin/0.0.11">spantree/phpldapadmin</a><span class="small-inline-text">v0.0.11</span></li>
+        <li><a href="/spantree/phpldapadmin/0.0.10">spantree/phpldapadmin</a><span class="small-inline-text">v0.0.10</span></li>
+        <li><a href="/spantree/phpldapadmin/0.0.9">spantree/phpldapadmin</a><span class="small-inline-text">v0.0.9</span></li>
+        <li><a href="/bodgit/watchdog/1.0.0">bodgit/watchdog</a><span class="small-inline-text">v1.0.0</span></li>
+        <li><a href="/cyberious/pget/1.0.1">cyberious/pget</a><span class="small-inline-text">v1.0.1</span></li>
+        <li><a href="/herculesteam/augeasproviders_ssh/2.2.1">herculesteam/augeasproviders_ssh</a><span class="small-inline-text">v2.2.1</span></li>
+        <li><a href="/pltraining/userprefs/1.0.1">pltraining/userprefs</a><span class="small-inline-text">v1.0.1</span></li>
+        <li><a href="/pltraining/classroom/1.2.3">pltraining/classroom</a><span class="small-inline-text">v1.2.3</span></li>
+        <li><a href="/mlehner616/sumo/0.1.1">mlehner616/sumo</a><span class="small-inline-text">v0.1.1</span></li>
+      </ol>
+    </div>
+    <div class="col">
+      <h3>Frequent Contributors</h3>
+      <ol class="count">
+        <li><a href="/puppetlabs">Puppet Labs</a></li>
+        <li><a href="/example42">Alessandro Franceschi</a></li>
+        <li><a href="/maestrodev">MaestroDev</a></li>
+        <li><a href="/dhoppe">Dennis Hoppe</a></li>
+        <li><a href="/ghoneycutt">Garrett Honeycutt</a></li>
+        <li><a href="/thias">Matthias Saou</a></li>
+        <li><a href="/biemond">Edwin Biemond</a></li>
+        <li><a href="/camptocamp">Camptocamp</a></li>
+        <li><a href="/saz">Steffen Zieger</a></li>
+        <li><a href="/evenup">EvenUp Inc</a></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+        </section>
+          <section id="sidebar">
+            <div class="sidebar-box">
+              <section class="supported">
+                <h3 class="endorsement-title">Puppet Supported</h3>
+                <ul>
+                  <li>
+                    <a href="/puppetlabs/stdlib" title="puppetlabs/stdlib" class="supported-module-tiny">
+                      puppetlabs/stdlib
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/puppetlabs/apache" title="puppetlabs/apache" class="supported-module-tiny">
+                      puppetlabs/apache
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/puppetlabs/mysql" title="puppetlabs/mysql" class="supported-module-tiny">
+                      puppetlabs/mysql
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/puppetlabs/java_ks" title="puppetlabs/java_ks" class="supported-module-tiny">
+                      puppetlabs/java_ks
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/puppetlabs/tomcat" title="puppetlabs/tomcat" class="supported-module-tiny">
+                      puppetlabs/tomcat
+                    </a>
+                  </li>
+                </ul>
+                <strong><a href="/supported">Learn more</a></strong> | <strong><a href="/modules?endorsements=supported">View all</a></strong>
+              </section>
+            
+              <section class="approved">
+                <h3 class="endorsement-title">Puppet Approved</h3>
+                <ul>
+                  <li>
+                    <a href="/herculesteam/augeasproviders_sysctl" title="herculesteam/augeasproviders_sysctl" class="supported-module-tiny">
+                      herculesteam/augeasproviders_sysctl
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/herculesteam/augeasproviders_ssh" title="herculesteam/augeasproviders_ssh" class="supported-module-tiny">
+                      herculesteam/augeasproviders_ssh
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/herculesteam/augeasproviders_puppet" title="herculesteam/augeasproviders_puppet" class="supported-module-tiny">
+                      herculesteam/augeasproviders_puppet
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/herculesteam/augeasproviders_postgresql" title="herculesteam/augeasproviders_postgresql" class="supported-module-tiny">
+                      herculesteam/augeasproviders_postgresql
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/CraigWatson1987/vmwaretools" title="CraigWatson1987/vmwaretools" class="supported-module-tiny">
+                      CraigWatson1987/vmwaretools
+                    </a>
+                  </li>
+                </ul>
+                <strong><a href="/approved">Learn more</a></strong> | <strong><a href="/modules?endorsements=approved">View all</a></strong>
+              </section>
+            
+              <section class="popular last">
+                <h3>Popular Searches</h3>
+                <ul>
+                  <li>
+                    <a href="/modules?sort=rank&amp;q=network&pop">
+                      network
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/modules?sort=rank&amp;q=openstack&pop">
+                      openstack
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/modules?sort=rank&amp;q=storage&pop">
+                      storage
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/modules?sort=rank&amp;q=ssh&pop">
+                      ssh
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/modules?sort=rank&amp;q=windows&pop">
+                      windows
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/modules?sort=rank&amp;q=apt&pop">
+                      apt
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/modules?sort=rank&amp;q=postgresql&pop">
+                      postgresql
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/modules?sort=rank&amp;q=nginx&pop">
+                      nginx
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/modules?sort=rank&amp;q=yum&pop">
+                      yum
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/modules?sort=rank&amp;q=tomcat&pop">
+                      tomcat
+                    </a>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </section>
+      </div>
+    </section>
+    <section id="footer">
+       <div class="site-width clearfix">
+         <div class="footer-wrapper">
+           <div class="footer-col1">
+             <div class="region region-footer-col1">
+               <div id="block-menu_block-3" class="block block-menu-block footer-primary-menu block-odd">
+                 <div class="content">
+                   <div class="menu-block-wrapper menu-block-3 menu-name-main-menu parent-mlid-0 menu-level-1">
+                     <ul class="menu">
+                       <li><a href="http://www.puppetlabs.com/puppet/puppet-enterprise">Products</a></li>
+                       <li><a href="http://www.puppetlabs.com/solutions">Solutions</a></li>
+                       <li><a href="http://www.puppetlabs.com/industries">Industries</a></li>
+                       <li><a href="http://www.puppetlabs.com/learn">Learning</a></li>
+                       <li><a href="http://www.puppetlabs.com/services">Services</a></li>
+                       <li><a href="http://www.puppetlabs.com/resources">Resources</a></li>
+                       <li><a href="http://www.puppetlabs.com/community/overview">Community</a></li>
+                     </ul>
+                   </div>
+                 </div>
+               </div> <!-- /.block -->
+         
+               <div id="block-menu_block-5" class="block block-menu-block footer-secondary-menu block-even">
+                 <div class="content">
+                   <div class="menu-block-wrapper menu-block-5 menu-name-menu-secondary-menu parent-mlid-0 menu-level-1">
+                     <ul class="menu">
+                       <li><a href="http://www.puppetlabs.com/puppet/puppet-open-source">Open Source Projects</a></li>
+                       <li><a href="http://docs.puppetlabs.com">Docs</a></li>
+                       <li><a href="http://puppetlabs.com/services/customer-support/">Support</a></li>
+                       <li><a href="http://ask.puppetlabs.com">Ask</a></li>
+                       <li><a href="http://tickets.puppetlabs.com">Bug Tracker</a></li>
+                       <li><a href="http://www.puppetlabs.com/security">Security</a></li>
+                       <li><a href="http://www.puppetlabs.com/about">About Us</a></li>
+                       <li><a href="http://info.puppetlabs.com/download-pe">Free Download</a></li>
+                     </ul>
+                   </div>
+                 </div>
+               </div> <!-- /.block -->
+         
+               <div id="block-menu_block-4" class="block block-menu-block footer-community-menu block-odd">
+                 <div class="content">
+                   <div class="menu-block-wrapper menu-block-4 menu-name-menu-community parent-mlid-0 menu-level-1">
+                     <ul class="menu">
+                       <li><a href="http://webchat.freenode.net/?channels=puppet">IRC</a></li>
+                       <li><a href="http://groups.google.com/group/puppet-users?pli=1">Puppet Users</a></li>
+                       <li><a href="mailto:feedback@puppetlabs.com">Feedback</a></li>
+                       <li><a href="http://www.puppetlabs.com/privacy">Privacy Policy</a></li>
+                       <li><a href="http://www.puppetlabs.com/terms">Terms of Use</a></li>
+                     </ul>
+                   </div>
+                 </div>
+               </div> <!-- /.block -->
+             </div>
+           </div> <!-- /footer-col1 -->
+         
+           <div class="footer-col2">
+             <div class="region region-footer-col2">
+               <div id="block-menu_block-6" class="block block-menu-block footer-tertiary-menu block-even">
+                 <div class="content">
+                   <div class="menu-block-wrapper menu-block-6 menu-name-menu-tertiary-menu parent-mlid-0 menu-level-1">
+                     <ul class="menu">
+                       <li><a href="http://www.puppetlabs.com/about/careers">Careers</a></li>
+                       <li><a href="http://www.puppetlabs.com/about">Company</a></li>
+                       <li><a href="http://www.puppetlabs.com/contact">Contact Us</a></li>
+                     </ul>
+                   </div>
+                 </div>
+               </div> <!-- /.block -->
+         
+               <div id="block-block-2" class="block block-block address-block block-odd">
+                 <div class="content">
+                   <p>
+                     &copy; 2014 Puppet Labs<br>
+                     1-877-575-9775
+                   </p>
+                 </div>
+               </div> <!-- /.block -->
+             </div>
+           </div> <!-- /footer-col2 -->
+         </div> <!-- /footer-wrapper -->
+      </div>
+    </section>
+    <div class="hidden" id="qtip-supported-content">
+       <div class="tooltip-text">
+         <h3>Puppet Supported Modules</h3>
+         <p>Core modules that are:</p>
+         <ul class="bullets">
+           <li>Rigorously tested with PE</li>
+           <li>Supported through Puppet Labs Puppet Enterprise support</li>
+           <li>Maintained for the same lifecycle as Puppet Enterprise</li>
+           <li>Compatible with multiple platforms</li>
+         </ul>
+         <a href="/supported">Learn more</a>
+       </div>
+    </div>
+
+    <div class="hidden" id="qtip-approved-content">
+       <div class="tooltip-text">
+         <h3>Puppet Approved Modules</h3>
+         <p>These modules meet our standards for being well-written, reliable, and actively maintained.</p>
+         <a href="/approved">Learn more</a>
+       </div>
+    </div>
+
+    <div class="hidden" id="qtip-pe-only-content">
+       <div class="tooltip-text">
+         <p>You'll need Puppet Enterprise to use this module. <a href="https://docs.puppetlabs.com/forge/pe-only-modules">Learn more</a></p>
+       </div>
+    </div>
+
+    <script src="/assets/0f08330/scripts/external.min.js"></script>
+    <script src="/assets/0f08330/scripts/puppet_forge.min.js"></script>
+
+    <script src="/assets/0f08330/scripts/vendor/jquery.qtip.js"></script>
+    <script src="/assets/0f08330/scripts/vendor/modernizr.js"></script>
+    <script src="/assets/0f08330/scripts/legacy.min.js"></script>
+
+      <script src="//munchkin.marketo.net/munchkin.js" type="text/javascript"></script>
+      <script src="/assets/0f08330/scripts/vendor/analytics.js"></script>
+  </body>
+</html>

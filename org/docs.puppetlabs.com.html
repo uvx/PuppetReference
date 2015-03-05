@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Puppet Labs Documentation</title>
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+    <link rel='icon' href='/favicon.ico' />
+    <meta name="description" content="Welcome to the Puppet Labs Documentation Site: Curated documentation for Puppet and Puppet Enterprise">
+
+<!-- Google analytics -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1537572-5']);
+  _gaq.push(['_setDomainName', 'puppetlabs.com']);
+  _gaq.push(['_addIgnoredRef', 'puppetlabs.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
+</script>
+<!-- End Google analytics -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.11.1.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type="text/javascript" src="https://puppetlabs.com/sites/all/themes/puppetlabs/js/leadcapture.js"></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <!-- /all in one seo pack -->
+
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com/" />
+
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+</head>
+
+
+
+
+  <body id="puppetlabsdocs" class="docs">
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PF6FV6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PF6FV6');</script>
+  <!-- End Google Tag Manager -->
+  <style type="text/css">h1, h2{ visibility : hidden }</style>
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="https://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/puppet/puppet-enterprise">
+              <span>Products</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+			<li>
+                <ul>
+                   <a href="https://puppetlabs.com/puppet/what-is-puppet/">What is Puppet?</a>
+                </ul>
+              </li>
+			       <li>
+                <ul>
+                   <a href="https://puppetlabs.com/puppet/puppet-enterprise/">Puppet Enterprise</a>
+                </ul>
+              </li>
+            <li>
+                <ul>
+                   <a href="https://puppetlabs.com/puppet/whats-new/">What's New in 2.5</a>
+                </ul>
+              </li>
+            <li>
+                <ul>
+                   <a href="https://puppetlabs.com/puppet/puppet-open-source/">Puppet Open Source</a>
+                </ul>
+              </li>
+            <li>
+                <ul>
+                   <a href="https://puppetlabs.com/puppet/enterprise-vs-open-source/">Enterprise vs. Open Source</a>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <a href="https://forge.puppetlabs.com">Puppet Forge</a>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <a href="https://puppetlabs.com/puppet/requirements/">Components &amp; Requirements</a>
+                </ul>
+              </li>
+              <li>
+                <ul>
+                  <a href="https://puppetlabs.com/puppet/faq/">FAQ</a>
+                </ul>
+              </li>
+			  <li>
+                <ul>
+                  <a href="https://puppetlabs.com/puppet/how-to-buy/">How to Buy</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="solutions-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/solutions/">
+              <span>Solutions</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-12296"><a href="https://puppetlabs.com/solutions/configuration-management/">Configuration Management</a></li>
+<li class="page_item page-item-986"><a href="https://puppetlabs.com/solutions/virtualization-management/">Virtualization Management</a></li>
+<li class="page_item page-item-993"><a href="https://puppetlabs.com/solutions/cloud-management/">Cloud Management</a></li>
+<li class="page_item page-item-996"><a href="https://puppetlabs.com/solutions/it-compliance/">IT Compliance</a></li>
+<li class="page_item page-item-9520"><a href="https://puppetlabs.com/solutions/devops/">DevOps</a></li>
+<li class="page_item page-item-991"><a href="https://puppetlabs.com/solutions/manage-os-x-resources/">OS X Desktops</a></li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="https://puppetlabs.com/services/overview/">Overview</a></li>
+<li class="page_item page-item-1052"><a href="https://puppetlabs.com/services/customer-support/">Customer Support</a></li>
+<li class="page_item page-item-11022"><a href="https://puppetlabs.com/services/support-plans/">Support Plans</a></li>
+<li class="page_item page-item-845"><a href="https://puppetlabs.com/services/training-workshops/">On-Site Education</a></li>
+<li class="page_item page-item-4899"><a href="https://puppetlabs.com/services/consulting/">Professional Services</a></li>
+<li class="page_item page-item-849"><a href="https://puppetlabs.com/category/events/upcoming/">Events &amp; Workshops</a></li>
+<li class="page_item page-item-851"><a href="https://puppetlabs.com/services/partners/">Partners</a></li>
+            </ul>
+          </li>
+                    <li id="resources-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/resources/">
+              <span>Resources</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="https://puppetlabs.com/resources/overview-2/">Overview</a></li>
+<li class="page_item page-item-1040"><a href="https://docs.puppetlabs.com">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download">Downloads</a></li>
+<li class="page_item page-item-1961"><a href="https://forge.puppetlabs.com">Puppet Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/download-whitepapers.html">White Papers</a></li>
+<li class="page_item page-item-7279"><a href="https://puppetlabs.com/resources/webinars/">Upcoming Webinars</a></li>
+<li class="page_item page-item-10183"><a href="https://puppetlabs.com/resources/newsletter/">Newsletter</a></li>
+<li class="page_item page-item-12263"><a href="https://puppetlabs.com/resources/tech-notes/">Tech Notes</a></li>
+<li class="page_item page-item-10265"><a href="http://info.puppetlabs.com/pe2-webinar.html">Webinars</a></li>
+            </ul>
+          </li>
+
+          <li id="customers-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/customers/companies/">
+              <span>Customers</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+			<li>
+                <ul>
+                  <a href="https://puppetlabs.com/customers/companies/">Companies</a>
+                </ul>
+              </li>
+			  <li>
+                <ul>
+                  <a href="https://puppetlabs.com/customers/case-studies/">Case Studies</a>
+                </ul>
+              </li>
+			  <li>
+                <ul>
+                  <a href="https://puppetlabs.com/customers/product-testimonials/">Product Testimonials</a>
+                </ul>
+              </li>
+			    <li>
+                <ul>
+                  <a href="https://puppetlabs.com/customers/what-customers-are-saying/">Service Testimonials</a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="community-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/community/">
+              <span>Community</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+ <ul>
+			<li>
+                <ul>
+                  <a href="https://puppetlabs.com/community/overview/">Overview</a>
+                </ul>
+              </li>
+			<li>
+                <ul>
+                  <a href="https://puppetlabs.com/blog">Blog</a>
+                </ul>
+              </li>
+			  <li>
+                <ul>
+                  <a href="https://puppetlabs.com/community/puppet-camp/">Puppet Camp</a>
+                </ul>
+              </li>
+			  <li>
+                <ul>
+                  <a href="https://puppetlabs.com/community/user-groups-and-devops-groups/">Puppet User Groups & DevOps Groups</a>
+                </ul>
+              </li>
+	          <li>
+                <ul>
+                  <a href="https://puppetlabs.com/community/presentations/">Presentations</a>
+                </ul>
+              </li>
+			    <li>
+                <ul>
+                  <a href="https://puppetlabs.com/community/videos/">Videos</a>
+                </ul>
+              </li>
+            </ul>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="https://puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2316"><a href="https://puppetlabs.com/company/overview/">Overview</a></li>
+<li class="page_item page-item-2179"><a href="https://puppetlabs.com/company/news/">News</a>
+<ul class='children'>
+	<li class="page_item page-item-2338"><a href="https://puppetlabs.com/company/news/press-releases/">Press Releases</a></li>
+	<li class="page_item page-item-2383"><a href="https://puppetlabs.com/company/news/media-kit/">Media Kit</a></li>
+</ul>
+</li>
+<li class="page_item page-item-1571"><a href="https://puppetlabs.com/company/careers/">Careers</a></li>
+<li class="page_item page-item-10372"><a href="https://puppetlabs.com/company/management/">Management</a></li>
+<li class="page_item page-item-10311"><a href="https://puppetlabs.com/company/board-and-advisors/">Board and Advisors</a></li>
+<li class="page_item page-item-10367"><a href="https://puppetlabs.com/company/investors/">Investors</a></li>
+<li class="page_item page-item-2313"><a href="https://puppetlabs.com/company/contact-us/">Contact Us</a></li>
+<li class="page_item page-item-10579"><a href="https://puppetlabs.com/company/awards/">Awards</a></li>
+            </ul>
+          </li>
+    		</ul>
+          <div id="misc-navigation">
+			  <ul>
+				<li><a href="https://puppetlabs.com/security/">Security</a></li>
+				<li><a href="https://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="https://puppetlabs.com/resources/customer-support/">Support</a></li>
+			        <li><a href="https://tickets.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="https://puppetlabs.com/company/contact/contact-us">Contact Us</a></li>
+				<li><a href="http://info.puppetlabs.com/download-pe2.html" class="gateway">Download</a></li>
+			  </ul>
+			<form action="https://www.google.com/cse" id="cse-search-box">
+			  <div>
+				<input type="hidden" name="cx" value="017668764424496204839:ubligvgbenm" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" class="gsc-input" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="https://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+          </div>
+      </nav>
+    	</div>
+    </header>
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Puppet Labs Documentation</span></h1>
+        </div>
+        <br />
+      </section>
+
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1>Puppet Labs Documentation</h1>
+              
+              <p>Welcome to the Puppet Labs documentation site. The documentation posted here is also available as a set of PDFs, which can be found <a href="http://info.puppetlabs.com/download-pdfs.html">here</a>. You can also <a href="./puppetdocs-latest.tar.gz">download the current version of this entire website</a> as a zipped archive; unzip it and follow the instructions in the README.txt file to view the site offline.</p>
+
+<h2 id="puppetpuppet"><a href="/puppet">Puppet</a></h2>
+
+<p>Puppet manages your servers: you describe machine configurations in an easy-to-read declarative language, and Puppet will bring your systems into the desired state and keep them there.</p>
+
+<p><a href="/puppet">See the index for Puppet’s documentation here</a>, or go directly to one of the most popular pages:</p>
+
+<ul>
+  <li><a href="/learning">The Learning Puppet series</a> is a guided tutorial for new users, which includes a free VM to run exercises on and experiment with. Go from “What’s that?” to “I can do it” in just a few hours.</li>
+  <li><a href="/guides/install_puppet/pre_install.html">The installation guide</a> can help you install and configure the current open-source Puppet releases.</li>
+  <li><a href="/puppet/3.7/reference">The Puppet 3.7 Reference Manual</a>
+    <ul>
+      <li>(Older reference manuals: <a href="/puppet/3.6/reference">Puppet 3.6</a>, <a href="/puppet/3.5/reference">Puppet 3.5</a>, <a href="/puppet/3/reference">Puppet 3.0-3.4</a>, <a href="/puppet/2.7/reference">Puppet 2.7</a></li>
+    </ul>
+  </li>
+  <li><a href="/references/latest/type.html">The latest type reference</a> covers all of the built-in resource types and their available attributes. New users should start elsewhere, but experienced users will spend most of their time in this one page.</li>
+  <li><a href="/references/glossary.html">The glossary</a> explains the terminology you’ll encounter when reading about Puppet.</li>
+</ul>
+
+<h2 id="puppet-enterprisepelatest"><a href="/pe/latest">Puppet Enterprise</a></h2>
+
+<p>Puppet Enterprise is a complete configuration management platform, with an optimized set of components proven to work well together. It combines Puppet (including a preconfigured production-grade puppet master stack), a web console for analyzing reports and controlling your infrastructure, powerful orchestration features, cloud provisioning tools, and professional support.</p>
+
+<p>Nearly all of the main Puppet and MCollective documentation also applies to Puppet Enterprise. For details about PE’s configuration:</p>
+
+<ul>
+  <li><a href="/pe/latest/">Puppet Enterprise user’s guide</a></li>
+  <li><a href="/pe/latest/install_system_requirements.html">The system requirements</a></li>
+  <li><a href="/pe/latest/install_basic.html">The installation instructions</a> or <a href="/pe/latest/install_upgrading.html">the upgrade instructions</a></li>
+  <li><a href="/pe/latest/quick_start.html">The quick start guide</a>, which walks you through building and managing a small deployment that can be used as a learning tool, or first steps to creating your company’s deployment.</li>
+  <li><a href="http://info.puppetlabs.com/download-pe.html">The PE download page</a></li>
+</ul>
+
+<p>The current version of PE is 3.7. Documentation for previous versions can be found <a href="/pe/index.html">here</a>.</p>
+
+<h2 id="mcollectivemcollective"><a href="/mcollective">MCollective</a></h2>
+
+<p>MCollective is a powerful orchestration framework. Run actions on thousands of servers simultaneously, using existing plugins or writing your own.</p>
+
+<p><a href="/mcollective/">See the MCollective docs index</a>, or go directly to:</p>
+
+<ul>
+  <li><a href="/mcollective/deploy/demo.html">The Vagrant-based demo environment</a>, to try MCollective immediately</li>
+  <li><a href="/mcollective/deploy/standard.html">The standard deployment guide</a>, to deploy MCollective into your production environment with the recommended configurations</li>
+  <li><a href="/mcollective/overview_components.html">The overview of components</a>, to learn about the server, client, and middleware roles</li>
+  <li><a href="/mcollective/simplerpc/">The guide to writing new agent plugins</a>, to build powerful actions that solve your specific problems</li>
+  <li><a href="/mcollective/releasenotes.html">The release notes</a></li>
+</ul>
+
+<blockquote>
+  <p>Note: MCollective is included with Puppet Enterprise.</p>
+</blockquote>
+
+<h2 id="puppet-dashboarddashboardmanual12"><a href="/dashboard/manual/1.2">Puppet Dashboard</a></h2>
+
+<p>Puppet Dashboard is an open source web console for Puppet, which can analyze reports, browse inventory data, and assign classes to nodes.</p>
+
+<p><a href="/dashboard/manual/1.2">See the Dashboard 1.2 manual</a>, or go directly to:</p>
+
+<ul>
+  <li><a href="/dashboard/manual/1.2/bootstrapping.html">The installation instructions</a></li>
+  <li><a href="/dashboard/manual/1.2/configuring.html">The configuration guide</a></li>
+  <li><a href="/dashboard/manual/1.2/maintaining.html">The maintenance guide</a></li>
+</ul>
+
+<blockquote>
+  <p>Note: Puppet Enterprise’s console is based on Puppet Dashboard, and extends it with extra features. PE users should see the PE documentation instead of the Dashboard documentation.</p>
+</blockquote>
+
+<h2 id="puppetdbpuppetdblatest"><a href="/puppetdb/latest">PuppetDB</a></h2>
+
+<p>PuppetDB is the fast, scalable, and reliable data warehouse for Puppet. It caches data generated by Puppet, and gives you advanced features at awesome speed with a powerful API.</p>
+
+<p><a href="/puppetdb/latest">See the manual for the latest version of PuppetDB</a>, or go directly to:</p>
+
+<ul>
+  <li><a href="/puppetdb/latest/install_via_module.html">Install via Puppet Module</a></li>
+  <li><a href="/puppetdb/latest/install_from_packages.html">Install Manually</a></li>
+  <li><a href="/puppetdb/latest/index.html#system-requirements">System requirements</a></li>
+  <li><a href="/puppetdb/latest/puppetdb-faq.html">Troubleshooting FAQ</a></li>
+</ul>
+
+<p>Documentation for other versions of PuppetDB can be found <a href="/puppetdb">here</a>.</p>
+
+<h2 id="hierahiera1"><a href="/hiera/1">Hiera</a></h2>
+
+<p>Hiera is a key/value lookup tool for configuration data, built to make Puppet better and let you set node-specific data without repeating yourself. Hiera support is built into Puppet 3, and is available as an add-on for Puppet 2.7.</p>
+
+<p><a href="/hiera/1">See the Hiera 1 manual</a>, or go directly to:</p>
+
+<ul>
+  <li><a href="/hiera/1/installing.html">The installation instructions</a></li>
+  <li><a href="/hiera/1/configuring.html">The config file reference</a></li>
+  <li><a href="/hiera/1/hierarchy.html">Info about hierarchies</a></li>
+  <li><a href="/hiera/1/data_sources.html">How to write data sources</a></li>
+  <li><a href="/hiera/1/puppet.html">Using Hiera with Puppet</a></li>
+  <li><a href="/hiera/1/command_line.html">Using Hiera from the command line</a></li>
+</ul>
+
+<h2 id="facterfacterlatest"><a href="/facter/latest/">Facter</a></h2>
+
+<p>Facter is Puppet’s cross-platform system profiling library. It discovers and reports per-node facts, which are available in your Puppet manifests as variables.</p>
+
+<ul>
+  <li><a href="/facter/latest/core_facts.html">The list of core facts</a> lists and describes every built-in fact that ships with Facter.</li>
+  <li><a href="/facter/latest/fact_overview.html">The custom fact overview</a> is an example-driven primer and reference for fact authors.</li>
+  <li><a href="/facter/latest/custom_facts.html">The custom facts guide</a> explains how to write and distribute your own facts in detail.</li>
+</ul>
+
+<h2 id="geppettogeppettolatestindexhtml"><a href="/geppetto/latest/index.html">Geppetto</a></h2>
+
+<p>Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing puppet modules and manifests that includes syntax highlighting, error tracing/debugging, and code completion features. Geppetto also adds PE integration by parsing PuppetDB error reporting. This allows you to quickly find the problems with your puppet code that are causing configuration failures.</p>
+
+<ul>
+  <li><a href="/geppetto/latest/index.html">The Geppetto Manual</a> has installation and usage instructions.</li>
+</ul>
+
+<h2 id="puppet-forgeforgeindexhtml"><a href="/forge/index.html">Puppet Forge</a></h2>
+
+<p>The <a href="forge.puppetlabs.com">Puppet Forge</a> is where you go to get pre-made modules created by Puppet Labs and the Puppet community. Modules on the Forge cover everything from NTP and Registry to Apache and PostgreSQL, and make it easy to instal, configure, and manage all kinds of technology with Puppet. You can access the Forge online or through the Puppet module tool, which is your in-Puppet way of interfacing with the Forge from the command line.</p>
+
+<ul>
+  <li><a href="/forge/puppetenterprisemodules/index.html">Puppet Enterprise Modules</a> will tell you everything you need to know about working with PE-specific modules from the Forge.</li>
+</ul>
+
+<h2 id="razor">Razor</h2>
+
+<p>Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. For information about the Razor integration with PE, see <a href="/pe/latest/razor_intro.html">Bare Metal Provisioning with Razor</a>.</p>
+
+<p><a href="https://github.com/puppetlabs/razor-server">Razor is also available as an open source project</a>. See the <a href="https://github.com/puppetlabs/razor-server/wiki">Razor wiki</a> for further information.</p>
+
+<h2 id="community">Community</h2>
+
+<p>Puppet has a large community and many resources for users.</p>
+
+<ul>
+  <li><a href="/community/community_guidelines.html">Community Guidelines and Code of Conduct</a> — General info about how to navigate our community and get help.</li>
+  <li><a href="/guides/puppetlabs_package_repositories.html">Yum and Apt repositories</a> — Easily install Puppet Labs’s software on the most popular Linux distributions.</li>
+  <li><a href="http://forge.puppetlabs.com">The Puppet Forge</a> — A bazaar of community-built Puppet modules, for managing everything from Apt repos to ZFS.</li>
+  <li><a href="/community/puppet_projects_workflow.html">Workflow for Puppet Open-Source Projects</a> — Info about how the Puppet projects use their issue trackers, and how you can help.</li>
+  <li><a href="/community/trivial_patch_exemption.html">Trivial Patch Exemption Policy</a> — Details about which contributions are exempted from our contributor agreement.</li>
+</ul>
+
+<h2 id="background-information">Background Information</h2>
+
+<p>We occasionally publish articles about foundational technologies and practices. These are not tied to any specific Puppet Labs’ product, but we believe many of our users will either need to or want to be familiar with them.</p>
+
+<ul>
+  <li><a href="/background/ssl">SSL and Related Topics</a> — If you’re wondering what a certificate or a CA is, read this. In five short articles, we explain the basics of the security technologies Puppet relies upon.</li>
+</ul>
+
+<hr />
+
+<h2 id="help-improve-this-site">Help Improve This Site</h2>
+
+<p>These documents belong to the community and are licensed under the Creative Commons. You can help improve them!</p>
+
+<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/3.0/us/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/">Creative Commons Attribution-Share Alike 3.0 United States License</a>.</p>
+
+<p>For suggestions or minor corrections, just email <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#102;&#097;&#113;&#064;&#112;&#117;&#112;&#112;&#101;&#116;&#108;&#097;&#098;&#115;&#046;&#099;&#111;&#109;">&#102;&#097;&#113;&#064;&#112;&#117;&#112;&#112;&#101;&#116;&#108;&#097;&#098;&#115;&#046;&#099;&#111;&#109;</a>. To contribute text or make larger-scale suggestions, see the <a href="./contribute.html">instructions for contributing</a>.  If you would like to submit your own content, you can fork the project on <a href="http://github.com/puppetlabs/puppet-docs">github</a>, make changes, and send us a pull request.  See the README files in the project for more information about how to generate and view a copy of the website.</p>
+
+<hr />
+
+<h2 id="documentation-version">Documentation Version</h2>
+
+<p>This release of the documentation was generated from revision f7921a6d90a71eccb591ec2dbeda3a5fbbc0f13c of the <a href="http://github.com/puppetlabs/puppet-docs">puppet-docs Git repo</a> on December 09, 2014.</p>
+
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+            <nav class="main">
+                  <div id="subCol">
+                      <ul id="doc-navigation">
+                        <li class="with-submenu">
+                          <a href="#">
+                            <span>Docs Quick Nav</span>
+                            <span class="drop-down-trigger"></span>
+                          </a>
+                                           <dl>
+                  <dt>Home</dt>
+                    <dd><a href="/">Puppet Docs Front Page</a></dd>
+                  <dt>#1 Most Popular</dt>
+                    <dd><a href="/references/stable/type.html">The Resource Type Reference</a></dd>
+                  <dt>Puppet Enterprise</dt>
+                    <dd><a href="/pe/latest/">Puppet Enterprise User's Guide (latest)</a></dd>
+                    <dd><a href="/pe/latest/quick_start.html">Quick Start Guide</a></dd>
+                  <dt>Puppet in General (PE &amp; Open Source)</dt>
+                      <dd><a href="/puppet/latest/reference">Puppet Reference Manual (latest)</a></dd>
+                      <dd><a href="/learning/">Learning Puppet</a></dd>
+                      <dd><a href="/references/glossary.html">Glossary of Puppet Terms</a></dd>
+                  <dt>Open Source Puppet</dt>
+                    <dd><a href="/guides/install_puppet/pre_install.html">Installing</a></dd>
+                    <dd><a href="/guides/install_puppet/upgrading.html">Upgrading</a></dd>
+                  <dt>Facter</dt>
+                      <dd><a href="/facter/latest/core_facts.html">Core Facts Reference</a></dd>
+                      <dd><a href="/facter/latest/fact_overview.html">Writing Custom Facts</a></dd>
+                  <dt>PuppetDB</dt>
+                      <dd><a href="/puppetdb/latest">PuppetDB Manual</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">All MCollective Docs</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">Writing Plugins</a></dd>
+                </dl>
+
+                        </li>
+                      </ul>
+
+                                                              <!-- Current promo images -->
+            <hr style="margin-top: 20px; margin-bottom: 20px;">
+            <div style="margin-top: 10px; padding-bottom: 10px;">
+                <p style="font-family: 'Lucida Grande',Lucida,Verdana,sans-serif;font-size: 16px; font-weight: bold; line-height: 22px; margin-bottom: 10px;">Learning Puppet VM</p>
+
+                <p style="font-size:0.9em;line-height: 1.5em;"><a href="http://info.puppetlabs.com/download-learning-puppet-VM.html">Learn Puppet</a> in a safe, convenient virtual environment - free download</p>
+                <a href="http://info.puppetlabs.com/download-learning-puppet-VM.html">
+                <img src="/images/learning-puppet-vm.jpg" class="Learning Puppet VM" alt="Learning Puppet VM screenshot">
+                </a>
+            </div>
+            <div style="margin-top: 10px; padding-bottom: 10px;">
+                <p style="font-family: 'Lucida Grande',Lucida,Verdana,sans-serif;font-size: 16px; font-weight: bold; line-height: 22px; margin-bottom: 10px;">Free Online Learning</p>
+                <a href="https://puppetlabs.com/learn"><img src="/images/LMS_Forge_Ad.png" alt="Puppet Labs Workshop promo"></a>
+            </div>
+            <div style="margin-top: 10px; padding-bottom: 10px;">
+                <p style="font-family: 'Lucida Grande',Lucida,Verdana,sans-serif;font-size: 16px; font-weight: bold; line-height: 22px; margin-bottom: 10px;">Download the Docs</p>
+                <a href="http://info.puppetlabs.com/download-pdfs.html"><img src="/images/smallbits_small_docs.png" alt="Puppet docs download"></a>
+            </div>
+
+
+                      <h3>Recent commits to the puppet-docs repo:</h3>
+<ul>
+<li><a href="https://github.com/puppetlabs/puppet-docs/commit/f7921a6d90a71eccb591ec2dbeda3a5fbbc0f13c">(DOC-1392) regen certs in pe 3.7.0 mono</a></li>
+<li><a href="https://github.com/puppetlabs/puppet-docs/commit/e0d952da721576cdc7d916de9105d0fc6675ee3f">Minor edit</a></li>
+<li><a href="https://github.com/puppetlabs/puppet-docs/commit/1a10d34827b0614b11f464cff17719c28bc18819">Fix broken links</a></li>
+<li><a href="https://github.com/puppetlabs/puppet-docs/commit/a7ba8cc141ad29505d7f0bdd6dc56340b4f2745f">Add RBAC API to the page description.</a></li>
+<li><a href="https://github.com/puppetlabs/puppet-docs/commit/a1596d6a28f86ae2ab5ca372f740e81b3ead1fac">Remove page</a></li>
+<li><a href="https://github.com/puppetlabs/puppet-docs/commit/38a449a5b8d2a6366551f04fd1efacd89eb02bce">Add page that maps from the rake API to the new node classifier and rbac rest APIs</a></li>
+<li><a href="https://github.com/puppetlabs/puppet-docs/commit/edc57778b8ad855854d520ed1564bc549d9a6f30">Add link to old rake argument style. Fix broken links.</a></li>
+<li><a href="https://github.com/puppetlabs/puppet-docs/commit/dcba2649d5b930d53220cd8e780880a64b72179e">Add rake api to rest api mapping page. Remove old rake argument style page.</a></li>
+<li><a href="https://github.com/puppetlabs/puppet-docs/commit/8cfd97bcc703e1e47d3ff782c5f9a2963511a9ab">Removing personal names from a community page.</a></li>
+<li><a href="https://github.com/puppetlabs/puppet-docs/commit/3d85f460a7cbf1bdb15670a99abf502af5a5f3aa">Remove in-page TOC from main index page</a></li>
+</ul>
+<p><a href="https://github.com/puppetlabs/puppet-docs/commits/master">(More)</a> &mdash; <a href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">(Feed)</a></p>
+                  </div>
+            </nav>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="https://puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="https://app-h.marketo.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='email' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="https://puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="https://puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="https://puppetlabs.com/sites/default/files/mktFormSupport.js"></script>
+
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+
+<a href="http://info.puppetlabs.com/puppet-enterprise" class="fbtn">Try Puppet Enterprise FREE</a>
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="https://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="https://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="https://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus">
+
+
+			<li><a href="http://feeds.feedburner.com/PuppetLabs" target="_blank"><img src="https://puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png" border="0"></a></li>
+			<li><a href="https://www.facebook.com/pages/Puppet-Labs/219089920711" target="_blank"><img src="https://puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png" border="0"></a></li>
+			<li><a href="https://www.twitter.com/puppetlabs" target="_blank"><img src="https://puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png" border="0"></a></li>
+			<li><a href="http://www.linkedin.com/groups?about=&amp;gid=696467&amp;trk=anet_ug_grppro" target="_blank"><img src="https://puppetlabs.com/wp-content/uploads/2011/01/LinkedIn_IN_Icon_32px.png" border="0"></a></li>    <li><a href="https://github.com/puppetlabs" target="_blank"><img src="https://puppetlabs.com/wp-content/uploads/2011/01/github_icon.png" border="0"></a></li>
+			<li><a href="https://plus.google.com/112682055028218091774?rel=author" target="_blank"><img src="https://puppetlabs.com/wp-content/uploads/2013/05/google_plus32x32.png" alt="Find Us on Google+" border="0"></a></li>
+					</ul>
+
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by Spencer Krum, Ben Kero, William Van Hevelingen, James Turnbull and Jeff McCune, <a href="http://www.apress.com/9781430260400" rel="nofollow">Pro Puppet, Second Edition</a> is a comprehensive and up-to-date look at Puppet and MCollective. </p>
+              <a href="http://www.apress.com/9781430260400" rel="nofollow"><img src="/images/propuppet2thumb.png" height="161" width="131" alt="Pro Puppet, Second Edition" title="Pro Puppet, Second Edition"/></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2014 <a href="https://puppetlabs.com/" title="Puppet Labs">Puppet Labs</a> &nbsp;&nbsp;•&nbsp;&nbsp; <a href="https://puppetlabs.com/terms">Terms of Use</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">926 NW 13th Avenue #210</span>
+           /
+           <span class="locality">Portland</span>,
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>
+      </div>
+    </div>
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+    <script src="https://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script>
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>
