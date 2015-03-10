@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Subsystems: Agent/Master HTTPS Communications — Documentation — Puppet Labs</title>
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+    <link rel='icon' href='/favicon.ico' />
+
+     
+  <meta name="description" content="The puppet agent and the puppet master server communicate via HTTPS over host-verified SSL.  Note on verification: If the agent does not yet have i...">
+
+<!-- Google analytics -->
+<!-- End Google analytics -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <!-- /all in one seo pack -->
+
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com/puppet/latest/reference/subsystem_agent_master_comm.html" />
+
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="./style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="./ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="./ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+<link rel="stylesheet" href="./anchor.css">
+<!-- Code for hover anchor links ends -->
+
+</head>
+
+
+
+
+  <body id="puppetlabsdocs" class="docs">
+  <!-- Google Tag Manager -->
+  <!-- End Google Tag Manager -->
+  <style type="text/css">h1, h2{ visibility : hidden }</style>
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->
+
+
+
+
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1>Subsystems: Agent/Master HTTPS Communications</h1>
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#diagram">Diagram</a></li>
+  <li class="toc-lv2"><a href="#check-for-keys-and-certificates">Check for Keys and Certificates</a></li>
+  <li class="toc-lv2"><a href="#obtain-a-certificate-if-necessary">Obtain a Certificate (if necessary)</a></li>
+  <li class="toc-lv2"><a href="#request-node-object-and-switch-environments">Request Node Object and Switch Environments</a></li>
+  <li class="toc-lv2"><a href="#fetch-plugins">Fetch Plugins</a></li>
+  <li class="toc-lv2"><a href="#request-catalog-while-submitting-facts">Request Catalog While Submitting Facts</a></li>
+  <li class="toc-lv2"><a href="#make-file-source-requests-while-applying-catalog">Make File Source Requests While Applying Catalog</a></li>
+  <li class="toc-lv2"><a href="#submit-report">Submit Report</a></li>
+</ol></nav>
+              
+<p>The puppet agent and the puppet master server communicate via HTTPS over host-verified SSL.</p>
+
+<blockquote>
+  <p><strong>Note on verification:</strong> If the agent does not yet have its own certificate, it will make several unverified requests before it can switch to verified mode. In these requests, the agent doesn’t identify itself to the master and doesn’t check the master’s cert against the CA. In the descriptions below, assume every request is host-verified unless stated otherwise.</p>
+</blockquote>
+
+<p>The agent/master HTTP interface is REST-like, but varies from strictly RESTful design in several ways. The endpoints used by the agent are detailed in the <a href="/guides/rest_api.html">HTTP API reference</a>. Note that all HTTP endpoints are preceded by the environment being used. Note also that access to each individual endpoint is controlled by <a href="/guides/rest_auth_conf.html">auth.conf</a> on the master.</p>
+
+<h2 id="diagram">Diagram</h2>
+
+<p>This flow diagram illustrates the pattern of agent-side checks and HTTPS requests to the puppet master during a single Puppet run.</p>
+
+<p><a href="#check-for-keys-and-certificates">See below the image for a textual description of this process</a>, which explains the illustrated steps in more detail.</p>
+
+<p><a href="./images/agent-master-https-sequence-large.gif"><img src="./images/agent-master-https-sequence-small.gif" alt="An illustration of the process described below -- this diagram contains no new content, but is simply a visual interpretation of everything from &quot;check for keys and certificates&quot; on down." /></a></p>
+
+<h2 id="check-for-keys-and-certificates">Check for Keys and Certificates</h2>
+
+<ol>
+  <li>Does the agent have a private key at <code>$ssldir/private_keys/&lt;name&gt;.pem</code>?
+    <ul>
+      <li>If no, generate one.</li>
+    </ul>
+  </li>
+  <li>Does the agent have a copy of the CA certificate at <code>$ssldir/certs/ca.pem</code>?
+    <ul>
+      <li>If no, fetch it. (Unverified GET request to <code>/certificate/ca</code>. Since the agent is retrieving the foundation for all future trust over an untrusted link, this could be vulnerable to MITM attacks, but it’s also just a convenience; you can make this step unnecessary by distributing the CA cert as part of your server provisioning process, so that agents never ask for a CA cert over the network. If you do this, an attacker could temporarily deny Puppet service to brand new nodes, but would be unable to take control of them with a rogue puppet master.)</li>
+    </ul>
+  </li>
+  <li>Does the agent have a signed certificate at <code>$ssldir/certs/&lt;name&gt;.pem</code>?
+    <ul>
+      <li>If yes, skip the following section and continue to “request node object.”</li>
+      <li>(If it has a cert but it doesn’t match the private key, bail with an error.)</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="obtain-a-certificate-if-necessary">Obtain a Certificate (if necessary)</h2>
+
+<p>Note that if the agent has submitted a certificate signing request, an admin user will need to run <code>puppet cert sign &lt;name&gt;</code> on the CA puppet master before the agent can fetch a signed certificate. (Unless autosign is enabled.) Since incoming CSRs are unverified, you can use fingerprints to prove them, by comparing <code>puppet agent --fingerprint</code> on the agent to <code>puppet cert list</code> on the CA master.</p>
+
+<ol>
+  <li>Try to fetch an already-signed certificate from the master. (Unverified GET request to <code>/certificate/&lt;name&gt;</code>.)
+    <ul>
+      <li>If it gets one, skip the rest of this section and continue to “request node object.”</li>
+      <li>(If it gets one that doesn’t match the private key, bail with an error.)</li>
+    </ul>
+  </li>
+  <li>Determine whether the agent has already requested a certificate signing: Look for <code>$ssldir/certificate_requests/&lt;name&gt;.pem</code>.
+    <ul>
+      <li>If this file exists, the agent will bail, assuming it needs user intervention on the master. If <code>waitforcert</code> is enabled, it will wait a few seconds and start this section over.</li>
+    </ul>
+  </li>
+  <li>Double-check with the master whether the agent has already requested a certificate signing; the agent may have just lost the local copy of the request. (Unverified GET request to <code>/certificate_request/&lt;name&gt;</code>.)
+    <ul>
+      <li>If this request doesn’t 404, the agent will bail, assuming it needs user intervention on the master. If <code>waitforcert</code> is enabled, it will wait a few seconds and start this section over.</li>
+    </ul>
+  </li>
+  <li>If the agent has reached this step, it has never requested a certificate, so request one now. (Unverified PUT request to <code>/certificate_request/&lt;name&gt;</code>.)</li>
+  <li>Return to the first step of this section, in case the master has autosign enabled; if it doesn’t, the agent will end up bailing at step 2.</li>
+</ol>
+
+<h2 id="request-node-object-and-switch-environments">Request Node Object and Switch Environments</h2>
+
+<ol>
+  <li>Do a GET request to <code>/node/&lt;name&gt;</code>.
+    <ul>
+      <li>If successful, read the environment from the node object.
+        <ul>
+          <li>If the node object has one: In all subsequent requests during this run, use this environment instead of the one in the agent’s config file.</li>
+        </ul>
+      </li>
+      <li>If unsuccessful, or if the node object had no environment set, continue using the environment from the agent’s config file.</li>
+    </ul>
+  </li>
+</ol>
+
+<blockquote>
+  <p><strong>Note:</strong> This step was added in Puppet 3.0.0, to allow an ENC to centrally assign nodes to environments. The lenient failure mode is because many users’ <a href="/guides/rest_auth_conf.html">auth.conf</a> files didn’t allow access to node objects, since that rule was only added to the default auth.conf in Puppet 2.7.0 and many people don’t update their config files for every upgrade.</p>
+</blockquote>
+
+<h2 id="fetch-plugins">Fetch Plugins</h2>
+
+<p>If <code>pluginsync</code> is enabled on the agent:</p>
+
+<ol>
+  <li>Do a GET request to <code>/file_metadatas/plugins</code> with <code>recurse=true</code> and <code>links=manage</code>. This is a special file server mountpoint that scans the <code>lib</code> directory of every module. Note the funky Rails-esque endpoint pluralization on <code>file_metadata</code>.</li>
+  <li>Check whether any of the discovered plugins need to be downloaded.
+    <ul>
+      <li>If so, do a GET request to <code>/file_content/plugins/&lt;file&gt;</code> for each one.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="request-catalog-while-submitting-facts">Request Catalog While Submitting Facts</h2>
+
+<ol>
+  <li>Do a POST request to <code>/catalog/&lt;name&gt;</code>, where the post data is all of the node’s <a href="./lang_variables.html#facts-and-built-in-variables">facts</a> encoded as JSON. Receive a compiled <a href="./lang_summary.html#compilation-and-catalogs">catalog</a> in return.</li>
+</ol>
+
+<blockquote>
+  <p><strong>Note:</strong> This used to be a GET request with facts encoded as base64-encoded zlib-compressed JSON submitted as a URL parameter. This would sometimes cause failures with certain web servers and a large amount of facts, and was changed to a POST in Puppet 2.7.0. GETs should still work in Puppet 3 if something other than an agent tries one, but agents will use POSTs.</p>
+
+  <p>Note also that submitting facts isn’t necessarily logically bound to requesting a catalog, and could be done out of band on a different schedule; this is just the way Puppet happens to do it, because the original design assumptions were that relevant facts could change at any moment and you’d always want to guarantee the most recent data. We’re experimenting with other ways, some of which might turn out to be better ideas.</p>
+</blockquote>
+
+<h2 id="make-file-source-requests-while-applying-catalog">Make File Source Requests While Applying Catalog</h2>
+
+<p><a href="/references/3.7.latest/type.html#file">File</a> resources can specify file contents as either a <code>content</code> or <code>source</code> attribute. Content attributes go into the catalog, and puppet agent needs no additional data. Source attributes only put references into the catalog, and may require additional HTTPS requests.</p>
+
+<p>If you are using the normal compiler, then for each file source, puppet agent will:</p>
+
+<ol>
+  <li>Do a GET request to <code>/file_metadata/&lt;something&gt;</code>.</li>
+  <li>Compare the metadata to the state of the file on disk.
+    <ul>
+      <li>If it is in sync, move on to the next file source.</li>
+      <li>If it is out of sync, do a GET request to <code>/file_content/&lt;something&gt;</code> for the current content.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>If you are using the <a href="/references/3.7.latest/indirection.html#catalog">static compiler</a>, all file metadata is embedded in the catalog. For each file source, puppet agent will:</p>
+
+<ol>
+  <li>Compare the embedded metadata to the state of the file on disk.
+    <ul>
+      <li>If it is in sync, move on to the next file source.</li>
+      <li>If it is out of sync, do a GET request to <code>/file_bucket_file/md5/&lt;checksum&gt;</code> for the current content.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Note that this is cheaper in terms of network traffic, but potentially more expensive during catalog compilation. Large amounts of files, especially recursive directories, will amplify the effect in both directions.</p>
+
+<h2 id="submit-report">Submit Report</h2>
+
+<p>If <code>report</code> is enabled on the agent:</p>
+
+<ol>
+  <li>Do a PUT request to <code>/report/&lt;name&gt;</code>. The content of the PUT should be a Puppet report object in YAML format.</li>
+</ol>
+
+<blockquote>
+  <p><strong>Note:</strong> Yes, using PUT for this is not quite proper, but that’s how it was implemented. It may change in the future.</p>
+</blockquote>
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>

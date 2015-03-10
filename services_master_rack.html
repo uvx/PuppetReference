@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Puppet's Services: The Rack Puppet Master — Documentation — Puppet Labs</title>
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+    <link rel='icon' href='/favicon.ico' />
+
+     
+  <meta name="description" content="Puppet master is the application that compiles configurations for any number of puppet agent nodes, using Puppet code and various other data source...">
+
+<!-- Google analytics -->
+
+<!-- End Google analytics -->
+
+
+    <!-- FIXME: absolute paths -->
+
+
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <!-- /all in one seo pack -->
+
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com/puppet/latest/reference/services_master_rack.html" />
+
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="./style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="./ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="./ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+
+<link rel="stylesheet" href="./anchor.css">
+
+<!-- Code for hover anchor links ends -->
+
+</head>
+
+
+
+
+  <body id="puppetlabsdocs" class="docs">
+  <!-- Google Tag Manager -->
+
+
+  <!-- End Google Tag Manager -->
+  <style type="text/css">h1, h2{ visibility : hidden }</style>
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->
+
+
+
+
+
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1>Puppet's Services: The Rack Puppet Master</h1>
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#supported-platforms">Supported Platforms</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#rack-web-servers">Rack Web Servers</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#controlling-the-service">Controlling the Service</a></li>
+  <li class="toc-lv2"><a href="#the-rack-puppet-masters-run-environment">The Rack Puppet Master’s Run Environment</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#user">User</a></li>
+   <li class="toc-lv3"><a href="#required-directories">Required Directories</a></li>
+   <li class="toc-lv3"><a href="#ports">Ports</a></li>
+   <li class="toc-lv3"><a href="#keepalive-timeout">Keepalive Timeout</a></li>
+   <li class="toc-lv3"><a href="#logging">Logging</a></li>
+   <li class="toc-lv3"><a href="#the-configru-file">The config.ru File</a></li>
+   <li class="toc-lv3"><a href="#ssl-termination">SSL Termination</a></li>
+   <li class="toc-lv3"><a href="#required-environment-variables--headers">Required Environment Variables / Headers</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#configuring-a-rack-puppet-master">Configuring a Rack Puppet Master</a></li>
+  <li class="toc-lv2"><a href="#aside-how-a-rack-puppet-master-works">Aside: How a Rack Puppet Master Works</a></li>
+</ol></nav>
+              
+<p>Puppet master is the application that compiles configurations for any number of puppet agent nodes, using Puppet code and various other data sources. (For more info, see <a href="./architecture.html">Overview of Puppet’s Architecture</a>.)</p>
+
+<p><a href="http://rack.github.io/">Rack</a> is an interface for deploying Ruby web apps. The puppet master application supports running as a Rack app.</p>
+
+<p>This is the recommended way of running the puppet master service.</p>
+
+<blockquote>
+  <p><strong>Puppet Enterprise runs this way by default.</strong> You do not need to manually configure a Rack server under Puppet Enterprise.</p>
+</blockquote>
+
+<p>This page describes the generic requirements and run environment for running under Rack; for practical configuration instructions, see <a href="/guides/passenger.html">the guide to configuring a Passenger + Apache puppet master.</a></p>
+
+<p>For details about invoking the puppet master command, see <a href="/references/3.7.latest/man/master.html">the puppet master man page</a>.</p>
+
+<h2 id="supported-platforms">Supported Platforms</h2>
+
+<p>The Rack puppet master will run on any *nix platform, including all Linux variants and OS X. It requires a <strong>multi-process</strong> (<em>not</em> threaded) Rack web server.</p>
+
+<p>You cannot run a puppet master on Windows.</p>
+
+<h3 id="rack-web-servers">Rack Web Servers</h3>
+
+<p>There are a lot of Rack web server stacks available. Puppet should work with any Rack server that spawns multiple processes to handle parallel requests.</p>
+
+<blockquote>
+  <p>Note that Puppet <strong>will not</strong> work with <strong>threaded</strong> Rack servers like Puma. Puppet’s code isn’t thread-safe, and it expects to be isolated in a single process.</p>
+</blockquote>
+
+<p>If you don’t have any particular preference, you should start with <a href="http://www.modrails.com/">Passenger</a> and Apache, since it’s the most familiar and most thoroughly tested stack in the Puppet community. We have <a href="/guides/passenger.html">a detailed guide to configuring Passenger for Puppet.</a> Additionally, some OSes have packages that automatically configure a puppet master with Passenger.</p>
+
+<p>The Unicorn + Nginx stack is also fairly popular, but it has more pieces that you’ll need to assemble and configure.</p>
+
+<h2 id="controlling-the-service">Controlling the Service</h2>
+
+<p>Under Rack, the puppet master processes are started and managed by your Rack web server. The way to start and stop the puppet master will depend on your specific web server stack.</p>
+
+<p>If your Rack stack isn’t running any other applications or sites, you can simply start and stop the whole server process; if it also provides other services, as a Passenger/Apache stack sometimes does, you may need to disable the puppet master’s virtual host and do a graceful restart.</p>
+
+<h2 id="the-rack-puppet-masters-run-environment">The Rack Puppet Master’s Run Environment</h2>
+
+<p>Rack and the puppet master application each have various expectations about their environment. To make them work together, you’ll need to make sure these expectations are met.</p>
+
+<h3 id="user">User</h3>
+
+<p>The puppet master Ruby processes should be run as a specific <strong>non-root</strong> user, which is usually <code>puppet</code>. This should match the user specified by <a href="/references/latest/configuration.html#user">the <code>user</code> setting</a>.</p>
+
+<p>The Rack web server sets the puppet master process’s user. By default, it will use the owner of the <code>config.ru</code> file. (See below.)</p>
+
+<p>All of the puppet master’s files and directories must be readable and writable by this user.</p>
+
+<h3 id="required-directories">Required Directories</h3>
+
+<p>Before a Rack puppet master can fully start up, it needs access to a <a href="./dirs_confdir.html">confdir</a> and a <a href="./dirs_vardir.html">vardir</a> that its user has permission to write to. The locations of the confdir and vardir it will use are set in the <code>config.ru</code> file (see below).</p>
+
+<p>The puppet master application can manage its own files inside those directories, but since Rack doesn’t start the master with root permissions, it won’t be able to create the initial directories in <code>/etc</code> or <code>/var</code>.</p>
+
+<p>You can create these directories manually and set their ownership to the puppet master’s user. Alternately, you can briefly start a <a href="./services_master_webrick.html">WEBrick puppet master</a> and let it handle the initial setup. Run:</p>
+
+<pre><code>$ sudo puppet master --verbose --no-daemonize
+</code></pre>
+
+<p>Once the terminal says <code>Notice: Starting Puppet master version &lt;VERSION&gt;</code>, type ctrl-C to kill the process.</p>
+
+<h3 id="ports">Ports</h3>
+
+<p>By default, Puppet’s HTTPS traffic uses port 8140. Your web server must be listening on this port, and the OS and firewall must allow it to accept incoming connections on this port.</p>
+
+<p>A Rack puppet master will ignore <a href="/references/latest/configuration.html#masterport">the <code>masterport</code> setting</a>; instead, the web server’s configuration (for example, an Apache vhost) controls the port. You must ensure that the web server is listening on this port and is routing those requests to the puppet master application.</p>
+
+<p>If you want to switch to a non-default port, you’ll have to change your web server’s configuration, then make sure <code>masterport</code> is set correctly on all agents.</p>
+
+<h3 id="keepalive-timeout">Keepalive Timeout</h3>
+
+<p>By default, the Puppet agent application will keep its HTTPS connections open for <strong>up to four seconds</strong> of idle time. (Configurable with <a href="/references/3.7.latest/configuration.html#httpkeepalivetimeout">the <code>http_keepalive_timeout</code> setting.</a>)</p>
+
+<p>This means Puppet expects the Rack web server to have <strong>a keepalive timeout of at least four seconds, preferably five.</strong> This is compatible with the default configuration of the most popular Rack stack.</p>
+
+<p>If the keepalive timeout is set too low on the master, agents will occasionally fail with an “Error: Could not retrieve catalog from remote server: end of file reached” message.</p>
+
+<h3 id="logging">Logging</h3>
+
+<p>When running under Rack, puppet master’s logging is split.</p>
+
+<p>Your Rack server stack is in charge of logging any information about incoming HTTPS requests and errors. It may maintain per-vhost log files, or send messages elsewhere. See your server’s documentation for details.</p>
+
+<p>The puppet master application itself logs its activity to syslog. This is where things like compilation errors and deprecation warnings go. Your syslog configuration dictates where these messages will be saved, but the default location is <code>/var/log/messages</code> on Linux, <code>/var/log/system.log</code> on Mac OS X, and <code>/var/adm/messages</code> on Solaris.</p>
+
+<p>Alternately, if you specify the <code>--logdest &lt;FILE&gt;</code> option in <code>config.ru</code>, puppet master will log to the file specified by <code>&lt;FILE&gt;</code>.</p>
+
+<h3 id="the-configru-file">The <code>config.ru</code> File</h3>
+
+<p>All Rack web servers use a <code>config.ru</code> file to load applications. This file is a Ruby script that loads any necessary libraries, performs any necessary configuration, and creates an application object that can handle Rack-formatted requests.</p>
+
+<p>The Puppet source includes a <code>config.ru</code> file for the puppet master application. It is located at <code>ext/rack/config.ru</code>. If you don’t have a full copy of the Puppet source, you can <a href="https://raw.github.com/puppetlabs/puppet/stable/ext/rack/config.ru">download this <code>config.ru</code> file directly from GitHub</a>.</p>
+
+<p>To run a Rack puppet master, you must configure your Rack web server to load an application from this <code>config.ru</code> file and to route all Puppet requests to it.</p>
+
+<p>The exact steps will depend on your Rack server; see the <a href="/guides/passenger.html">Passenger guide</a> for an example.</p>
+
+<p>Note that the <code>config.ru</code> file must be owned by the user <code>puppet</code> and the group <code>puppet</code> (or whatever user you want the puppet master to run as; see “User” above). Most Rack servers use this file’s ownership to set the application’s user. Alternately, you may be able to explicitly configure your Rack server to use a specific user.</p>
+
+<h3 id="ssl-termination">SSL Termination</h3>
+
+<p>Your Rack web server stack must terminate SSL and verify agent certificates. The stack must also pass certain certificate data from each request to the puppet master.</p>
+
+<p>This may be done by the Rack web server itself, or by some kind of SSL terminating proxy. For general information about this, see <a href="/background/ssl/https.html#persistence-of-sslcertificate-data-in-https-applications">our background reference on SSL.</a></p>
+
+<p>You should have already initialized a CA and created the puppet master’s credentials. To terminate SSL you will need one or more CA certificates, a puppet master certificate, a puppet master private key, and a certificate revocation list (CRL).</p>
+
+<p>Your SSL termination must be configured as follows:</p>
+
+<ul>
+  <li>It must use a set of cyphers and protocols compatible with the version(s) of OpenSSL that your puppet agent nodes are using.</li>
+  <li>It must trust the Puppet CA certificate as its CA. (If you are using an intermediate or split external CA, this is somewhat more complicated; see <a href="./config_ssl_external_ca.html">the external CA reference</a> for details.)</li>
+  <li>It must identify itself to clients using the puppet master’s certificate and private key.</li>
+  <li>It must have <a href="/background/ssl/tls_ssl.html">client authentication</a> enabled but optional.</li>
+  <li>It must note whether the client connection was verified. This information must eventually reach the puppet master; see below.</li>
+  <li>It must note the <a href="/background/ssl/cert_anatomy.html#the-subject-dn-cn-certname-etc">Subject DN</a> of the client’s certificate, if the connection was verified. This information must eventually reach the puppet master.</li>
+  <li>It should pass on the entire client certificate, if the connection was verified. This information should eventually reach the puppet master.</li>
+</ul>
+
+<h3 id="required-environment-variables--headers">Required Environment Variables / Headers</h3>
+
+<p>The Rack server should set three per-request environment variables for the puppet master: <code>HTTP_X_CLIENT_VERIFY</code>, <code>HTTP_X_CLIENT_DN</code>, and <code>SSL_CLIENT_CERT</code>.</p>
+
+<p>None of these are set by default; you’ll need to configure your SSL terminator to preserve the information, and configure your Rack server to make it available to Puppet.</p>
+
+<h4 id="httpxclientverify"><code>HTTP_X_CLIENT_VERIFY</code></h4>
+
+<p>Mandatory. Must be one of <code>NONE</code>, <code>SUCCESS</code>, <code>GENEROUS</code> or <code>FAILED:reason</code>.</p>
+
+<p>The Rack server will automatically set this variable if some other part of the stack added the <code>X-Client-Verify</code> HTTP header to the request.</p>
+
+<p>You can change the variable name Puppet looks for with <a href="/references/latest/configuration.html#sslclientverifyheader">the <code>ssl_client_verify_header</code> setting.</a></p>
+
+<h4 id="httpxclientdn"><code>HTTP_X_CLIENT_DN</code></h4>
+
+<p>Mandatory. Must be the <a href="/background/ssl/cert_anatomy.html#the-subject-dn-cn-certname-etc">Subject DN</a> of the agent’s certificate, if a certificate was presented.</p>
+
+<p>The Rack server will automatically set this variable if some other part of the stack added the <code>X-Client-DN</code> HTTP header to the request.</p>
+
+<p>You can change the variable name Puppet looks for with <a href="/references/latest/configuration.html#sslclientheader">the <code>ssl_client_header</code> setting.</a></p>
+
+<h4 id="sslclientcert"><code>SSL_CLIENT_CERT</code></h4>
+
+<p>Optional. Should be the entire client certificate in <a href="/background/ssl/cert_anatomy.html#pem-file">PEM format</a>, if a certificate was presented.</p>
+
+<p>Puppet uses this variable to enable <a href="./lang_facts_and_builtin_vars.html#trusted-facts">the <code>$trusted</code> hash</a> and to log warnings when agent certificates are about to expire. If the variable is absent, you will not be able to use these features.</p>
+
+<p>If the Rack server is embedded in the same server that terminates SSL, this variable may be easy to fill. For example, in Apache with <code>mod_ssl</code>, setting <code>SSLOptions +ExportCertData</code> will automatically put the client certificate into <code>SSL_CLIENT_CERT</code>.</p>
+
+<p>If the Rack server is <em>not</em> embedded in the SSL terminating part of your stack (for example, when running under the Nginx + Unicorn stack), you may need to embed the certificate in an HTTP header, then configure your Rack server to extract the certificate data and set the environment variable.</p>
+
+<p>The name of this variable is not configurable.</p>
+
+<h2 id="configuring-a-rack-puppet-master">Configuring a Rack Puppet Master</h2>
+
+<p>As <a href="./config_about_settings.html">described elsewhere,</a> the puppet master application reads most of its settings from <a href="./config_file_main.html">puppet.conf</a> and can accept additional settings on the command line. When running under Rack, puppet master gets its command line options from the <code>config.ru</code> file. By default, it only sets the <code>confdir</code> and <code>vardir</code> settings and the special <code>--rack</code> option.</p>
+
+<p>To change the puppet master’s settings, you should use <a href="./config_file_main.html">puppet.conf</a>. The only two options you may want to set in <code>config.ru</code> are <code>--verbose</code> or <code>--debug</code>, to change the amount of detail in the logs.</p>
+
+<blockquote>
+  <h2 id="aside-how-a-rack-puppet-master-works">Aside: How a Rack Puppet Master Works</h2>
+
+  <p>A Rack web server loads and executes a special part of Puppet’s Ruby code, which creates a puppet master application object that can respond to specially formatted requests. To handle parallel requests, it can do this any number of times. (The number of workers depends on how the Rack server is configured.)</p>
+
+  <p>When an HTTPS request comes in, the web server passes it to Rack. Rack reformats the request, turning it into a Ruby object that contains all of the relevant information (URL, method, POST data, headers, SSL info). It then passes the formatted request to the application object.</p>
+
+  <p>The puppet master application reads information from the request, then builds a response, doing whatever is necessary to construct it. This may involve returning file contents, returning certificates or other credentials, or the full process of catalog compilation (request a node object from an ENC, evaluate the main manifest, load and evaluate classes from modules, evaluate templates, collect exported resources, etc.). The puppet master object then formats its response and passes it to Rack, which passes it on to the web server and the agent node that made the request.</p>
+</blockquote>
+
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>

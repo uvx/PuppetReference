@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Config Files: auth.conf — Documentation — Puppet Labs</title>
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+    <link rel='icon' href='/favicon.ico' />
+
+     
+  <meta name="description" content="Access to Puppet’s HTTPS API is configured in auth.conf.About Puppet’s HTTPS APIWhen running in the standard agent/master arrangement, puppet agent...">
+
+<!-- Google analytics -->
+<!-- End Google analytics -->
+
+
+    <!-- FIXME: absolute paths -->
+
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <!-- /all in one seo pack -->
+
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com/puppet/latest/reference/config_file_auth.html" />
+
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="./style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="./ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="./ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+<link rel="stylesheet" href="./anchor.css">
+<!-- Code for hover anchor links ends -->
+
+</head>
+
+
+
+
+  <body id="puppetlabsdocs" class="docs">
+  <!-- Google Tag Manager -->
+  <!-- End Google Tag Manager -->
+  <style type="text/css">h1, h2{ visibility : hidden }</style>
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->
+
+
+
+
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1>Config Files: auth.conf</h1>
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#about-puppets-https-api">About Puppet’s HTTPS API</a></li>
+  <li class="toc-lv2"><a href="#location">Location</a></li>
+  <li class="toc-lv2"><a href="#example">Example</a></li>
+  <li class="toc-lv2"><a href="#format">Format</a></li>
+</ol></nav>
+              
+<p>Access to Puppet’s HTTPS API is configured in <code>auth.conf</code>.</p>
+
+<h2 id="about-puppets-https-api">About Puppet’s HTTPS API</h2>
+
+<p>When running in the standard agent/master arrangement, puppet agent nodes receive all of their configurations by contacting the puppet master over HTTPS. In general, a single configuration run includes:</p>
+
+<ul>
+  <li>Fetching a node object (to read the node’s environment)</li>
+  <li>Fetching plugins</li>
+  <li>Requesting a catalog (and submitting the node’s facts as POST data in the request)</li>
+  <li>Fetching file metadata and contents while applying the catalog</li>
+  <li>Submitting a report after applying the catalog</li>
+</ul>
+
+<p>All of these are provided as HTTPS services (sometimes called “endpoints”) by the puppet master server. Additionally, the puppet master provides other services, some of which are used less frequently by agent nodes (such as the CA services) and some of which shouldn’t be used by agent nodes at all (such as the <code>certificate_status</code> service, which can sign and revoke certificates).</p>
+
+<p>Since not all agent nodes should have access to all services, and since certain services should have restricted access (for example, nodes should not be able to request some other node’s configuration catalog), the puppet master keeps a list of access rules for all of its HTTPS services. These rules can be edited in <code>auth.conf</code>.</p>
+
+<h2 id="location">Location</h2>
+
+<p>The <code>auth.conf</code> file is located at <code>$confdir/auth.conf</code> by default. Its location is configurable with the <a href="/references/3.7.latest/configuration.html#restauthconfig"><code>rest_authconfig</code> setting</a>.</p>
+
+<p>The location of the <code>confdir</code> varies; it depends on the OS, Puppet distribution, and user account. <a href="./dirs_confdir.html">See the confdir documentation for details.</a></p>
+
+<h2 id="example">Example</h2>
+
+<pre><code># Example auth.conf:
+
+path /
+auth true
+environment override
+allow magpie.example.com
+
+path /certificate_status
+auth true
+environment production
+allow magpie.example.com
+
+path /facts
+method save
+auth true
+allow magpie.example.com
+
+path /facts
+auth true
+method find, search
+allow magpie.example.com, dashboard.example.com, finch.example.com
+</code></pre>
+
+<h2 id="format">Format</h2>
+
+<p><strong><a href="/guides/rest_auth_conf.html">See the HTTPS access control documentation for full details about the <code>auth.conf</code> file</a>.</strong></p>
+
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>

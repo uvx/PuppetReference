@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Puppet's Services: The WEBrick Puppet Master — Documentation — Puppet Labs</title>
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+    <link rel='icon' href='/favicon.ico' />
+
+     
+  <meta name="description" content="Puppet master is the application that compiles configurations for any number of puppet agent nodes, using Puppet code and various other data source...">
+
+<!-- Google analytics -->
+<!-- End Google analytics -->
+
+
+    <!-- FIXME: absolute paths -->
+
+
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <!-- /all in one seo pack -->
+
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com/puppet/latest/reference/services_master_webrick.html" />
+
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="./style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="./ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="./ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+<link rel="stylesheet" href="./anchor.css">
+<!-- Code for hover anchor links ends -->
+
+</head>
+
+
+
+
+  <body id="puppetlabsdocs" class="docs">
+  <!-- Google Tag Manager -->
+  <!-- End Google Tag Manager -->
+  <style type="text/css">h1, h2{ visibility : hidden }</style>
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->
+
+
+
+
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1>Puppet's Services: The WEBrick Puppet Master</h1>
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#supported-platforms">Supported Platforms</a></li>
+  <li class="toc-lv2"><a href="#controlling-the-service">Controlling the Service</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#use-the-puppetmaster-init-script">Use the puppetmaster Init Script</a></li>
+   <li class="toc-lv3"><a href="#run-puppet-master-on-the-command-line">Run puppet master on the Command Line</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#the-webrick-puppet-masters-run-environment">The WEBrick Puppet Master’s Run Environment</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#user">User</a></li>
+   <li class="toc-lv3"><a href="#ports">Ports</a></li>
+   <li class="toc-lv3"><a href="#logging">Logging</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#configuring-a-webrick-puppet-master">Configuring a WEBrick Puppet Master</a></li>
+</ol></nav>
+              
+<p>Puppet master is the application that compiles configurations for any number of puppet agent nodes, using Puppet code and various other data sources. (For more info, see <a href="./architecture.html">Overview of Puppet’s Architecture</a>.)</p>
+
+<p>Puppet has the built-in capability to run a complete puppet master server using Ruby’s <a href="http://ruby-doc.org/stdlib/libdoc/webrick/rdoc/WEBrick.html">WEBrick</a> library.</p>
+
+<p>The WEBrick puppet master server is not capable of handling production-level numbers of agent nodes. Since it can’t handle concurrent connections, it will be quickly overwhelmed by as few as 10 agents. You should never run a WEBrick puppet master in production, and should always configure a <a href="./services_master_rack.html">Rack puppet master server</a> instead.</p>
+
+<p>For details about invoking the puppet master command, see <a href="/references/3.7.latest/man/master.html">the puppet master man page</a>.</p>
+
+<h2 id="supported-platforms">Supported Platforms</h2>
+
+<p>The WEBrick puppet master will run on any *nix platform, including all Linux variants and OS X.</p>
+
+<p>You cannot run a puppet master on Windows.</p>
+
+<h2 id="controlling-the-service">Controlling the Service</h2>
+
+<p>The WEBrick puppet master runs as a single Ruby process. You can manage it in one of two ways.</p>
+
+<h3 id="use-the-puppetmaster-init-script">Use the <code>puppetmaster</code> Init Script</h3>
+
+<p>The puppet master packages for most platforms install an init script (usually called <code>puppetmaster</code>) that lets you manage the puppet master as a service. You can usually do <code>sudo puppet resource service puppetmaster ensure=running</code> to start the service. (Use <code>ensure=stopped</code> to stop it.)</p>
+
+<h3 id="run-puppet-master-on-the-command-line">Run <code>puppet master</code> on the Command Line</h3>
+
+<p>By default, running the <code>puppet master</code> command will start a puppet master server daemonized in the background. To stop the service, you’ll need to check the process table with something like <code>ps aux | grep puppet</code>, then <code>kill</code> the process.</p>
+
+<p>If you’re testing something quickly and want to view logs in real time, it’s more useful to run <code>sudo puppet master --verbose --no-daemonize</code>. This will keep the puppet master process in the foreground and print verbose logs to your terminal.</p>
+
+<h2 id="the-webrick-puppet-masters-run-environment">The WEBrick Puppet Master’s Run Environment</h2>
+
+<p>The WEBrick puppet master runs as a single Ruby process. This single process does everything related to handling puppet agent requests: It terminates SSL, routes HTTP requests, and executes the Ruby methods that recognize agent requests and build responses to them.</p>
+
+<h3 id="user">User</h3>
+
+<p>The puppet master process should generally be started as the root user, via <code>sudo</code>. Once the process starts, it will drop privileges and start running as the user specified by <a href="/references/latest/configuration.html#user">the <code>user</code> setting</a> (usually <code>puppet</code>). Any files and directories the puppet master uses will need to be readable and writable by this user.</p>
+
+<h3 id="ports">Ports</h3>
+
+<p>By default, Puppet’s HTTPS traffic uses port 8140. The OS and firewall must allow the puppet master’s Ruby process to accept incoming connections on this port.</p>
+
+<p>The port can be changed by changing <a href="/references/latest/configuration.html#masterport">the <code>masterport</code> setting</a> across all agents and puppet masters.</p>
+
+<h3 id="logging">Logging</h3>
+
+<p>When running under WEBrick, puppet master’s logging is split.</p>
+
+<p>WEBrick will log all HTTPS requests and errors to the file specified by <a href="/references/3.7.latest/configuration.html#masterhttplog">the <code>masterhttplog</code> setting</a>.</p>
+
+<p>The puppet master application itself logs its activity to syslog. This is where things like compilation errors and deprecation warnings go. Your syslog configuration dictates where these messages will be saved, but the default location is <code>/var/log/messages</code> on Linux, <code>/var/log/system.log</code> on Mac OS X, and <code>/var/adm/messages</code> on Solaris.</p>
+
+<p>When running in the foreground with the <code>--verbose</code> or <code>--debug</code> options, puppet master logs directly to the terminal instead of to syslog.</p>
+
+<p>When started with the <code>--logdest &lt;FILE&gt;</code> option, puppet master logs to the file specified by <code>&lt;FILE&gt;</code>.</p>
+
+<h2 id="configuring-a-webrick-puppet-master">Configuring a WEBrick Puppet Master</h2>
+
+<p>As <a href="./config_about_settings.html">described elsewhere,</a> the puppet master application reads most of its settings from <a href="./config_file_main.html">puppet.conf</a> and can accept additional settings on the command line.</p>
+
+<p>When running from the command line, puppet master can directly accept command line options. When running via an init script, it sometimes gets command line options from an init script config file. The location and format of this file will vary depending on your platform.</p>
+
+<p>To change the puppet master’s settings, you should generally use <a href="./config_file_main.html">puppet.conf</a>. The only two options you may want to set on the command line or in the init script config file are <code>--verbose</code> or <code>--debug</code>, to change the amount of detail in the logs.</p>
+
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>

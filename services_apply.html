@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Puppet's Services: Puppet Apply — Documentation — Puppet Labs</title>
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+    <link rel='icon' href='/favicon.ico' />
+
+     
+  <meta name="description" content="Puppet apply is an application that compiles and manages configurations on nodes. It acts like a self-contained combination of the puppet master an...">
+
+<!-- Google analytics -->
+<!-- End Google analytics -->
+
+
+    <!-- FIXME: absolute paths -->
+
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <!-- /all in one seo pack -->
+
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com/puppet/latest/reference/services_apply.html" />
+
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="./style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="./ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="./ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+<!-- Code for hover anchor links ends -->
+
+</head>
+
+
+
+
+  <body id="puppetlabsdocs" class="docs">
+  <!-- Google Tag Manager -->
+  <!-- End Google Tag Manager -->
+  <style type="text/css">h1, h2{ visibility : hidden }</style>
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->
+
+
+
+
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1>Puppet's Services: Puppet Apply</h1>
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#supported-platforms">Supported Platforms</a></li>
+  <li class="toc-lv2"><a href="#puppet-applys-run-environment">Puppet Apply’s Run Environment</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#main-manifest">Main Manifest</a></li>
+   <li class="toc-lv3"><a href="#user">User</a></li>
+   <li class="toc-lv3"><a href="#network-access">Network Access</a></li>
+   <li class="toc-lv3"><a href="#logging">Logging</a></li>
+   <li class="toc-lv3"><a href="#reporting">Reporting</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#managing-systems-with-puppet-apply">Managing Systems With Puppet Apply</a></li>
+  <li class="toc-lv2"><a href="#configuring-puppet-apply">Configuring Puppet Apply</a></li>
+</ol></nav>
+              
+<p>Puppet apply is an application that compiles and manages configurations on nodes. It acts like a self-contained combination of the puppet master and puppet agent applications. For more info about Puppet’s architecture, see <a href="./architecture.html">Overview of Puppet’s Architecture</a> — in particular, read the note at the end about <a href="architecture.html#note-differences-between-agentmaster-and-puppet-apply">differences and trade-offs between agent/master and puppet apply.</a></p>
+
+<p>For details about invoking the puppet apply command, see <a href="/references/3.7.latest/man/apply.html">the puppet apply man page</a>.</p>
+
+<h2 id="supported-platforms">Supported Platforms</h2>
+
+<p>Puppet apply runs similarly on both *nix and Windows systems.</p>
+
+<p>Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and other types may have OS-specific features. See the <a href="/references/3.7.latest/type.html">type reference</a> for details.</p>
+
+<h2 id="puppet-applys-run-environment">Puppet Apply’s Run Environment</h2>
+
+<p>Unlike puppet agent, puppet apply never runs as a daemon or service. It always runs as a single task in the foreground, which compiles a catalog, applies it, files a report, and exits.</p>
+
+<p>By default, it never initiates outbound network connections, although it can be configured to do so. It never accepts inbound network connections.</p>
+
+<h3 id="main-manifest">Main Manifest</h3>
+
+<p>Like the puppet master application, puppet apply uses its <a href="./config_important_settings.html#settings-for-agents-all-nodes">settings</a> (such as <code>basemodulepath</code>) and the configured <a href="./environments.html">environments</a> to locate the Puppet code and configuration data it will use when compiling a catalog.</p>
+
+<p>The one exception is the <a href="./dirs_manifest.html">main manifest</a>. Puppet apply always requires a single command line argument, which acts as its main manifest. It ignores <a href="/references/3.7.latest/configuration.html#manifest">the <code>manifest</code> setting</a> and the <a href="./environments.html#manifests-directory--main-manifest">default main manifest from an environment.</a></p>
+
+<p>(Alternately, you can write a tiny main manifest directly on the command line, with the <code>-e</code> option. See <a href="/references/3.7.latest/man/apply.html">the puppet apply man page</a> for details.)</p>
+
+<h3 id="user">User</h3>
+
+<p>Puppet apply runs as whichever user executed the puppet apply command.</p>
+
+<p>To manage a complete system, you should run puppet apply as:</p>
+
+<ul>
+  <li><code>root</code> on *nix systems</li>
+  <li>Either <code>LocalService</code> or a member of the <code>Administrators</code> group on Windows systems</li>
+</ul>
+
+<p>Puppet apply can also run as a non-root user. This will restrict the resources that Puppet can manage (see below).</p>
+
+<h4 id="resource-types-for-non-root-puppet-apply-runs">Resource Types For Non-Root Puppet Apply Runs</h4>
+
+<p>When running without root permissions, most of Puppet’s resource providers cannot use <code>sudo</code> to elevate permissions. This means Puppet can only manage resources that its user can modify without using <code>sudo</code>.</p>
+
+<p>Out of the core resource types listed in the <a href="/references/3.7.latest/type.html">type reference</a>, the following resource types are available to non-root puppet apply runs:</p>
+
+<ul>
+  <li><code>cron</code> (only non-root cron jobs can be viewed or set)</li>
+  <li><code>exec</code> (cannot run as another user or group)</li>
+  <li><code>file</code> (only if the non-root user has read/write privileges)</li>
+  <li><code>notify</code></li>
+  <li><code>schedule</code></li>
+  <li><code>ssh_key</code></li>
+  <li><code>ssh_authorized_key</code></li>
+  <li><code>service</code> (for services that don’t require root. You can also use the <code>start</code>, <code>stop</code>, and <code>status</code> attributes to specify how non-root users should control the service; see <a href="./resources_service.html">the tips and examples for the service type</a> for more info.)</li>
+  <li><code>augeas</code></li>
+</ul>
+
+<p>If you need to install packages into a directory controlled by a non-root user, you can either use an <code>exec</code> to unzip a tarball or use a recursive <code>file</code> resource to copy a directory into place.</p>
+
+<h3 id="network-access">Network Access</h3>
+
+<p>By default, puppet apply does not communicate over the network. It uses its local collection of <a href="./modules_fundamentals.html">modules</a> for any file sources, and does not submit reports to a central server.</p>
+
+<p>Depending on your system and the resources you are managing, it may download packages from your configured package repositories or access files on UNC shares.</p>
+
+<p>If you have configured an <a href="/guides/external_nodes.html">external node classifier (ENC)</a>, your ENC script might create an outbound HTTP connection. Additionally, if you’ve configured <a href="/references/3.7.latest/report.html#http">the HTTP report processor</a>, puppet agent may send reports via HTTP or HTTPS.</p>
+
+<p>If you have configured <a href="/puppetdb/latest">PuppetDB</a>, puppet apply will create outbound HTTPS connections to PuppetDB.</p>
+
+<h3 id="logging">Logging</h3>
+
+<p>By default, puppet apply logs directly to the terminal. This is good for interactive use, and less good when running as a scheduled task or cron job.</p>
+
+<p>When started with the <code>--logdest syslog</code> option, it logs to the *nix syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is <code>/var/log/messages</code> on Linux, <code>/var/log/system.log</code> on Mac OS X, and <code>/var/adm/messages</code> on Solaris.</p>
+
+<p>When started with the <code>--logdest eventlog</code> option, it logs to the Windows Event Log. You can view its logs by browsing the Event Viewer. (Control Panel → System and Security → Administrative Tools → Event Viewer)</p>
+
+<p>When started with the <code>--logdest &lt;FILE&gt;</code> option, it logs to the file specified by <code>&lt;FILE&gt;</code>.</p>
+
+<h3 id="reporting">Reporting</h3>
+
+<p>In addition to local logging, puppet apply will process a report using its configured <a href="/references/3.7.latest/report.html">report handlers</a>, like a puppet master does. You can enable different reports with <a href="/references/3.7.latest/configuration.html#reports">the <code>reports</code> setting</a>; see the <a href="/references/3.7.latest/report.html">list of available reports</a> for more info. For more about reporting, see <a href="/guides/reporting.html">the guide to reporting</a>.</p>
+
+<p>To disable reporting and avoid taking up disk space with the <code>store</code> report handler, you can set <a href="/references/3.7.latest/configuration.html#report"><code>report = false</code></a> in <a href="./config_file_main.html">puppet.conf</a>.</p>
+
+<h2 id="managing-systems-with-puppet-apply">Managing Systems With Puppet Apply</h2>
+
+<p>In a normal Puppet site, every node should periodically do configuration runs, to revert unwanted changes and to pick up recent updates.</p>
+
+<p>Since puppet apply doesn’t run as a service, you must manually create a scheduled task or cron job if you want it to run on a regular basis.</p>
+
+<p>On *nix, you can use the puppet resource command to set up a cron job. Below is an example that runs Puppet once an hour; adjust the path to the Puppet command if you are not using Puppet Enterprise.</p>
+
+<pre><code>$ sudo puppet resource cron puppet-apply ensure=present user=root minute=30 command='/opt/puppet/bin/puppet apply /etc/puppetlabs/puppet/manifests --logdest syslog'
+</code></pre>
+
+<h2 id="configuring-puppet-apply">Configuring Puppet Apply</h2>
+
+<p>Puppet apply should be configured with <a href="./config_file_main.html">puppet.conf</a>, using the <code>[user]</code> and/or <code>[main]</code> section. For notes on which settings are most relevant to puppet apply, see the <a href="./config_important_settings.html#settings-for-agents-all-nodes">short list of important settings</a>.</p>
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>

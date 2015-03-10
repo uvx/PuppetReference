@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Puppet's Services: Puppet Agent on Windows Systems — Documentation — Puppet Labs</title>
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+    <link rel='icon' href='/favicon.ico' />
+
+     
+  <meta name="description" content="Puppet agent is the application that manages configurations on nodes. It requires a puppet master server to fetch configuration catalogs from. (For...">
+
+<!-- Google analytics -->
+
+<!-- End Google analytics -->
+
+
+    <!-- FIXME: absolute paths -->
+
+
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <!-- /all in one seo pack -->
+
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com/puppet/latest/reference/services_master_windows.html" />
+
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="./style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="./ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="./ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+
+<link rel="stylesheet" href="./anchor.css">
+
+<!-- Code for hover anchor links ends -->
+
+</head>
+
+
+
+
+  <body id="puppetlabsdocs" class="docs">
+  <!-- Google Tag Manager -->
+
+  <!-- End Google Tag Manager -->
+  <style type="text/css">h1, h2{ visibility : hidden }</style>
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->
+
+
+
+
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1>Puppet's Services: Puppet Agent on Windows Systems</h1>
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#supported-platforms">Supported Platforms</a></li>
+  <li class="toc-lv2"><a href="#puppet-agents-run-environment">Puppet Agent’s Run Environment</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#user">User</a></li>
+   <li class="toc-lv3"><a href="#ports">Ports</a></li>
+   <li class="toc-lv3"><a href="#logging">Logging</a></li>
+   <li class="toc-lv3"><a href="#reporting">Reporting</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#managing-systems-with-puppet-agent">Managing Systems With Puppet Agent</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#running-puppet-agent-as-a-service">Running Puppet Agent as a Service</a></li>
+   <li class="toc-lv3"><a href="#running-puppet-agent-on-demand">Running Puppet Agent On Demand</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#disabling-and-re-enabling-puppet-runs">Disabling and Re-enabling Puppet Runs</a></li>
+  <li class="toc-lv2"><a href="#configuring-puppet-agent">Configuring Puppet Agent</a></li>
+</ol></nav>
+              
+<p>Puppet agent is the application that manages configurations on nodes. It requires a puppet master server to fetch configuration <a href="./subsystem_catalog_compilation.html">catalogs</a> from. (For more info, see <a href="./architecture.html">Overview of Puppet’s Architecture</a>.)</p>
+
+<p>For details about invoking the puppet agent command, see <a href="/references/3.7.latest/man/agent.html">the puppet agent man page</a>.</p>
+
+<h2 id="supported-platforms">Supported Platforms</h2>
+
+<p>This page describes how puppet agent behaves on Windows systems. For information about Linux, OS X, and other Unix-like operating systems, see <a href="./services_agent_unix.html">Puppet Agent on *nix Systems</a>.</p>
+
+<p>Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and other types may have OS-specific features. See the <a href="/references/3.7.latest/type.html">type reference</a> for details.</p>
+
+<h2 id="puppet-agents-run-environment">Puppet Agent’s Run Environment</h2>
+
+<p>Puppet agent runs as a specific user (defaulting to <code>LocalSystem</code>) and initiates outbound connections on port 8140.</p>
+
+<h3 id="user">User</h3>
+
+<p>By default, puppet agent runs as the <code>LocalSystem</code> user. This lets it manage the configuration of the entire system, but prevents it from accessing files on UNC shares.</p>
+
+<p>Puppet can also run as a different user. You can change the user in the Service Control Manager (SCM). To start the SCM, choose “Run…” from the Start menu and type <code>Services.msc</code>.</p>
+
+<p>You can also specify a different user when installing Puppet. To do this, install via the command line and <a href="/guides/install_puppet/install_windows.html#automated-installation">specify the required MSI properties</a> (<code>PUPPET_AGENT_ACCOUNT_USER</code>, <code>PUPPET_AGENT_ACCOUNT_PASSWORD</code>, and <code>PUPPET_AGENT_ACCOUNT_DOMAIN</code>).</p>
+
+<p>Puppet agent’s user can be a local or domain user. If this user isn’t already a local administrator, the Puppet installer will add it to the <code>Administrators</code> group. The installer will also grant <a href="http://msdn.microsoft.com/en-us/library/ms813948.aspx">Logon as Service</a> to the user.</p>
+
+<h3 id="ports">Ports</h3>
+
+<p>By default, Puppet’s HTTPS traffic uses port 8140. Your OS and firewall must allow puppet agent to initiate outbound connections on this port.</p>
+
+<p>If you want to use a non-default port, you’ll have to change <a href="/references/latest/configuration.html#masterport">the <code>masterport</code> setting</a> on all agent nodes, and ensure that you’ve changed your puppet master’s port as well.</p>
+
+<h3 id="logging">Logging</h3>
+
+<p>When running as a service, puppet agent logs messages to the Windows Event Log. You can view its logs by browsing the Event Viewer. (Control Panel → System and Security → Administrative Tools → Event Viewer)</p>
+
+<p>When running in the foreground with the <code>--verbose</code>, <code>--debug</code>, or <code>--test</code> options, puppet agent logs directly to the terminal.</p>
+
+<p>When started with the <code>--logdest &lt;FILE&gt;</code> option, puppet agent logs to the file specified by <code>&lt;FILE&gt;</code>.</p>
+
+<h3 id="reporting">Reporting</h3>
+
+<p>In addition to local logging, puppet agent will submit a <a href="/guides/reporting.html">report</a> to the puppet master after each run. (This can be disabled by setting <a href="/references/3.7.latest/configuration.html#report"><code>report = false</code></a> in <a href="./config_file_main.html">puppet.conf</a>.)</p>
+
+<p>In Puppet Enterprise, you can browse these reports in the PE console’s node pages, and you can analyze correlated events with the PE event inspector.</p>
+
+<h2 id="managing-systems-with-puppet-agent">Managing Systems With Puppet Agent</h2>
+
+<p>In a normal Puppet site, every node should periodically do configuration runs, to revert unwanted changes and to pick up recent updates.</p>
+
+<p>On Windows nodes, there are two main ways to do this:</p>
+
+<ul>
+  <li><strong>Run puppet agent as a service.</strong> The easiest method. The puppet agent service will do configuration runs at a set interval, which can be configured.</li>
+  <li><strong>Only run puppet agent on demand.</strong> To trigger runs on groups of systems, you can use Puppet Enterprise’s built-in orchestration features.</li>
+</ul>
+
+<p>Since the Windows version of the puppet agent service is much simpler than the *nix version, there’s no real performance to be gained by running Puppet as a scheduled task. All users who want scheduled configuration runs should run the Windows service.</p>
+
+<h3 id="running-puppet-agent-as-a-service">Running Puppet Agent as a Service</h3>
+
+<p>By default, the Puppet installer will configure puppet agent to run as a Windows service and will automatically start it. No further action is needed. Puppet agent will do configuration runs at a set interval.</p>
+
+<h4 id="configuring-the-run-interval">Configuring the Run Interval</h4>
+
+<p>The puppet agent service defaults to doing a configuration run every 30 minutes. You can configure this with <a href="/references/3.7.latest/configuration.html#runinterval">the <code>runinterval</code> setting</a> in <a href="./config_file_main.html">puppet.conf</a>:</p>
+
+<pre><code># C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf
+[agent]
+  runinterval = 2h
+</code></pre>
+
+<p>If you don’t need an aggressive schedule of configuration runs, a longer run interval will let your puppet master server(s) handle many more agent nodes.</p>
+
+<p>Once the run interval has been changed, the service will stick to the prior schedule for the next run and then switch to the new run interval for subsequent runs.</p>
+
+<h4 id="configuring-the-service-start-up-type">Configuring the Service Start Up Type</h4>
+
+<p>The puppet agent service defaults to starting automatically. If you’d rather start it manually or disable it, you can configure this during installation. To do this, install via the command line and <a href="/guides/install_puppet/install_windows.html#automated-installation">specify the <code>PUPPET_AGENT_STARTUP_MODE</code> MSI property</a>.</p>
+
+<p>You can also configure this after installation with the Service Control Manager (SCM). To start the SCM, choose “Run…” from the Start menu and type <code>Services.msc</code>.</p>
+
+<p>You can also configure agent service with the <code>sc.exe</code> command. To prevent the service from starting on boot:</p>
+
+<pre><code>C:\&gt;sc config puppet start= demand
+[SC] ChangeServiceConfig SUCCESS
+</code></pre>
+
+<p>(Note that the space after <code>start=</code> is mandatory! Also note that this must be run in cmd.exe; this command won’t work from PowerShell.)</p>
+
+<p>To restart the service:</p>
+
+<pre><code>C:\&gt;sc stop puppet
+C:\&gt;sc start puppet
+</code></pre>
+
+<p>To change the arguments used when triggering a puppet agent run (this example changes the level of detail that gets written to the Event Log):</p>
+
+<pre><code>C:\&gt;sc start puppet --debug --logdest eventlog
+</code></pre>
+
+<h3 id="running-puppet-agent-on-demand">Running Puppet Agent On Demand</h3>
+
+<p>Some sites prefer to only run puppet agent on demand; others use scheduled runs, but occasionally need to do an on-demand run.</p>
+
+<p>Puppet agent runs can be started locally (while logged in to the target system), or remotely via Puppet Enterprise’s orchestration tools.</p>
+
+<h4 id="while-logged-in-to-the-target-system">While Logged in to the Target System</h4>
+
+<p>On Windows, you can start a configuration run with the “Run Puppet Agent” Start menu item. This will show the status of the run in a command prompt window.</p>
+
+<p>You <strong>must be logged in as an administrator</strong> to do this. On Windows 7/2008 and later, Windows will ask for User Account Control confirmation when you start a configuration run:</p>
+
+<p><img src="./images/uac.png" alt="UAC dialog" /></p>
+
+<h5 id="running-other-puppet-commands">Running Other Puppet Commands</h5>
+
+<p>If you want to run other Puppet-related commands, you must start a command prompt <strong>with administrative privileges.</strong> You can do this with either the standard <code>cmd.exe</code> program, or the “Start Command Prompt with Puppet” Start menu item added by the Puppet installer.</p>
+
+<ul>
+  <li>On Windows 2003, make sure you are logged in as an administrator before starting the command prompt.</li>
+  <li>
+    <p>On Windows 7 or 2008, you must right-click the start menu item and choose “Run as administrator:”</p>
+
+    <p><img src="./images/run_as_admin.png" alt="the right click menu, with run as administrator highlighted" /></p>
+
+    <p>This will ask for UAC confirmation:</p>
+
+    <p><img src="./images/uac.png" alt="UAC dialog" /></p>
+  </li>
+</ul>
+
+<h4 id="remotely">Remotely</h4>
+
+<p>To run puppet agent remotely on any number of systems, you should use Puppet Enterprise’s orchestration tools. For info, see the Puppet Enterprise manual <a href="/pe/latest/orchestration_puppet.html">page on triggering Puppet runs</a>.</p>
+
+<p>Open source Puppet users can install <a href="/mcollective">MCollective</a> and <a href="https://github.com/puppetlabs/mcollective-puppet-agent">the puppet agent plugin</a> to get similar capabilities, but Puppet Labs doesn’t provide standalone MCollective packages for Windows.</p>
+
+<p>Puppet agent on Windows doesn’t support the deprecated puppet kick command.</p>
+
+<h2 id="disabling-and-re-enabling-puppet-runs">Disabling and Re-enabling Puppet Runs</h2>
+
+<p>You can prevent puppet agent from doing any Puppet runs by <a href="./services_commands_windows.html">starting a command prompt with elevated privileges</a> and running <code>puppet agent --disable "&lt;MESSAGE&gt;"</code>. You can re-enable it with <code>puppet agent --enable</code>.</p>
+
+<p>If puppet agent attempts to do a configuration run while disabled — either a scheduled run or a manually triggered one — it will log a message like:</p>
+
+<pre><code>Notice: Skipping run of Puppet configuration client; administratively disabled
+(Reason: 'Investigating a problem 5/23/14 -NF'); Use 'puppet agent --enable' to re-enable.
+</code></pre>
+
+<h2 id="configuring-puppet-agent">Configuring Puppet Agent</h2>
+
+<p>Puppet agent should be configured with <a href="./config_file_main.html">puppet.conf</a>, using the <code>[agent]</code> and/or <code>[main]</code> section. For notes on which settings are most relevant to puppet agent, see the <a href="./config_important_settings.html#settings-for-agents-all-nodes">short list of important settings</a>.</p>
+
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>

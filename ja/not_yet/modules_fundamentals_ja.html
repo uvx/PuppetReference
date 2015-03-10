@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Module Fundamentals — Documentation — Puppet Labs</title>
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+    <link rel='icon' href='/favicon.ico' />
+
+     
+  <meta name="description" content="Puppet ModulesModules are self-contained bundles of code and data. You can write your own modules or you can download pre-built modules from the Pu...">
+
+<!-- Google analytics -->
+<!-- End Google analytics -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <!-- /all in one seo pack -->
+
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com/puppet/latest/reference/modules_fundamentals.html" />
+
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="./style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="./ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="./ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+<link rel="stylesheet" href="./anchor.css">
+<!-- Code for hover anchor links ends -->
+
+</head>
+
+
+
+
+  <body id="puppetlabsdocs" class="docs">
+  <!-- Google Tag Manager -->
+  <!-- End Google Tag Manager -->
+  <style type="text/css">h1, h2{ visibility : hidden }</style>
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->
+
+
+
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1>Module Fundamentals</h1>
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#using-modules">Using Modules</a></li>
+  <li class="toc-lv2"><a href="#module-layout">Module Layout</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#example">Example</a></li>
+   <li class="toc-lv3"><a href="#manifests">Manifests</a></li>
+   <li class="toc-lv3"><a href="#allowed-module-names">Allowed Module Names</a></li>
+   <li class="toc-lv3"><a href="#files">Files</a></li>
+   <li class="toc-lv3"><a href="#templates">Templates</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#writing-modules">Writing Modules</a></li>
+  <li class="toc-lv2"><a href="#tips">Tips</a></li>
+</ol></nav>
+              
+<h1 id="puppet-modules">Puppet Modules</h1>
+
+<p><strong>Modules</strong> are self-contained bundles of code and data. You can write your own modules or you can download pre-built modules from <a href="http://forge.puppetlabs.com">the Puppet Forge</a>.</p>
+
+<p><strong>Nearly all Puppet manifests belong in modules.</strong> The sole exception is the main <code>site.pp</code> manifest, which contains site-wide and node-specific code.</p>
+
+<p><strong>Every Puppet user should expect to write at least some of their own modules.</strong></p>
+
+<ul>
+  <li>Continue reading to learn how to write and use Puppet modules.</li>
+  <li><a href="./modules_installing.html">See “Installing Modules”</a> for how to install pre-built modules from <a href="http://forge.puppetlabs.com">the Puppet Forge</a>.</li>
+  <li><a href="./modules_publishing.html">See “Publishing Modules”</a> for how to publish your modules to the Puppet Forge.</li>
+  <li><a href="/guides/plugins_in_modules.html">See “Using Plugins”</a> for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.</li>
+  <li><a href="./modules_documentation.html">See “Documenting Modules”</a> for a README template and information on providing directions for your module.</li>
+</ul>
+
+<h2 id="using-modules">Using Modules</h2>
+
+<p><strong>Modules are how Puppet finds the classes and types it can use</strong> — it automatically loads any <a href="./lang_classes.html">class</a> or <a href="./lang_defined_types.html">defined type</a> stored in its modules. Within a manifest or from an <a href="/guides/external_nodes.html">external node classifier (ENC)</a>, any of these classes or types can be declared by name:</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /etc/puppetlabs/puppet/site.pp</span>
+
+    <span class="n">node</span> <span class="n">default</span> <span class="p">{</span>
+      <span class="kp">include</span> <span class="n">apache</span>
+
+      <span class="k">class</span> <span class="p">{</span><span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+        <span class="n">enable</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="n">apache</span><span class="o">::</span><span class="n">vhost</span> <span class="p">{</span><span class="s1">&#39;personal_site&#39;</span><span class="p">:</span>
+        <span class="n">port</span>    <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
+        <span class="n">docroot</span> <span class="o">=&gt;</span> <span class="s1">&#39;/var/www/personal&#39;</span><span class="p">,</span>
+        <span class="n">options</span> <span class="o">=&gt;</span> <span class="s1">&#39;Indexes MultiViews&#39;</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Likewise, Puppet can automatically load plugins (like custom native resource types or custom facts) from modules; see <a href="/guides/plugins_in_modules.html">“Using Plugins”</a> for more details.</p>
+
+<p>To make a module available to Puppet, <strong>place it in one of the directories in Puppet’s <a href="./dirs_modulepath.html">modulepath</a>.</strong></p>
+
+<p>You can easily install modules written by other users with the <code>puppet module</code> subcommand. <a href="./modules_installing.html">See “Installing Modules”</a> for details.</p>
+
+<h2 id="module-layout">Module Layout</h2>
+
+<p>On disk, a module is simply <strong>a directory tree with a specific, predictable structure:</strong></p>
+
+<ul>
+  <li><code>&lt;MODULE NAME&gt;</code>
+    <ul>
+      <li><code>manifests</code></li>
+      <li><code>files</code></li>
+      <li><code>templates</code></li>
+      <li><code>lib</code></li>
+      <li><code>facts.d</code></li>
+      <li><code>tests</code></li>
+      <li><code>spec</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="example">Example</h3>
+
+<p>This example module, named “<code>my_module</code>,” shows the standard module layout in more detail:</p>
+
+<ul>
+  <li><code>my_module</code> — This outermost directory’s name matches the name of the module.
+    <ul>
+      <li><code>manifests/</code> — Contains all of the manifests in the module.
+        <ul>
+          <li><code>init.pp</code> — Contains a class definition. <strong>This class’s name must match the module’s name.</strong></li>
+          <li><code>other_class.pp</code> — Contains a class named <strong><code>my_module::other_class</code>.</strong></li>
+          <li><code>my_defined_type.pp</code> — Contains a defined type named <strong><code>my_module::my_defined_type</code>.</strong></li>
+          <li><code>implementation/</code> — This directory’s name affects the class names beneath it.
+            <ul>
+              <li><code>foo.pp</code> — Contains a class named <strong><code>my_module::implementation::foo</code>.</strong></li>
+              <li><code>bar.pp</code> — Contains a class named <strong><code>my_module::implementation::bar</code>.</strong></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><code>files/</code> — Contains static files, which managed nodes can download.
+        <ul>
+          <li><code>service.conf</code> — This file’s <code>source =&gt;</code> URL would be <strong><code>puppet:///modules/my_module/service.conf</code>.</strong> Its contents can also be accessed with the <code>file</code> function, like <code>content =&gt; file('my_module/service.conf')</code>.</li>
+        </ul>
+      </li>
+      <li><code>lib/</code> — Contains plugins, like <a href="/facter/latest/custom_facts.html">custom facts</a> and custom resource types. These will be used by both the puppet master server and the puppet agent service, and they’ll be synced to all agent nodes whenever they request their configurations. See <a href="/guides/plugins_in_modules.html">“Using Plugins”</a> for more details.</li>
+      <li><code>facts.d/</code> — Contains <a href="/facter/latest/custom_facts.html#external-facts">external facts</a>, which are an alternative to Ruby-based <a href="/facter/latest/custom_facts.html">custom facts</a>. These will be synced to all agent nodes, so they can submit values for those facts to the puppet master. (Requires Facter 2.0.1 or later.)</li>
+      <li><code>templates/</code> — Contains templates, which the module’s manifests can use. See <a href="/guides/templating.html">“Templates”</a> for more details.
+        <ul>
+          <li><code>component.erb</code> — A manifest can render this template with <code>template('my_module/component.erb')</code>.</li>
+        </ul>
+      </li>
+      <li><code>tests/</code> — Contains examples showing how to declare the module’s classes and defined types.
+        <ul>
+          <li><code>init.pp</code></li>
+          <li><code>other_class.pp</code> — Each class or type should have an example in the tests directory.</li>
+        </ul>
+      </li>
+      <li><code>spec/</code> — Contains spec tests for any plugins in the lib directory.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Each of the module’s subdirectories has a specific function, as follows.</p>
+
+<h3 id="manifests">Manifests</h3>
+
+<p><strong>Each manifest in a module’s <code>manifests</code> folder should contain one class or defined type.</strong> The file names of manifests <strong>map predictably</strong> to the names of the classes and defined types they contain.</p>
+
+<p><code>init.pp</code> is special and <strong>always contains a class with the same name as the module. You may not have a class named init.</strong></p>
+
+<p>Every other manifest contains a class or defined type named as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name of module</th>
+      <th>::</th>
+      <th>Other directories:: (if any)</th>
+      <th>Name of file (no extension)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>my_module</code></td>
+      <td><code>::</code></td>
+      <td> </td>
+      <td><code>other_class</code></td>
+    </tr>
+    <tr>
+      <td><code>my_module</code></td>
+      <td><code>::</code></td>
+      <td><code>implementation::</code></td>
+      <td><code>foo</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Thus:</p>
+
+<ul>
+  <li><code>my_module::other_class</code> would be in the file <code>my_module/manifests/other_class.pp</code></li>
+  <li><code>my_module::implementation::foo</code> would be in the file <code>my_module/manifests/implementation/foo.pp</code></li>
+</ul>
+
+<p>The double colon that divides the sections of a class’s name is called the <strong>namespace separator.</strong></p>
+
+<h3 id="allowed-module-names">Allowed Module Names</h3>
+
+<p>Module names should only contain <strong>lowercase letters, numbers, and underscores,</strong> and should <strong>begin with a lowercase letter;</strong> that is, they should match the expression <code>[a-z][a-z0-9_]*</code>. Note that these are the same restrictions that apply to class names, but with the added restriction that module names cannot contain the namespace separator (<code>::</code>) as modules cannot be nested.</p>
+
+<p>Although some names that violate these restrictions currently work, using them is not recommended.</p>
+
+<p>Certain module names are disallowed:</p>
+
+<ul>
+  <li>main</li>
+  <li>settings</li>
+</ul>
+
+<h3 id="files">Files</h3>
+
+<p>Files in a module’s <code>files</code> directory can be served to agent nodes. They can be downloaded by using <strong>puppet:/// URLs</strong> in the <code>source</code> attribute of a <a href="/references/stable/type.html#file"><code>file</code></a> resource.</p>
+
+<p>You can also access module files with <a href="/references/3.7.latest/function.html#file">the <code>file</code> function</a>. This function takes a <code>&lt;MODULE NAME&gt;/&lt;FILE NAME&gt;</code> reference, and returns the content of the requested file from the module’s <code>files</code> directory.</p>
+
+<p>Puppet URLs work transparently in both agent/master mode and standalone mode; in either case, they will retrieve the correct file from a module.</p>
+
+<p>Puppet URLs are formatted as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Protocol</th>
+      <th>3 slashes</th>
+      <th>“Modules”/</th>
+      <th>Name of module/</th>
+      <th>Name of file</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>puppet:</code></td>
+      <td><code>///</code></td>
+      <td><code>modules/</code></td>
+      <td><code>my_module/</code></td>
+      <td><code>service.conf</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>So <code>puppet:///modules/my_module/service.conf</code> would map to <code>my_module/files/service.conf</code>.</p>
+
+<h3 id="templates">Templates</h3>
+
+<p>Any ERB template (see <a href="/guides/templating.html">“Templates”</a> for more details) can be rendered in a manifest with the <code>template</code> function. The output of the template is a simple string, which can be used as the content attribute of a <a href="/references/stable/type.html#file"><code>file</code></a> resource or as the value of a variable.</p>
+
+<p><strong>The template function can look up templates identified by shorthand:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Template function</th>
+      <th>(‘</th>
+      <th>Name of module/</th>
+      <th>Name of template</th>
+      <th>’)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>template</code></td>
+      <td><code>('</code></td>
+      <td><code>my_module/</code></td>
+      <td><code>component.erb</code></td>
+      <td><code>')</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>So <code>template('my_module/component.erb')</code> would render the template <code>my_module/templates/component.erb</code>.</p>
+
+<h2 id="writing-modules">Writing Modules</h2>
+
+<p>To write a module, we strongly suggest running <code>puppet module generate &lt;USERNAME&gt;-&lt;MODULE NAME&gt;</code>.</p>
+
+<p>When you run the above command, the puppet module tool (PMT) will run a series of questions to gather metadata about your module and will create a basic module structure for you.</p>
+
+<pre><code>$ puppet module generate examplecorp-mymodule
+
+We need to create a metadata.json file for this module.  Please answer the
+following questions; if the question is not applicable to this module, feel free
+to leave it blank.
+
+Puppet uses Semantic Versioning (semver.org) to version modules.
+What version is this module?  [0.1.0]
+--&gt; 0.1.0
+
+Who wrote this module?  [examplecorp]
+--&gt; Pat
+
+What license does this module code fall under?  [Apache 2.0]
+--&gt; Apache 2.0
+
+How would you describe this module in a single sentence?
+--&gt; It examples with Puppet.
+
+Where is this module's source code repository?
+--&gt; https://github.com/examplecorp/examplecorp-mymodule
+
+Where can others go to learn more about this module?
+--&gt; https://forge.puppetlabs.com/examplecorp/mymodule
+
+Where can others go to file issues about this module?
+--&gt;
+
+
+{
+  "name": "examplecorp-mymodule",
+  "version": "0.1.0",
+  "author": "Pat",
+  "summary": "It examples with Puppet.",
+  "license": "Apache 2.0",
+  "source": "https://github.com/examplecorp/examplecorp-mymodule",
+  "project_page": "(https://forge.puppetlabs.com/examplecorp/mymodule)",
+  "issues_url": null,
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_range": "&gt;= 1.0.0"
+    }
+  ]
+}
+
+
+About to generate this metadata; continue? [n/Y]
+--&gt; Y
+
+Notice: Generating module at /Users/Pat/Development/examplecorp-mymodule...
+Notice: Populating ERB templates...
+Finished; module generated in examplecorp-mymodule.
+examplecorp-mymodule/manifests
+examplecorp-mymodule/manifests/init.pp
+examplecorp-mymodule/metadata.json
+examplecorp-mymodule/Rakefile
+examplecorp-mymodule/README.md
+examplecorp-mymodule/spec
+examplecorp-mymodule/spec/classes
+examplecorp-mymodule/spec/classes/init_spec.rb
+examplecorp-mymodule/spec/spec_helper.rb
+examplecorp-mymodule/tests
+examplecorp-mymodule/tests/init.pp
+</code></pre>
+
+<p>For best practices about writing your module, please see the <a href="/guides/module_guides/bgtm.html">Beginner’s Guide to Modules</a>.</p>
+
+<p>You also have the option of writing classes and defined types by hand and placing them in properly named manifest files as <a href="#module_layout">described above</a>. If you take this route, you <strong>must</strong> ensure that your metadata.json file is properly formatted or your module <strong>will not work</strong>.</p>
+
+<ul>
+  <li><a href="./lang_classes.html">See here</a> for more information on classes</li>
+  <li><a href="./lang_defined_types.html">See here</a> for more information on defined types</li>
+</ul>
+
+<h2 id="tips">Tips</h2>
+
+<p>The <a href="./lang_classes.html">classes</a>, <a href="./lang_defined_types.html">defined types</a>, and <a href="/guides/plugins_in_modules.html">plugins</a> in a module <strong>should all be related,</strong> and the module should aim to be <strong>as self-contained as possible.</strong></p>
+
+<p>Manifests in one module should never reference files or templates stored in another module.</p>
+
+<p>Be wary of having classes declare classes from other modules, as this makes modules harder to redistribute. When possible, it’s best to isolate “super-classes” that declare many other classes in a local “site” module.</p>
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>

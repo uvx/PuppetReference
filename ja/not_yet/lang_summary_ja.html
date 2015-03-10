@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Language: Basics — Documentation — Puppet Labs</title>
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+    <link rel='icon' href='/favicon.ico' />
+
+     
+  <meta name="description" content="Puppet uses its own configuration language, which was designed to be accessible to sysadmins. The Puppet language does not require much formal prog...">
+
+<!-- Google analytics -->
+<!-- End Google analytics -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <!-- /all in one seo pack -->
+
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com/puppet/latest/reference/lang_summary.html" />
+
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="./style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="./ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="./ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+<link rel="stylesheet" href="./anchor.css">
+<!-- Code for hover anchor links ends -->
+
+</head>
+
+
+
+
+  <body id="puppetlabsdocs" class="docs">
+  <!-- Google Tag Manager -->
+  <!-- End Google Tag Manager -->
+  <style type="text/css">h1, h2{ visibility : hidden }</style>
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->
+
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1>Language: Basics</h1>
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#resources-classes-and-nodes">Resources, Classes, and Nodes</a></li>
+  <li class="toc-lv2"><a href="#ordering">Ordering</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#configurable-ordering">Configurable Ordering</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#files">Files</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#line-endings-in-windows-text-files">Line Endings in Windows Text Files</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#compilation-and-catalogs">Compilation and Catalogs</a></li>
+  <li class="toc-lv2"><a href="#example">Example</a></li>
+</ol></nav>
+              
+<p>Puppet uses its own configuration language, which was designed to be accessible to sysadmins. The Puppet language does not require much formal programming experience and its syntax was inspired by the Nagios configuration file format.</p>
+
+<blockquote>
+  <p>To see how the Puppet language’s features have evolved over time, see <a href="/guides/language_history.html">History of the Puppet Language</a>.</p>
+</blockquote>
+
+<h2 id="resources-classes-and-nodes">Resources, Classes, and Nodes</h2>
+
+<p>The core of the Puppet language is <strong>declaring <a href="./lang_resources.html">resources</a>.</strong> Every other part of the language exists to add flexibility and convenience to the way resources are declared.</p>
+
+<p>Groups of resources can be organized into <strong><a href="./lang_classes.html">classes</a>,</strong> which are larger units of configuration. While a resource may describe a single file or package, a class may describe everything needed to configure an entire service or application (including any number of packages, config files, service daemons, and maintenance tasks). Smaller classes can then be combined into larger classes which describe entire custom system roles, such as “database server” or “web application worker.”</p>
+
+<p>Nodes that serve different roles will generally get different sets of classes. The task of configuring which classes will be applied to a given node is called <strong>node classification.</strong>  Nodes can be classified in the Puppet language using <a href="./lang_node_definitions.html">node definitions</a>; they can also be classified using node-specific data from outside your manifests, such as that from an <a href="/guides/external_nodes.html">ENC</a> or <a href="/hiera/latest">Hiera</a>.</p>
+
+<h2 id="ordering">Ordering</h2>
+
+<p>Puppet’s language is mostly <strong>declarative:</strong> Rather than listing a series of steps to carry out, a Puppet manifest describes a desired final state.</p>
+
+<p>The resources in a manifest can be freely ordered — they will not necessarily be applied to the system in the order they are written. This is because Puppet assumes most resources aren’t related to each other. If one resource depends on another, <a href="./lang_relationships.html">you must say so explicitly</a>. (If you want a short section of code to get applied in the order written, you can use <a href="./lang_relationships.html#chaining-arrows">chaining arrows</a>.)</p>
+
+<p>Although resources can be freely ordered, several parts of the language do depend on parse order. The most notable of these are variables, which must be set before they are referenced.</p>
+
+<h3 id="configurable-ordering">Configurable Ordering</h3>
+
+<p>The <a href="/references/3.7.latest/configuration.html#ordering">ordering setting</a> allows you to configure how resources are ordered when relationships are not present.</p>
+
+<p>By default, the order of unrelated resources is effectively random. If you set <code>ordering = manifest</code> in <code>puppet.conf</code>, Puppet will apply unrelated resources in the order in which they appear in the manifest.</p>
+
+<p>This setting only affects resources whose relative order <strong>is not otherwise determined,</strong> e.g., by metaparameters like <code>before</code> or <code>require</code>. See <a href="./lang_relationships.html">the language page on relationships</a> for more information.</p>
+
+<h2 id="files">Files</h2>
+
+<p>Puppet language files are called <strong>manifests,</strong> and are named with the <code>.pp</code> file extension. Manifest files:</p>
+
+<ul>
+  <li>Should use UTF8 encoding</li>
+  <li>May use Unix (LF) or Windows (CRLF) line breaks (note that the line break format also affects <a href="./lang_datatypes.html#line-breaks">literal line breaks in strings</a>)</li>
+</ul>
+
+<p>Puppet always begins compiling with a single manifest (which may be broken up into several pieces), called the “site manifest” or “main manifest.” See <a href="./dirs_manifest.html">the reference page on the main manifest</a> for details about this special file/directory.</p>
+
+<p>Any <a href="./lang_classes.html">classes</a> <a href="/references/glossary.html#declare">declared</a> in the main manifest can be <a href="./lang_namespaces.html#autoloader-behavior">autoloaded</a> from manifest files in <a href="./modules_fundamentals.html">modules</a>. Puppet will also autoload any classes declared by an optional <a href="/guides/external_nodes.html">external node classifier</a>. See <a href="./subsystem_catalog_compilation.html">the reference page on catalog compilation</a> for details.</p>
+
+<p>The simplest Puppet deployment is a lone main manifest file with a few resources. Complexity can grow progressively, by grouping resources into modules and classifying your nodes more granularly.</p>
+
+<h3 id="line-endings-in-windows-text-files">Line Endings in Windows Text Files</h3>
+
+<p>Windows uses CRLF line endings instead of *nix’s LF line endings.</p>
+
+<ul>
+  <li>If the contents of a file are specified with the <code>content</code> attribute, Puppet will write the content in “binary” mode. To create files with CRLF line endings, the <code>\r\n</code> escape sequence should be specified as part of the content.</li>
+  <li>If a file is being downloaded to a Windows node with the <code>source</code> attribute, Puppet will transfer the file in “binary” mode, leaving the original newlines untouched.</li>
+  <li>
+    <p>Non-<code>file</code> resource types that make partial edits to a system file (most notably the <a href="/references/latest/type.html#host"><code>host</code></a> type, which manages the <code>%windir%\system32\drivers\etc\hosts</code> file) manage their files in text mode, and will automatically translate between Windows and *nix line endings.</p>
+
+    <blockquote>
+      <p>Note: When writing your own resource types, you can get this behavior by using the <code>flat</code> filetype.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="compilation-and-catalogs">Compilation and Catalogs</h2>
+
+<p>Puppet manifests can use conditional logic to describe many nodes’ configurations at once. Before configuring a node, Puppet compiles manifests into a <strong>catalog,</strong> which is only valid for a single node and which contains no ambiguous logic.</p>
+
+<p>Catalogs are static documents which contain resources and relationships. At various stages of a Puppet run, a catalog will be in memory as a Ruby object, transmitted as JSON, and persisted to disk as YAML. The catalog format used by this version of Puppet is not documented  and does not have a spec.</p>
+
+<p>In the standard agent/master architecture, nodes request catalogs from a puppet master server, which compiles and serves them to nodes as needed. When running Puppet standalone with puppet apply, catalogs are compiled locally and applied immediately.</p>
+
+<p>Agent nodes cache their most recent catalog. If they request a catalog and the master fails to compile one, they will re-use their cached catalog. This recovery behavior is governed by the <a href="/references/latest/configuration.html#usecacheonfailure"><code>usecacheonfailure</code></a> setting in <a href="./config_file_main.html">puppet.conf</a>. When testing updated manifests, you can save time by turning it off.</p>
+
+<p>For more information, see <a href="./subsystem_catalog_compilation.html">the reference page on catalog compilation</a>.</p>
+
+<h2 id="example">Example</h2>
+
+<p>The following short manifest manages NTP. It uses <a href="/references/latest/type.html#package">package</a>, <a href="/references/latest/type.html#file">file</a>, and <a href="/references/latest/type.html#service">service</a> resources; a <a href="./lang_conditional.html#case-statements">case statement</a> based on a <a href="./lang_variables.html#facts-and-built-in-variables">fact</a>; <a href="./lang_variables.html">variables</a>; <a href="/references/3.7.latest/configuration.html#ordering">ordering</a> and <a href="./lang_relationships.html#ordering-and-notification">notification</a> relationships; and <a href="./modules_fundamentals.html#files">file contents being served from a module</a>.</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">case</span> <span class="vg">$operatingsystem</span> <span class="p">{</span>
+      <span class="n">centos</span><span class="p">,</span> <span class="n">redhat</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$service_name</span> <span class="o">=</span> <span class="s1">&#39;ntpd&#39;</span> <span class="p">}</span>
+      <span class="n">debian</span><span class="p">,</span> <span class="n">ubuntu</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$service_name</span> <span class="o">=</span> <span class="s1">&#39;ntp&#39;</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">package</span> <span class="p">{</span> <span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">installed</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">service</span> <span class="p">{</span> <span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+      <span class="nb">name</span>      <span class="o">=&gt;</span> <span class="vg">$service_name</span><span class="p">,</span>
+      <span class="k">ensure</span>    <span class="o">=&gt;</span> <span class="n">running</span><span class="p">,</span>
+      <span class="n">enable</span>    <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+      <span class="n">subscribe</span> <span class="o">=&gt;</span> <span class="no">File</span><span class="o">[</span><span class="s1">&#39;ntp.conf&#39;</span><span class="o">]</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;ntp.conf&#39;</span><span class="p">:</span>
+      <span class="n">path</span>    <span class="o">=&gt;</span> <span class="s1">&#39;/etc/ntp.conf&#39;</span><span class="p">,</span>
+      <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+      <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Package</span><span class="o">[</span><span class="s1">&#39;ntp&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="n">source</span>  <span class="o">=&gt;</span> <span class="s2">&quot;puppet:///modules/ntp/ntp.conf&quot;</span><span class="p">,</span>
+      <span class="c1"># This source file would be located on the puppet master at</span>
+      <span class="c1"># /etc/puppetlabs/puppet/modules/ntp/files/ntp.conf (in Puppet Enterprise)</span>
+      <span class="c1"># or</span>
+      <span class="c1"># /etc/puppet/modules/ntp/files/ntp.conf (in open source Puppet)</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>
