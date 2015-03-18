@@ -57,6 +57,7 @@
           <div class="primary-secondary-content">
             <div class="primary-content">
               <h1>Upgrading Puppet</h1>
+
               <nav class="in-page" id="page-nav">
 <ol class="toc">
   <li class="toc-lv2"><a href="#upgrade-intentionally">Upgrade Intentionally</a>
@@ -78,23 +79,69 @@
    <li class="toc-lv3"><a href="#option-3-upgrade-master-and-roll-back-if-needed">Option 3: Upgrade Master and Roll Back if Needed</a></li>
 </ol></li>
 </ol></nav>
+
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#upgrade-intentionally">意図してアップグレードする</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#apt-pinning-example">aptの“ピン止め”例</a></li>
+   <li class="toc-lv3"><a href="#yum-versionlock-example">Yumのバージョンロック例</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#always-upgrade-the-puppet-master-first">常にPuppet masterのアップグレードを最初にする</a></li>
+  <li class="toc-lv2"><a href="#use-more-care-with-major-releases">メジャーリリースではより慎重に</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#additional-precautions">Additional Precautions</a></li>
+   <li class="toc-lv3"><a href="#versioning-in-puppet-3-and-later">Versioning in Puppet 3 and Later</a></li>
+   <li class="toc-lv3"><a href="#versioning-in-puppet-2x">Versioning in Puppet 2.x</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#roll-out-in-stages">Roll Out In Stages</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#option-1-spin-up-temporary-puppet-master-or-cull-a-master-from-your-load-balancer-pool">Option 1: Spin Up Temporary Puppet Master, or Cull a Master From Your Load Balancer Pool</a></li>
+   <li class="toc-lv3"><a href="#option-2-run-two-instances-of-puppet-master-at-once">Option 2: Run Two Instances of Puppet Master at Once</a></li>
+   <li class="toc-lv3"><a href="#option-3-upgrade-master-and-roll-back-if-needed">Option 3: Upgrade Master and Roll Back if Needed</a></li>
+</ol></li>
+</ol></nav>
+
               
 <p>Since Puppet is likely managing your entire infrastructure, it should be <strong>upgraded with care.</strong> This page describes our recommendations for upgrading Puppet.</p>
 
+<p>
+Puppetによってインフラ基盤を管理するようにした後の<strong>アップグレードは慎重にすべき</strong>です。このページではPuppetをアップグレードする際に推奨する事項を説明します。
+</p>
+
 <h2 id="upgrade-intentionally">Upgrade Intentionally</h2>
+
+<h2 id="upgrade-intentionally">意図してアップグレードする</h2>
+
 
 <p>If you are using <code>ensure =&gt; latest</code> on the Puppet package or running large-scale package upgrade commands, you might receive a Puppet upgrade you were not expecting, especially if you subscribe to the <a href="/guides/puppetlabs_package_repositories.html">Puppet Labs package repos</a>, which always contain the most recent version of Puppet. <strong>We highly recommend avoiding unintentional upgrades.</strong> Although we try our best not to break things, especially between minor releases, Puppet has a lot of surface area, and bugs can and do slip in.</p>
 
+<p>もしPuppetのパッケージもしくは実行中の大規模なパッケージのアップグレードコマンドに<code>ensure =&gt; latest</code>を利用するのであれば
+期待してない時にPuppetのアップグレードを受け取ってしまうかもしれません。
+特にもし<a href="/guides/puppetlabs_package_repositories.html">Puppet Labsのパッケージリポジトリ</a>を記述しているのであれば、常に最新版のPuppetが含まれる事になります。<strong>意図しないアップグレードは避けるよう強く推奨します。</strong>もちろん私たちも（特にマイナーリリースでは）システムを破壊するような事が無いようベストを尽くしていますが、Puppetは多岐に渡るコードがありますのでバグが混入する余地はあります。</p>
+
+
 <p>We recommend doing one of the following:</p>
+
+<p>私たちは以下の項目について実施する事を推奨します：</p>
 
 <ul>
   <li>Maintain your own package repositories, test new Puppet releases in a dev environment, and only introduce known-good versions into your production repo. Many sysadmins consider this to be best practice for <strong>any</strong> mission-critical packages.</li>
+
+  <li>あなた用のパッケージリポジトリをメンテナンスし、新しいバージョンのPuppetを開発用の環境で試験してください。そしてよく確認が取れたバージョンだけを商用環境のリポジトリに入れるようにしてください。多くのシステム管理者は、<strong>どんな</strong>ミッションクリティカルなパッケージであっても、これがベストプラクティスであると考えています。</li>
+
   <li>Use Apt’s pinning feature or Yum’s versionlock plugin to lock Puppet to a specific version, and only upgrade when you have a roll-out plan in place.</li>
+
+  <li>aptの“ピン止め”機能、もしくはyumのバージョンロックプラグインをPuppetを特定バージョンに固定するために使いましょう。またPuppetのアップグレードは、そのシステムで運用する計画がある時に限るべきです。</li>
 </ul>
 
 <h3 id="apt-pinning-example">Apt Pinning Example</h3>
 
+<h3 id="apt-pinning-example">aptの“ピン止め”例</h3>
+
 <p>You can pin package versions by adding special .pref files to your system’s <code>/etc/apt/preferences.d/</code> directory:</p>
+
+<p>パッケージバージョンの“ピン止め”は、あなたのシステムの<code>/etc/apt/preferences.d/</code>ディレクトリにある.prefファイルに記述を追加する事で可能です:</p>
 
 <pre><code># /etc/apt/preferences.d/00-puppet.pref
 Package: puppet puppet-common
@@ -104,9 +151,20 @@ Pin-Priority: 501
 
 <p>This pref file will lock puppet and puppet-common to the latest 2.7 release — they will be upgraded when new 2.7.x releases are added, but will not jump a major version. It will also downgrade a Puppet 3 to Puppet 2.7 if the pin-priority of the Puppet 3 is less than 501 (the default is 500). A separate file could be used to pin puppetmaster and puppetmaster-common, or they could be added to the package list.</p>
 
+<p>このprefファイルはpuppetおよびpuppet-commonをバージョン2.7系の最新にロックします。新しい2.7.xリリースが追加された時、これらはアップグレードされます。ですが、メジャーバージョンをジャンプしてしまう事はありません。もしPuppet 3系に関するPINのプライオリティが501（デフォルトは500）よりも低いならば、Puppet 3系はPuppet2.7系にダウングレードされます。ファイルを分けてpuppetmasterとpuppetmaster-commonを“ピン止め”に使う事や、パッケージリストを追加する事ができます。</p>
+
+
+
 <h3 id="yum-versionlock-example">Yum Versionlock Example</h3>
 
+<h3 id="yum-versionlock-example">yumのバージョンロック例</h3>
+
+
 <p>Unfortunately, Yum versionlock is less flexible than Apt pinning: it can’t allow bugfix upgrades, and can only lock specific versions. For this reason, maintaining your own repo is a more attractive option for RPM systems.</p>
+
+
+<p>残念ながら、yumバージョンロックはaptの“ピン止め”に比べて柔軟性はありません。バグフィックスによるアップグレードを認めることができず、また特定バージョンに固定する事しかできません。これらの理由により、あなた専用のリポジトリをメンテナンスするようにしたほうが、RPMシステム向けには良いでしょう。</p>
+
 
 <pre><code>$ sudo yum install yum-versionlock
 $ sudo yum install puppet-2.7.19
@@ -115,17 +173,30 @@ $ sudo yum versionlock puppet
 
 <p>These commands will install the versionlock plugin and lock Puppet to version 2.7.19. When you want to upgrade, edit <code>/etc/yum/pluginconf.d/versionlock.list</code> and remove the Puppet lock, then run:</p>
 
+<p>これらのコマンドはバージョンロックプラグインをインストールして、Puppetをバージョン2.7.19に固定するものです。アップグレードを望む時には<code>/etc/yum/pluginconf.d/versionlock.list</code>を編集してPuppetのバージョンロックを外した上で実行する事になります:</p>
+
+
 <pre><code>$ sudo yum install puppet-&lt;desired version&gt;
 $ sudo yum versionlock puppet
 </code></pre>
 
 <h2 id="always-upgrade-the-puppet-master-first">Always Upgrade the Puppet Master First</h2>
 
+<h2 id="always-upgrade-the-puppet-master-first">常にPuppet masterのアップグレードを最初にする</h2>
+
+
 <p>Older agent nodes can get catalogs from a newer puppet master. The inverse is not always true.</p>
+
+<p>古いagentノードは新しいPuppet masterからカタログを取得する事ができますが、逆は常に可能とは限りません。</p>
 
 <h2 id="use-more-care-with-major-releases">Use More Care With Major Releases</h2>
 
+<h2 id="use-more-care-with-major-releases">メジャーリリースではより慎重に</h2>
+
 <p>Upgrading to a new major release presents more possibility for things to go wrong, and we recommend extra caution.</p>
+
+<p>新しいメジャーリリースにアップグレードする際は不具合が起きる可能性がさらにあるため、追加の確認を推奨します。</p>
+
 
 <h3 id="additional-precautions">Additional Precautions</h3>
 
