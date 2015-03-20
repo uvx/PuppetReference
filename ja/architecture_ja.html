@@ -96,7 +96,7 @@
 
    <li class="toc-lv3"><a href="#communications-and-security">通信とセキュリティ</a></li>
 </ol></li>
-  <li class="toc-lv2"><a href="#the-stand-alone-architecture">スタンドアローンのアーキテクチャ</a>
+  <li class="toc-lv2"><a href="#the-stand-alone-architecture">スタンドアローン型アーキテクチャ</a>
 <ol class="toc">
    <li class="toc-lv3"><a href="#basics-1">アーキテクチャの基本</a></li>
 
@@ -107,14 +107,14 @@
 
               
 <p>Puppet usually uses an agent/master (client/server) architecture for configuring systems, using the <strong>puppet agent</strong> and <strong>puppet master</strong> applications. It can also run in a self-contained architecture with the <strong>puppet apply</strong> application.</p>
-<p>Puppetは通常agent/master型(クライアント/サーバ型)で利用します。<strong>puppet agent</strong>と<strong>puppet master</strong>のアプリケーションを使います。また単独で動作する形態として<strong>puppet apply</strong>アプリケーションもあります。</p>
+<p>一般的に、Puppetではシステムを設定するために<strong>puppet agent</strong>と<strong>puppet master</strong>アプリケーションによるagent/master(クライアント/サーバ)型アーキテクチャを利用します。また、<strong>puppet apply</strong>アプリケーションによる単独実行もできます。</p>
 
 
 <blockquote>
-  <h2 id="note-two-stages-for-configuration-management">Note: 設定管理の2つのステージ</h2>
+  <h2 id="note-two-stages-for-configuration-management">Note: 設定を管理するための2つのステージ</h2>
 
   <p>Puppet configures systems in two main stages:</p>
-  <p>Puppetがシステムを設定する際は2つのステージがあります:</p>
+  <p>Puppetは主に2つのステージでシステムを設定します:</p>
 
   <ol>
     <li>カタログのコンパイル</li>
@@ -124,7 +124,7 @@
   <h3 id="what-is-a-catalog">カタログとは?</h3>
 
   <p>A catalog is a document that describes the desired system state for one specific computer. It lists all of the resources that need to be managed, as well as any dependencies between those resources.</p>
-  <p>カタログは特定のコンピュータに対するシステムの状態を記述した“ドキュメント”です。カタログには管理すべき全てのリソースと、それらのリソース間の依存関係が記述されています。</p>
+  <p>カタログとは、特定のコンピュータに関するシステムのあるべき状態を記述した“ドキュメント”です。カタログには管理するために必要なリソースだけではなく、それらのリソース間の依存関係の全てが列挙されています。</p>
 
   <p>To compile a catalog, Puppet uses several sources of information. For more info, see the pages on <a href="./lang_summary.html">basics of the Puppet language</a> and <a href="./subsystem_catalog_compilation.html">catalog compilation</a>.</p>
   <p>カタログをコンパイルするのにPuppetはいくつかの情報源を使います。さらなる情報は<a href="./lang_summary_ja.html">basics of the Puppet language</a> と <a href="./subsystem_catalog_compilation_ja.html">catalog compilation</a>を参照してください。</p>
